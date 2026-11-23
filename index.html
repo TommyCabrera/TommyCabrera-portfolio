@@ -881,6 +881,33 @@ body.worklist .listwrap{display:block}
   .ndatrack ul + ul{display:none}
 }
 
+
+/* ---------- contact ---------- */
+.ctop{padding-top:72px}
+#v-contact .eyebrow{color:var(--moss)}
+.ch{font-size:clamp(46px,6vw,76px);letter-spacing:-.045em;line-height:1;margin:14px 0 20px}
+.ch span{color:var(--muted)}
+#v-contact .lede{max-width:44ch}
+.ccards{display:flex;flex-wrap:wrap;gap:14px;margin-top:44px}
+.ccard{display:flex;flex-direction:column;gap:16px;min-width:190px;padding:24px 24px 26px;border:1px solid var(--line-2);background:var(--paper);color:var(--ink);text-decoration:none;transition:background var(--t),border-color var(--t),transform var(--t)}
+.ccard .k{font-family:var(--mono);font-size:10.5px;letter-spacing:.16em;color:var(--muted)}
+.ccard .v{font-size:21px;letter-spacing:-.02em;display:flex;align-items:center;gap:8px}
+.ccard .v i{font-style:normal;font-size:16px;transition:transform var(--t)}
+.ccard:hover{background:var(--pale);border-color:var(--sage-2);color:var(--ink)}
+.ccard:hover .v i{transform:translate(2px,-2px)}
+.ccard.hl{background:var(--accent);border-color:var(--sage-2)}
+.ccard.hl .k{color:var(--accent-ink)}
+.ccard.hl:hover{background:var(--sage-2)}
+.ccard:focus-visible{outline:2px solid var(--ink);outline-offset:3px}
+.garden{margin-top:72px;border-bottom:1px solid var(--line);line-height:0;display:flex;justify-content:center}
+.garden canvas{display:block;image-rendering:pixelated;image-rendering:crisp-edges}
+@media (max-width:820px){
+  .ctop{padding-top:44px}
+  .ccards{flex-direction:column}
+  .ccard{min-width:0}
+  .ccard .v{font-size:18px;word-break:break-all}
+  .garden{margin-top:48px}
+}
 </style>
 </head>
 <body>
@@ -1064,17 +1091,17 @@ body.worklist .listwrap{display:block}
 
 <!-- ================= CONTACT ================= -->
 <section class="view" id="v-contact">
-  <div class="wrap" style="padding-top:56px">
-    <div class="eyebrow">CONTACT</div>
-    <h2>Let's build something</h2>
-    <p class="lede">Open to product design roles, contract work, and studios hiring for game UX. I reply to everything.</p>
-    <div class="cgrid">
-      <div><div class="k">EMAIL</div><a href="mailto:hitomicabrera15@gmail.com">hitomicabrera15@gmail.com</a></div>
-      <div><div class="k">LINKEDIN</div><a href="https://linkedin.com/in/hitomicabrera/">/in/hitomicabrera</a></div>
-      <div><div class="k">GITHUB</div><a href="https://github.com/TommyCabrera">TommyCabrera</a></div>
-      <div><div class="k">BASED IN</div><span>Iloilo, Philippines · GMT+8</span></div>
+  <div class="wrap ctop">
+    <div class="eyebrow">CONTACT &mdash; ILOILO &middot; GMT+8</div>
+    <h2 class="ch">Let&rsquo;s <span>talk</span></h2>
+    <p class="lede">Product design, UX and design systems &mdash; open to product design roles, contract work, and studios hiring for game UX. I reply to everything.</p>
+    <div class="ccards">
+      <a class="ccard hl" href="mailto:hitomicabrera15@gmail.com"><span class="k">EMAIL</span><span class="v">hitomicabrera15@gmail.com</span></a>
+      <a class="ccard" href="https://linkedin.com/in/hitomicabrera/" target="_blank" rel="noopener"><span class="k">LINKEDIN</span><span class="v">/hitomicabrera <i aria-hidden="true">&nearr;</i></span></a>
+      <a class="ccard" href="https://github.com/TommyCabrera" target="_blank" rel="noopener"><span class="k">GITHUB</span><span class="v">/TommyCabrera <i aria-hidden="true">&nearr;</i></span></a>
     </div>
   </div>
+  <div class="wrap"><div class="garden" id="garden" role="img" aria-label="A pixel-art farm garden: a cottage with a mailbox, crop rows, sunflowers and a tree"><canvas id="gardenCv"></canvas></div></div>
 </section>
 
 </main>
@@ -2390,6 +2417,109 @@ function fitFrames(root){
 }
 window.addEventListener('resize', function(){ fitFrames(); });
 
+
+/* ---------- pixel garden (original art, drawn cell by cell) ---------- */
+(function(){
+  var host = document.getElementById('garden'), cv = document.getElementById('gardenCv');
+  if(!host || !cv) return;
+  var ctx = cv.getContext('2d'), ROWS = 64, cell = 4, W = 0, t0 = performance.now();
+  var C = { hill1:'#DCE9D5', hill2:'#CFE2C4', grass:'#A9CF8E', grassTop:'#BFDCA8', speck:'#93C07A', soil:'#A8794F', furrow:'#8C6240',
+    post:'#B98A5A', postTop:'#9B6B43', rail:'#C9A06E', roof:'#C96A52', roofDk:'#A9543F', wall:'#F3E6CF', line:'#6B4A35', door:'#9B6B43',
+    win:'#BFE0E8', path:'#E3C9A0', leaf:'#7FB069', leafDk:'#5E9150', stalk:'#6FA05A', yellow:'#F2C94C', red:'#E0685A', white:'#F6F1E7',
+    pink:'#E9A0B8', blue:'#7FB2C9', blueDk:'#5E93AB', trunk:'#8C6240', tree:'#8DBB73', treeHi:'#A9CF8E', treeDk:'#6FA05A',
+    sun:'#F6D98B', halo:'#FBEBC0', cloud:'#FFFFFF', cloudDk:'#EDE7DA', orange:'#E9A23B', fly:'#F6A9BC' };
+  function hash(x, y){ var n = Math.sin(x * 127.1 + y * 311.7) * 43758.5453; return n - Math.floor(n); }
+  function px(x, y, c){ if(x < 0 || x >= W || y < 0 || y >= ROWS) return; ctx.fillStyle = c; ctx.fillRect(x * cell, y * cell, cell, cell); }
+  function rect(x, y, w, h, c){ ctx.fillStyle = c; ctx.fillRect(x * cell, y * cell, w * cell, h * cell); }
+  function size(){
+    var w = host.clientWidth; if(!w) return false;
+    cell = w < 560 ? 3 : 4; W = Math.floor(w / cell);
+    cv.width = W * cell; cv.height = ROWS * cell; cv.style.width = (W * cell) + 'px'; cv.style.height = (ROWS * cell) + 'px';
+    return true;
+  }
+  function cloud(x, y){
+    rect(x+4, y, 5, 1, C.cloud); rect(x+10, y+1, 4, 1, C.cloud); rect(x+2, y+1, 8, 1, C.cloud); rect(x+1, y+2, 15, 1, C.cloud); rect(x, y+3, 17, 1, C.cloud); rect(x+1, y+4, 15, 1, C.cloudDk);
+  }
+  function sunflower(x, top){
+    rect(x+2, top+5, 1, 47-(top+5), C.stalk); px(x+1, top+9, C.leaf); px(x+3, top+11, C.leaf);
+    rect(x+1, top, 3, 1, C.yellow); rect(x, top+1, 5, 3, C.yellow); rect(x+1, top+4, 3, 1, C.yellow); rect(x+1, top+1, 3, 3, C.furrow); px(x+2, top+2, C.postTop);
+  }
+  function draw(t){
+    if(!W && !size()) return;
+    ctx.clearRect(0, 0, cv.width, cv.height);
+    var sway = function(x){ return Math.sin(t / 700 + x * 0.7) > 0.55 ? 1 : 0; };
+    // sun and clouds
+    var sx = Math.round(W * 0.74);
+    for(var yy = -7; yy <= 7; yy++) for(var xx = -7; xx <= 7; xx++){ var d = xx*xx + yy*yy; if(d <= 49 && d > 30) px(sx+xx, 11+yy, C.halo); else if(d <= 30) px(sx+xx, 11+yy, C.sun); }
+    [[0.05, 6, 0.0021], [0.45, 14, 0.0014], [0.9, 4, 0.0017]].forEach(function(c, k){
+      var span = W + 24, x = Math.round(((c[0] * span + t * c[2]) % span) - 12); cloud(x, c[1]);
+    });
+    // hills
+    for(var x = 0; x < W; x++){
+      var h1 = 37 + Math.round(3 * Math.sin(x / 23) + 2 * Math.sin(x / 9 + 1));
+      rect(x, h1, 1, 47 - h1, C.hill1);
+      var h2 = 42 + Math.round(2 * Math.sin(x / 17 + 2));
+      rect(x, h2, 1, 47 - h2, C.hill2);
+    }
+    // grass
+    rect(0, 47, W, ROWS - 47, C.grass); rect(0, 47, W, 1, C.grassTop);
+    for(x = 0; x < W; x++) for(var y = 48; y < ROWS; y++) if(hash(x, y) < 0.05) px(x, y, C.speck);
+    // fence
+    rect(0, 42, W, 1, C.rail); rect(0, 45, W, 1, C.rail);
+    for(x = 2; x < W; x += 10){ rect(x, 40, 2, 8, C.post); rect(x, 40, 2, 1, C.postTop); }
+    // cottage
+    var hx = Math.max(3, Math.round(W * 0.07));
+    rect(hx + 13, 48, 4, ROWS - 48, C.path); for(y = 52; y < ROWS; y += 3) rect(hx + 12 - ((y - 52) / 6 | 0), y, 6 + ((y - 52) / 3 | 0), 2, C.path);
+    rect(hx + 22, 21, 3, 7, C.postTop);
+    for(var r = 0; r < 10; r++){ var half = 5 + Math.round(r * 1.25); rect(hx + 15 - half, 23 + r, half * 2, 1, r > 7 ? C.roofDk : C.roof); }
+    rect(hx + 2, 33, 26, 14, C.wall); rect(hx + 2, 33, 26, 1, C.line); rect(hx + 1, 33, 1, 14, C.line); rect(hx + 28, 33, 1, 14, C.line);
+    rect(hx + 13, 39, 4, 8, C.door); px(hx + 16, 43, C.yellow);
+    [hx + 5, hx + 21].forEach(function(wx){ rect(wx - 1, 35, 6, 5, C.line); rect(wx, 36, 4, 3, C.win); rect(wx + 2, 36, 1, 3, C.line); rect(wx, 37, 4, 1, C.line); });
+    rect(hx + 3, 40, 3, 2, C.red); rect(hx + 24, 40, 3, 2, C.pink); rect(hx + 3, 42, 3, 1, C.leafDk); rect(hx + 24, 42, 3, 1, C.leafDk);
+    // mailbox
+    var mx = hx + 33; rect(mx + 2, 41, 1, 7, C.trunk); rect(mx, 37, 5, 4, C.blue); rect(mx, 40, 5, 1, C.blueDk); rect(mx + 5, 36, 1, 3, C.red);
+    // garden beds
+    var g0 = hx + 42, g1 = Math.round(W * 0.8);
+    for(x = g0; x + 4 < g1; x += 16) sunflower(x + 5, 32 + (x % 3));
+    [[49, 'corn'], [54, 'tomato'], [59, 'turnip']].forEach(function(bed){
+      var by = bed[0]; rect(g0, by + 2, g1 - g0, 3, C.soil); rect(g0, by + 4, g1 - g0, 1, C.furrow);
+      for(var cx = g0 + 2; cx + 3 < g1; cx += 6){
+        var s = sway(cx + by);
+        if(bed[1] === 'corn'){ rect(cx + 1, by - 5, 1, 7, C.stalk); px(cx + s, by - 3, C.leaf); px(cx + 2 + s, by - 1, C.leaf); rect(cx + 2, by - 4, 1, 2, C.yellow); px(cx + 1, by - 6 + s, C.yellow); }
+        if(bed[1] === 'tomato'){ rect(cx, by - 1, 3, 3, C.leaf); px(cx + 1 + s, by - 2, C.leafDk); px(cx, by, C.red); px(cx + 2, by + 1, C.red); }
+        if(bed[1] === 'turnip'){ px(cx + s, by, C.leaf); px(cx + 2 - s, by, C.leaf); px(cx + 1, by, C.leafDk); rect(cx, by + 1, 3, 2, C.white); px(cx + 1, by + 1, C.pink); }
+      }
+    });
+    // watering can
+    var wx2 = g0 - 7; rect(wx2, 50, 4, 3, C.blue); px(wx2 + 4, 50, C.blueDk); px(wx2 + 5, 49, C.blueDk); px(wx2 - 1, 50, C.blueDk); px(wx2 - 1, 51, C.blueDk);
+    // tree
+    var tx = Math.round(W * 0.89);
+    rect(tx, 36, 3, 12, C.trunk);
+    for(yy = -9; yy <= 9; yy++) for(xx = -10; xx <= 10; xx++){
+      var dd = (xx * xx) / 100 + (yy * yy) / 81; if(dd > 1) continue;
+      px(tx + 1 + xx, 29 + yy, (xx + yy < -6) ? C.treeHi : (xx + yy > 7 ? C.treeDk : C.tree));
+    }
+    px(tx - 4, 27, C.red); px(tx + 5, 31, C.red); px(tx, 33, C.red); px(tx + 3, 24, C.red);
+    // chicken (pecks every few beats)
+    var chx = hx + 34, peck = Math.floor(t / 520) % 4 === 0;
+    rect(chx, 57, 5, 3, C.white); rect(chx + 4, peck ? 57 : 55, 2, 2, C.white); px(chx + 5, peck ? 56 : 54, C.red);
+    px(chx + 6, peck ? 58 : 56, C.orange); px(chx + 5, peck ? 57 : 55, C.line); px(chx - 1, 56, C.white);
+    px(chx + 1, 60, C.orange); px(chx + 3, 60, C.orange);
+    // butterfly
+    var bx = Math.round(W * 0.6 + Math.sin(t / 1900) * Math.min(30, W * 0.15)), by2 = Math.round(29 + Math.sin(t / 830) * 5), f = Math.floor(t / 180) % 2;
+    px(bx, by2, C.line); if(f){ px(bx - 1, by2 - 1, C.fly); px(bx + 1, by2 - 1, C.fly); } else { px(bx - 1, by2, C.fly); px(bx + 1, by2, C.fly); }
+  }
+  var last = 0;
+  function loop(t){
+    requestAnimationFrame(loop);
+    if(current !== 'contact' || document.hidden) return;
+    if(t - last < 110) return;
+    last = t; draw(t - t0);
+  }
+  window.addEventListener('resize', function(){ W = 0; size(); draw(performance.now() - t0); });
+  if(reduce){ var once = function(){ if(current === 'contact'){ size(); draw(0); } }; window.addEventListener('hashchange', once); setInterval(once, 1000); }
+  else requestAnimationFrame(loop);
+})();
 
 /* --- rows --- */
 var grid = document.getElementById('worksGrid');
