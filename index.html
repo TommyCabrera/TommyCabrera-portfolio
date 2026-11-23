@@ -1,0 +1,2630 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hitomi Cabrera — Product Designer</title>
+<meta name="description" content="Hitomi Cabrera is a product designer: SaaS, AI tools and e-commerce, from research to the final screen. Ten years in web, six in SaaS. Iloilo, Philippines.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Lora:wght@500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=DM+Sans:wght@400;500;600;700&family=DM+Serif+Display&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#FCFBF5;
+  --cream:#F5F3E7;
+  --cream-2:#EDEADB;
+  --line:#DCD9C8;
+  --line-2:#C9C7B4;
+
+  --ink:#26302A;
+  --ink-2:#4A554C;
+  --muted:#8B948A;
+
+  --pale:#E4EEDF;
+  --sage:#C3D9BA;
+  --sage-2:#9DBE93;
+  --moss:#6E8F68;
+  --forest:#40593D;
+
+  --accent:#B9D5AE;
+  --accent-ink:#33472F;
+
+  --sans:"Helvetica Neue",Helvetica,Inter,Arial,sans-serif;
+  --mono:"SF Mono",ui-monospace,"JetBrains Mono",Menlo,Consolas,monospace;
+  --t:420ms cubic-bezier(.22,.61,.36,1);
+}
+
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;overflow-x:hidden}
+@supports (overflow:clip){html,body{overflow-x:clip}}
+html{scroll-padding-top:96px}
+main{padding-top:70px}
+html{-webkit-text-size-adjust:100%}
+body{
+  background:var(--paper);
+  background-image:repeating-linear-gradient(to bottom, rgba(38,48,42,.028) 0 1px, transparent 1px 7px);
+  color:var(--ink);
+  font-family:var(--sans);
+  font-size:16px;
+  line-height:1.62;
+  letter-spacing:-.005em;
+  -webkit-font-smoothing:antialiased;
+}
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{animation-duration:.001ms !important;transition-duration:.001ms !important}
+}
+
+h1,h2,h3,h4{font-weight:600;letter-spacing:-.024em;line-height:1.16;margin:0}
+h1{font-size:clamp(38px,5.6vw,66px)}
+h2{font-size:clamp(24px,3vw,34px)}
+h3{font-size:18px}
+p{margin:0 0 16px;max-width:64ch;color:var(--ink-2)}
+a{color:var(--forest);text-decoration:none}
+a:hover{color:var(--moss)}
+:focus-visible{outline:2px solid var(--moss);outline-offset:3px;border-radius:2px}
+.mono{font-family:var(--mono);font-size:11px;letter-spacing:.06em;color:var(--muted)}
+
+.wrap{max-width:1180px;margin:0 auto;padding:0 28px}
+
+/* ---------- nav ---------- */
+.nav{
+  position:fixed;top:0;left:0;right:0;z-index:80;transition:box-shadow var(--t);
+  background:rgba(252,251,245,.88);
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--line);
+}
+.nav .wrap{display:flex;align-items:center;gap:28px;height:70px}
+body.scrolled .nav{box-shadow:0 6px 22px rgba(38,48,42,.07)}
+.skip{position:fixed;left:16px;top:-64px;z-index:300;background:var(--ink);color:var(--paper);padding:10px 16px;border-radius:3px;font-size:14px;transition:top 200ms}
+.skip:focus{top:12px;color:var(--paper)}
+.logo{font-size:21px;font-weight:600;letter-spacing:-.045em;color:var(--ink)}
+.logo span{color:var(--sage-2)}
+.navlinks{margin-left:auto;display:flex;align-items:center;gap:26px}
+.navlink{
+  position:relative;background:none;border:0;padding:6px 0;cursor:pointer;
+  font-family:var(--sans);font-size:15px;color:var(--ink-2);letter-spacing:-.01em;
+}
+.navlink:hover{color:var(--ink)}
+.navlink::after{
+  content:"";position:absolute;left:50%;bottom:-1px;width:5px;height:5px;border-radius:50%;
+  background:var(--sage-2);transform:translate(-50%,6px) scale(0);transition:transform var(--t);
+}
+.navlink[aria-current="page"]{color:var(--ink);font-weight:500}
+.navlink[aria-current="page"]::after{transform:translate(-50%,0) scale(1)}
+.navcta{
+  background:var(--accent);color:var(--accent-ink);border:0;border-radius:3px;
+  padding:10px 20px;font-family:var(--sans);font-size:15px;font-weight:500;cursor:pointer;
+  transition:background var(--t);
+}
+.navcta:hover{background:var(--sage-2)}
+.navtoggle{display:none}
+
+/* ---------- page transition ---------- */
+#curtain{
+  position:fixed;inset:0;z-index:200;background:var(--cream);
+  transform:scaleX(0);transform-origin:left center;pointer-events:none;
+}
+#curtain.in{transform:scaleX(1);transition:transform 320ms cubic-bezier(.65,0,.35,1)}
+#curtain.out{transform:scaleX(0);transform-origin:right center;transition:transform 320ms cubic-bezier(.65,0,.35,1)}
+#curtain .mark{
+  position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
+  font-family:var(--mono);font-size:11px;letter-spacing:.18em;color:var(--muted);opacity:0;
+}
+#curtain.in .mark{opacity:1;transition:opacity 200ms 120ms}
+
+.view{display:none}
+.view.active{display:block;animation:rise 520ms cubic-bezier(.22,.61,.36,1) both}
+@keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+
+/* ---------- shared ---------- */
+.eyebrow{
+  font-family:var(--mono);font-size:11px;letter-spacing:.14em;color:var(--muted);
+  display:flex;align-items:center;gap:9px;margin-bottom:18px;
+}
+.eyebrow::before{content:"";width:6px;height:6px;background:var(--sage-2);flex:none}
+.rule{height:1px;background:var(--line);margin:0}
+.lede{font-size:19px;line-height:1.6;color:var(--ink-2);max-width:58ch}
+.btn{
+  display:inline-block;border:1px solid var(--line-2);background:transparent;color:var(--ink);
+  border-radius:3px;padding:11px 20px;font-family:var(--sans);font-size:15px;cursor:pointer;
+  transition:background var(--t),border-color var(--t);
+}
+.btn:hover{background:var(--cream);border-color:var(--sage-2)}
+.btn--fill{background:var(--accent);border-color:var(--accent);color:var(--accent-ink);font-weight:500}
+.btn--fill:hover{background:var(--sage-2);border-color:var(--sage-2)}
+
+/* ---------- hero ---------- */
+.hero{padding-top:86px;padding-bottom:54px}
+.hero h1{max-width:15ch;margin-bottom:26px}
+.herogrid{display:grid;grid-template-columns:1.1fr .9fr;gap:64px;align-items:end}
+.herofacts{display:grid;gap:20px;padding-bottom:8px}
+.fact{border-top:1px solid var(--line);padding-top:12px}
+.fact .k{font-family:var(--mono);font-size:11px;letter-spacing:.1em;color:var(--muted);margin-bottom:4px}
+.fact .v{font-size:15px;color:var(--ink)}
+.herobtns{display:flex;gap:12px;flex-wrap:wrap;margin-top:34px}
+
+/* ---------- circuit rail ---------- */
+.rail{padding-top:14px;padding-bottom:40px;position:relative}
+.railnote{display:none;margin-top:6px;font-size:10px;letter-spacing:.1em}
+.railhead{display:flex;align-items:baseline;gap:12px;justify-content:center;margin-bottom:6px;min-height:30px}
+.railhead .num{font-family:var(--mono);font-size:11px;color:var(--sage-2)}
+.railhead .name{font-size:19px;font-weight:600;letter-spacing:-.02em}
+.railhead .kind{font-size:19px;color:var(--muted);letter-spacing:-.02em}
+.railscroll{position:relative;overflow:hidden;padding-bottom:10px;
+  -webkit-mask-image:linear-gradient(90deg,transparent,#000 9%,#000 91%,transparent);mask-image:linear-gradient(90deg,transparent,#000 9%,#000 91%,transparent)}
+.railtrack{display:flex;width:max-content;will-change:transform;backface-visibility:hidden}
+.railtrack svg{flex:none}
+.railspark{position:absolute;left:50%;top:176px;width:0;height:0;pointer-events:none;z-index:2}
+.railspark::before{content:"";position:absolute;left:-160px;top:-1.3px;width:320px;height:2.6px;border-radius:2px;background:linear-gradient(90deg,transparent,#9DBE93 50%,transparent)}
+.railspark::after{content:"";position:absolute;left:-6px;top:-6px;width:12px;height:12px;border-radius:50%;background:#40593D;
+  box-shadow:0 0 0 4px #C3D9BA,0 0 18px 6px rgba(157,190,147,.5);animation:sparkpulse 2.2s ease-in-out infinite}
+
+.railspark::after{content:none}
+.railscroll .dango svg{display:block;width:33px;height:auto;flex:none}
+.dango{position:absolute;left:-16.5px;bottom:1px;display:block;line-height:0;transform-origin:50% 100%;animation:dangobounce 1.15s infinite}
+.dshadow{position:absolute;left:-11px;top:-2px;width:22px;height:3px;background:rgba(38,48,42,.2);transform-origin:50% 50%;animation:dshadow 1.15s infinite}
+@keyframes dangobounce{
+  0%{transform:translateY(0) scale(1.12,.86);animation-timing-function:cubic-bezier(.25,.75,.4,1)}
+  48%{transform:translateY(-26px) scale(.97,1.04);animation-timing-function:cubic-bezier(.6,0,.8,.35)}
+  90%{transform:translateY(-2px) scale(.95,1.07)}
+  100%{transform:translateY(0) scale(1.12,.86)}
+}
+@keyframes dshadow{
+  0%,100%{transform:scaleX(1.15);opacity:1;animation-timing-function:cubic-bezier(.25,.75,.4,1)}
+  48%{transform:scaleX(.55);opacity:.45;animation-timing-function:cubic-bezier(.6,0,.8,.35)}
+}
+@media (max-width:820px){ .railspark{transform:scale(.82)} }
+@keyframes sparkpulse{50%{box-shadow:0 0 0 7px #DCE9D5,0 0 28px 10px rgba(157,190,147,.32)}}
+@media (prefers-reduced-motion: no-preference){ .railnote{display:none !important} }
+@media (prefers-reduced-motion: reduce){
+  .railscroll{-webkit-mask-image:none;mask-image:none}
+  .railtrack svg + svg,.railspark{display:none}
+}
+.railscroll::-webkit-scrollbar{height:6px}
+.railscroll::-webkit-scrollbar-thumb{background:var(--line-2);border-radius:3px}
+.railscroll svg{display:block;width:2560px;height:236px}
+.railsvg .chipbox{fill:var(--paper);stroke:var(--line-2);stroke-width:1;transition:fill 480ms ease}
+.railsvg g.chip.on .chipbox{fill:var(--pale)}
+.railsvg g.chip .plate{fill:var(--cream);stroke:var(--line);stroke-width:1;transition:fill 480ms ease,stroke 480ms ease}
+.railsvg g.chip.on .plate{fill:var(--accent);stroke:var(--sage-2)}
+.railsvg text{font-family:var(--mono);font-size:11px;fill:var(--muted)}
+.railsvg .chiplabel{font-family:var(--sans);font-size:12.5px;fill:var(--ink-2);letter-spacing:-.01em}
+.railscroll,.railscroll *{pointer-events:none;user-select:none;-webkit-user-select:none;-webkit-tap-highlight-color:transparent}
+
+/* ---------- bench ---------- */
+.bench{border:1px solid var(--line);background:var(--paper);border-radius:4px;overflow:hidden;margin-top:26px}
+.benchbar{
+  display:flex;align-items:center;gap:12px;height:40px;padding:0 14px;
+  background:var(--accent);color:var(--accent-ink);
+  font-family:var(--mono);font-size:11px;letter-spacing:.11em;
+}
+.benchbar .lights{display:flex;gap:5px}
+.benchbar .lights i{width:7px;height:7px;background:var(--accent-ink);opacity:.45;display:block}
+.benchbar .lights i:first-child{opacity:.9}
+.benchbar .right{margin-left:auto;display:flex;align-items:center;gap:8px}
+.benchbar .right::before{content:"";width:7px;height:7px;background:var(--accent-ink)}
+
+.benchbody{display:grid;grid-template-columns:262px 1fr;min-height:560px}
+.tracks{border-right:1px solid var(--line);background:var(--paper)}
+.tracks .hd{padding:18px 20px 10px;font-family:var(--mono);font-size:11px;letter-spacing:.14em;color:var(--muted)}
+.track{
+  display:block;width:100%;text-align:left;border:0;border-top:1px solid var(--line);
+  background:transparent;padding:16px 20px;cursor:pointer;font-family:var(--sans);
+  transition:background 240ms;position:relative;
+}
+.track:hover{background:var(--cream)}
+.track[aria-selected="true"]{background:var(--cream)}
+.track[aria-selected="true"]::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--sage-2)}
+.track .tt{display:flex;align-items:center;gap:9px;font-size:16px;font-weight:500;color:var(--ink);letter-spacing:-.015em}
+.track .tt::before{content:"";width:7px;height:7px;background:var(--line-2);flex:none}
+.track[aria-selected="true"] .tt::before{background:var(--moss)}
+.track .ts{font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;color:var(--muted);margin-top:5px;padding-left:16px}
+.tracks .foot{padding:16px 20px;border-top:1px solid var(--line);margin-top:22px}
+.tracks .foot .bar{height:2px;background:var(--line);margin-top:9px;position:relative;overflow:hidden}
+.tracks .foot .bar i{position:absolute;inset:0 auto 0 0;background:var(--moss);transition:width var(--t)}
+
+.stage{display:flex;flex-direction:column;min-width:0}
+.stagehd{
+  display:flex;align-items:center;justify-content:space-between;gap:14px;
+  padding:14px 20px;border-bottom:1px solid var(--line);
+  font-family:var(--mono);font-size:11px;letter-spacing:.13em;color:var(--muted);
+}
+.board{
+  flex:1;position:relative;padding:22px;min-height:400px;overflow:auto;
+  background-image:radial-gradient(var(--line) 1px, transparent 1px);
+  background-size:22px 22px;background-position:11px 11px;
+}
+.board.plain{background-image:none;background:var(--paper)}
+.stagefoot{
+  display:flex;align-items:center;gap:10px;flex-wrap:wrap;
+  padding:12px 20px;border-top:1px solid var(--line);
+  font-family:var(--mono);font-size:11px;letter-spacing:.1em;color:var(--muted);
+}
+.pill{border:1px solid var(--line);border-radius:2px;padding:5px 11px;background:var(--paper)}
+
+/* board: flow */
+/* mobile vertical flow */
+.vflow{display:grid;justify-items:center;gap:0}
+.vnode{
+  align-self:start;
+  border:1px solid var(--line-2);background:var(--cream);border-radius:3px;
+  padding:11px 16px;font-family:var(--mono);font-size:12px;letter-spacing:.05em;
+  text-align:center;min-width:160px;
+  opacity:0;transform:translateY(6px);animation:pop 420ms cubic-bezier(.22,.61,.36,1) forwards;
+}
+.vnode.dia{background:var(--paper);border-style:dashed}
+.vnode.ship{background:var(--accent);border-color:var(--sage-2);color:var(--accent-ink);font-weight:500}
+.vlink{width:1px;height:22px;background:var(--line-2)}
+.vlink.sm{height:14px}
+.vbranch{display:grid;grid-template-columns:1fr 1fr;gap:12px;width:100%;margin-top:6px;align-items:start}
+.vb{display:grid;justify-items:center;align-content:start;gap:0;position:relative;padding-top:26px}
+.vb::before{content:"";position:absolute;top:0;left:50%;width:1px;height:26px;background:var(--line-2)}
+.vb .lbl{position:absolute;top:4px;left:calc(50% + 7px);font-family:var(--mono);font-size:9.5px;color:var(--muted)}
+.vjoin{width:1px;height:22px;background:var(--line-2);margin-top:6px}
+.vnotes{display:grid;gap:12px;margin-top:26px}
+.vnotes .sticky{position:static;animation:none;opacity:1;max-width:none}
+.vnotes .chatcard{position:static;animation:none;opacity:1;width:auto}
+
+.flowfit{position:relative;width:100%;height:446px}
+.flow{position:relative;width:740px;height:446px;transform-origin:top left;margin:0 auto}
+.node{
+  position:absolute;background:var(--cream);border:1px solid var(--line-2);border-radius:3px;
+  padding:12px 16px;font-size:12.5px;letter-spacing:.05em;color:var(--ink);text-align:center;
+  min-width:118px;font-family:var(--mono);
+  opacity:0;transform:translateY(6px);animation:pop 460ms cubic-bezier(.22,.61,.36,1) forwards;
+}
+@keyframes pop{to{opacity:1;transform:none}}
+.node.dia{
+  border:0;background:transparent;min-width:132px;padding:22px 12px;
+}
+.node.ship{background:var(--accent);border-color:var(--sage-2);color:var(--accent-ink);font-weight:500}
+.flow svg.wires{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+.flow svg.wires path{fill:none;stroke:var(--line-2);stroke-width:1.2}
+.flow svg.wires text{font-family:var(--mono);font-size:10px;fill:var(--muted)}
+.sticky{
+  position:absolute;padding:14px 16px;font-size:13px;line-height:1.5;color:var(--ink);
+  box-shadow:0 6px 16px rgba(38,48,42,.08);max-width:200px;
+  opacity:0;animation:pop 520ms 260ms cubic-bezier(.22,.61,.36,1) forwards;
+}
+.sticky.a{background:#E4EEDF;transform:rotate(-1.6deg)}
+.sticky.b{background:#EDEADB;transform:rotate(1.4deg)}
+.chatcard{
+  position:absolute;width:252px;background:var(--paper);
+  border:1px solid var(--line);border-radius:3px;padding:14px;
+  box-shadow:0 8px 22px rgba(38,48,42,.06);
+  opacity:0;animation:pop 520ms 380ms cubic-bezier(.22,.61,.36,1) forwards;
+}
+.chatcard .k{font-family:var(--mono);font-size:10px;letter-spacing:.14em;color:var(--muted);margin-bottom:10px}
+.chatcard .q{background:var(--cream);border-radius:3px;padding:9px 11px;font-size:13px;margin-bottom:10px}
+.chatcard .a{display:flex;gap:9px;font-size:13px;color:var(--ink-2);line-height:1.45}
+.chatcard .a::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--moss);flex:none;margin-top:5px}
+.chatcard .f{font-family:var(--mono);font-size:10px;color:var(--muted);margin-top:9px;padding-left:17px}
+
+/* board: builder */
+.builder{display:grid;grid-template-columns:210px 1fr;gap:20px}
+.blocklist{display:grid;gap:7px;align-content:start}
+.blocklist .hd{font-family:var(--mono);font-size:10.5px;letter-spacing:.13em;color:var(--muted);margin-bottom:3px}
+.blockbtn{
+  display:flex;align-items:center;gap:10px;width:100%;text-align:left;cursor:grab;
+  border:1px solid var(--line);background:var(--paper);border-radius:3px;padding:9px 11px;
+  font-family:var(--sans);font-size:13.5px;color:var(--ink);transition:border-color 240ms,background 240ms;
+}
+.blockbtn:hover{border-color:var(--sage-2);background:var(--cream)}
+.blockbtn i{width:14px;height:14px;background:var(--sage);border-radius:2px;flex:none;display:block}
+.blockbtn.alt i{background:var(--cream-2);border:1px solid var(--line-2)}
+.presetrow{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px}
+.presetrow button{
+  border:1px solid var(--line);background:var(--paper);border-radius:2px;
+  padding:5px 9px;font-family:var(--mono);font-size:10px;letter-spacing:.06em;color:var(--ink-2);cursor:pointer;
+}
+.presetrow button:hover{background:var(--accent);border-color:var(--sage-2);color:var(--accent-ink)}
+
+.viewport{border:1px solid var(--line);border-radius:3px;background:var(--paper);display:flex;flex-direction:column;min-width:0}
+.vtabs{display:flex;border-bottom:1px solid var(--line);background:var(--cream)}
+.vtab{
+  border:0;background:transparent;border-right:1px solid var(--line);cursor:pointer;
+  padding:9px 15px;font-family:var(--mono);font-size:10.5px;letter-spacing:.11em;color:var(--muted);
+}
+.vtab[aria-selected="true"]{background:var(--paper);color:var(--ink)}
+.vtab.right{margin-left:auto;border-right:0;border-left:1px solid var(--line)}
+.vbody{padding:18px;background:var(--cream);flex:1}
+.screen{
+  max-width:290px;margin:0 auto;background:var(--paper);border:1px solid var(--line-2);
+  border-radius:3px;padding:7px;min-height:330px;
+}
+.canvas{min-height:316px;display:flex;flex-direction:column;gap:7px}
+.canvas.over{outline:1px dashed var(--moss);outline-offset:-3px}
+.empty{
+  flex:1;display:flex;align-items:center;justify-content:center;text-align:center;padding:24px;
+  border:1px dashed var(--line-2);border-radius:3px;
+  font-family:var(--mono);font-size:10.5px;line-height:2;letter-spacing:.08em;color:var(--muted);
+}
+.item{position:relative;border:1px solid var(--line);border-radius:2px;overflow:hidden;animation:pop 320ms both}
+.item .tools{position:absolute;top:3px;right:3px;display:flex;gap:2px;opacity:0;transition:opacity 200ms}
+.item:hover .tools,.item:focus-within .tools{opacity:1}
+.tools button{
+  width:18px;height:18px;line-height:1;font-size:9px;cursor:pointer;
+  background:var(--paper);border:1px solid var(--line-2);border-radius:2px;color:var(--ink-2);
+}
+.tools button:hover{background:var(--accent);border-color:var(--sage-2)}
+
+.c-nav{display:flex;align-items:center;gap:6px;padding:9px 10px;background:var(--ink);color:var(--cream);font-family:var(--mono);font-size:9px;letter-spacing:.1em}
+.c-nav .burger{margin-left:auto;display:grid;gap:2px}
+.c-nav .burger i{width:11px;height:1px;background:var(--cream);display:block}
+.c-hero{padding:15px;background:var(--pale)}
+.c-hero b{display:block;font-size:13px;letter-spacing:-.02em;margin-bottom:4px}
+.c-hero small{font-size:10.5px;color:var(--ink-2);line-height:1.5}
+.c-cards{display:grid;grid-template-columns:1fr 1fr;gap:7px;padding:10px}
+.c-cards div{border:1px solid var(--line);border-radius:2px;padding:8px;font-size:9.5px;font-family:var(--mono);letter-spacing:.06em;color:var(--ink-2)}
+.c-cards div i{display:block;height:26px;background:var(--sage);border-radius:2px;margin-bottom:6px}
+.c-quiz{padding:13px}
+.c-quiz b{display:block;font-size:11.5px;margin-bottom:9px;letter-spacing:-.01em}
+.c-quiz span{display:block;border:1px solid var(--line);border-radius:2px;padding:6px 8px;font-size:10.5px;margin-bottom:5px;color:var(--ink-2)}
+.c-chart{padding:12px 12px 10px;display:flex;align-items:flex-end;gap:6px;height:86px}
+.c-chart i{flex:1;background:var(--sage);border-radius:1px;display:block}
+.c-chart i:nth-child(4){background:var(--moss)}
+.c-cta{padding:13px}
+.c-cta span{display:block;text-align:center;background:var(--accent);color:var(--accent-ink);border-radius:2px;padding:9px;font-size:11px;font-weight:500}
+.c-table{padding:10px;font-family:var(--mono);font-size:9.5px;color:var(--ink-2)}
+.c-table div{display:flex;justify-content:space-between;border-bottom:1px solid var(--cream-2);padding:4px 0}
+.c-foot{padding:11px;background:var(--cream);font-family:var(--mono);font-size:8.5px;letter-spacing:.1em;color:var(--muted);text-align:center}
+
+pre.code{
+  margin:0;padding:18px;background:var(--ink);color:#DCE5D8;border-radius:0 0 2px 2px;
+  font-family:var(--mono);font-size:12px;line-height:1.7;overflow:auto;max-height:372px;white-space:pre;
+}
+.code .t{color:#A9CE9C}
+.code .a{color:#C9C0A0}
+.code .v{color:#EDEADB}
+.code .cm{color:#6E7B6C}
+
+/* board: design system */
+.dsgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:1px;background:var(--line)}
+.dscell{background:var(--paper);padding:18px}
+.dscell .k{font-family:var(--mono);font-size:10px;letter-spacing:.13em;color:var(--muted);margin-bottom:12px}
+.swatches{display:flex;gap:0;height:44px;border:1px solid var(--line);border-radius:2px;overflow:hidden}
+.swatches i{flex:1;display:block}
+.scale > div{border-bottom:1px solid var(--cream-2);padding:6px 0;display:flex;align-items:baseline;gap:12px}
+.scale span{font-family:var(--mono);font-size:10px;color:var(--muted);width:38px;flex:none}
+.parts{display:grid;gap:6px}
+.parts div{display:flex;align-items:center;gap:9px;font-size:13.5px;color:var(--ink-2)}
+.parts div::before{content:"";width:7px;height:7px;background:var(--sage);flex:none}
+.parts div.done::before{background:var(--moss)}
+
+/* board: product design + platforms */
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:1px;background:var(--line);margin-bottom:22px}
+.step{background:var(--paper);padding:16px}
+.step .n{font-family:var(--mono);font-size:10px;color:var(--sage-2);margin-bottom:8px}
+.step h4{font-size:14.5px;margin-bottom:6px}
+.step p{font-size:13px;margin:0;line-height:1.5}
+.platgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1px;background:var(--line)}
+.plat{background:var(--paper);padding:18px}
+.plat .k{font-family:var(--mono);font-size:10px;letter-spacing:.12em;color:var(--muted);margin-bottom:10px}
+.plat h4{font-size:16px;margin-bottom:7px}
+.plat p{font-size:13.5px;margin:0;line-height:1.55}
+
+/* terminal */
+.term{background:var(--ink);color:#CFDACB;font-family:var(--mono);font-size:12.5px;line-height:1.95}
+.termlog{padding:16px 20px;height:172px;overflow:auto}
+.termlog div{display:flex;gap:12px}
+.termlog .g{color:#9DBE93}
+.termlog .m{color:#6E7B6C}
+.termbar{display:flex;align-items:center;gap:10px;border-top:1px solid #38423A;padding:10px 14px 10px 20px}
+.termbar .prompt{color:#9DBE93;flex:1;display:flex;gap:12px}
+.termbar button{
+  background:transparent;border:1px solid #48524A;color:#CFDACB;border-radius:2px;
+  padding:6px 13px;font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;cursor:pointer;
+}
+.termbar button:hover{background:#333D35;border-color:#6E8F68}
+.caret{display:inline-block;width:7px;height:14px;background:#9DBE93;vertical-align:-2px;animation:blink 1.05s steps(2) infinite}
+@keyframes blink{50%{opacity:0}}
+
+/* ---------- mobile menu ---------- */
+.burger{
+  display:none;margin-left:auto;background:none;border:0;cursor:pointer;
+  width:34px;height:34px;padding:8px 5px;
+}
+.burger span{display:block;height:1.5px;background:var(--ink);transition:transform 260ms}
+.burger span + span{margin-top:7px}
+.menu{
+  position:fixed;inset:0;z-index:150;background:var(--paper);
+  background-image:repeating-linear-gradient(to bottom, rgba(38,48,42,.028) 0 1px, transparent 1px 7px);
+  display:flex;flex-direction:column;
+  animation:menuIn 300ms cubic-bezier(.22,.61,.36,1) both;
+}
+.menu[hidden]{display:none}
+@keyframes menuIn{from{opacity:0;transform:translateY(-10px)}to{opacity:1;transform:none}}
+.menuhd{
+  display:flex;align-items:center;justify-content:space-between;
+  height:62px;padding:0 20px;border-bottom:1px solid var(--line);flex:none;
+}
+.menuclose{
+  position:relative;width:34px;height:34px;background:none;border:0;cursor:pointer;
+}
+.menuclose span{position:absolute;left:6px;top:16px;width:22px;height:1.5px;background:var(--ink)}
+.menuclose span:first-child{transform:rotate(45deg)}
+.menuclose span:last-child{transform:rotate(-45deg)}
+.menulist{flex:1;overflow-y:auto;padding:26px 20px 0}
+.menuitem{
+  display:flex;align-items:baseline;gap:20px;width:100%;text-align:left;
+  background:none;border:0;border-bottom:1px solid var(--line);cursor:pointer;
+  padding:20px 2px;font-family:var(--sans);
+  opacity:0;transform:translateY(8px);
+  animation:menuRise 380ms cubic-bezier(.22,.61,.36,1) forwards;
+}
+@keyframes menuRise{to{opacity:1;transform:none}}
+.menuitem .n{font-family:var(--mono);font-size:11px;color:var(--sage-2);flex:none;width:20px}
+.menuitem .t{font-size:34px;font-weight:500;letter-spacing:-.035em;color:var(--ink);line-height:1.1}
+.menuitem[aria-current="page"] .t{color:var(--moss)}
+.menuitem[aria-current="page"] .n{color:var(--moss)}
+.menufoot{
+  flex:none;display:flex;align-items:center;justify-content:space-between;gap:16px;
+  padding:20px;border-top:1px solid var(--line);
+  font-family:var(--mono);font-size:10.5px;letter-spacing:.09em;
+}
+.menufoot a{color:var(--forest)}
+.menufoot span{color:var(--muted)}
+body.menuopen{overflow:hidden}
+
+
+/* ---------- work rows ---------- */
+.workhead{display:grid;grid-template-columns:1.15fr .85fr;gap:56px;align-items:end}
+.workintro{padding-bottom:4px}
+
+.works{position:relative;border-top:1px solid var(--line);margin-top:34px}
+.workrow{
+  display:grid;grid-template-columns:56px 1.1fr 1.5fr 34px;gap:30px;align-items:start;
+  width:100%;text-align:left;background:transparent;border:0;
+  border-bottom:1px solid var(--line);padding:30px 4px;
+  font-family:var(--sans);cursor:pointer;transition:background 300ms,padding-left 300ms;
+}
+.workrow:hover,.workrow:focus-visible{background:var(--cream);padding-left:14px}
+.workrow .no{font-family:var(--mono);font-size:11px;color:var(--sage-2);padding-top:5px}
+.workrow h3{font-size:18px;margin-bottom:6px;color:var(--ink)}
+.workrow .m{display:block;font-family:var(--mono);font-size:10.5px;letter-spacing:.11em;color:var(--muted)}
+.workrow p{margin:0 0 12px;font-size:15.5px}
+.workrow .nda{
+  display:inline-block;margin-top:12px;background:var(--accent);color:var(--accent-ink);
+  font-family:var(--mono);font-size:9.5px;letter-spacing:.12em;padding:4px 9px;
+}
+.workrow .plus{width:17px;height:17px;position:relative;margin-top:6px;justify-self:end}
+.workrow .plus::before,.workrow .plus::after{
+  content:"";position:absolute;background:var(--line-2);transition:background 320ms,transform 320ms;
+}
+.workrow .plus::before{left:50%;top:0;width:1px;height:100%;transform:translateX(-50%)}
+.workrow .plus::after{top:50%;left:0;height:1px;width:100%;transform:translateY(-50%)}
+.workrow:hover .plus::before{background:var(--moss);transform:translateX(-50%) rotate(90deg)}
+.workrow:hover .plus::after{background:var(--moss)}
+.tags{display:flex;gap:6px;flex-wrap:wrap}
+.tag{border:1px solid var(--line);border-radius:2px;padding:3px 9px;font-family:var(--mono);font-size:10px;letter-spacing:.05em;color:var(--ink-2)}
+.workthumb{display:none}
+
+.hovercard{
+  position:absolute;top:0;left:0;width:320px;z-index:6;pointer-events:none;
+  background:var(--paper);border:1px solid var(--line);
+  box-shadow:0 18px 44px rgba(38,48,42,.16);
+  opacity:0;transform:translateY(10px);
+  transition:opacity 240ms,transform 240ms;
+  will-change:transform;
+}
+.hovercard.on{opacity:1}
+.hovercard .shot{display:block;width:100%;height:auto;border-bottom:1px solid var(--line)}
+.hovercard .body{padding:14px 16px 16px}
+.hovercard h3{font-size:18px;margin-bottom:7px}
+.hovercard p{font-size:13.5px;line-height:1.5;margin:0 0 10px}
+.hovercard .open{font-family:var(--sans);font-size:13.5px;color:var(--forest);font-weight:500}
+.worksnote{margin:26px auto 0;text-align:center;color:var(--muted);font-size:14.5px;max-width:44ch}
+
+/* ---------- case study ---------- */
+.caseback{
+  background:none;border:0;cursor:pointer;font-family:var(--mono);font-size:10.5px;
+  letter-spacing:.13em;color:var(--muted);padding:0;margin-bottom:30px;
+}
+.caseback:hover{color:var(--ink)}
+.casetitle{font-size:clamp(32px,4.2vw,50px);margin-bottom:12px}
+.casesub{font-size:18px;line-height:1.55;color:var(--ink-2);max-width:54ch;margin-bottom:30px}
+.casemeta{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:0;
+  border:1px solid var(--line);background:var(--cream);margin-bottom:34px;
+}
+.casemeta > div{padding:13px 16px;border-right:1px solid var(--line)}
+.casemeta > div:last-child{border-right:0}
+.casemeta .k{font-family:var(--mono);font-size:9.5px;letter-spacing:.13em;color:var(--muted);margin-bottom:5px}
+.casemeta .v{font-size:14px;color:var(--ink);line-height:1.4}
+.casehero{margin:0 0 12px;border:1px solid var(--line);overflow:hidden}
+.casehero svg{display:block;width:100%;height:auto}
+
+.casestep{padding:52px 0;border-top:1px solid var(--line)}
+.casestep:first-child{border-top:0;padding-top:56px}
+.stepgrid{display:grid;grid-template-columns:1fr 1.15fr;gap:64px;align-items:start}
+.steptag{
+  display:flex;align-items:center;gap:8px;
+  font-family:var(--mono);font-size:10px;letter-spacing:.14em;color:var(--muted);margin-bottom:14px;
+}
+.steptag .dot{width:6px;height:6px;background:var(--sage-2);flex:none}
+.stepleft h2{font-size:clamp(21px,2.3vw,27px);letter-spacing:-.028em;max-width:16ch}
+.stepbody p{font-size:16px;line-height:1.66;color:var(--ink-2);max-width:58ch}
+.stepbody p:last-child{margin-bottom:0}
+.caselist{display:grid;gap:11px;margin:0 0 16px;padding:0;list-style:none;max-width:58ch}
+.stepbody > .caselist:last-child{margin-bottom:0}
+.caselist li{display:grid;grid-template-columns:auto 1fr;gap:11px;font-size:15.5px;color:var(--ink-2);line-height:1.55}
+.caselist li::before{content:"";width:6px;height:6px;background:var(--sage);margin-top:9px}
+.casefig{margin:34px 0 0;border:1px solid var(--line);background:var(--cream);overflow:hidden}
+.casefig svg{display:block;width:100%;height:auto}
+.casefig figcaption{
+  border-top:1px solid var(--line);background:var(--paper);
+  padding:10px 15px;font-family:var(--mono);font-size:10px;letter-spacing:.09em;color:var(--muted);
+}
+.casenext{
+  display:flex;align-items:flex-end;justify-content:space-between;gap:28px;flex-wrap:wrap;
+  border-top:1px solid var(--line);padding:38px 0 12px;
+}
+.casenext .k{font-family:var(--mono);font-size:10px;letter-spacing:.13em;color:var(--muted);margin-bottom:8px}
+.casenext h3{font-size:27px;letter-spacing:-.028em;margin-bottom:8px}
+.casenext p{font-size:15px;max-width:46ch;margin:0}
+
+@media (max-width:1100px){
+  .workrow{grid-template-columns:44px 1fr 1.3fr 26px;gap:22px}
+}
+@media (max-width:820px){
+  .workhead,.casehead{grid-template-columns:1fr;gap:26px}
+  .workintro{padding-bottom:0}
+  .workrow{grid-template-columns:1fr;gap:14px;padding:24px 0}
+  .workrow:hover{padding-left:0}
+  .workrow .no{padding-top:0}
+  .workrow .plus{display:none}
+  .workthumb{display:block;border:1px solid var(--line);margin-bottom:14px}
+  .workthumb svg{display:block;width:100%;height:auto}
+  .workrow .copen{display:block;margin-top:12px;font-size:14px;color:var(--forest);font-weight:500}
+  .hovercard{display:none}
+  .casemeta{grid-template-columns:1fr 1fr}
+  .casemeta > div:nth-child(2n){border-right:0}
+  .casemeta > div:nth-child(-n+2){border-bottom:1px solid var(--line)}
+  .stepgrid{grid-template-columns:1fr;gap:16px}
+  .casestep{padding:32px 0}
+  .casestep:first-child{padding-top:34px}
+  .stepleft h2{max-width:none}
+  .casesub{font-size:16.5px}
+  .casefig{margin-top:22px}
+  .casenext h3{font-size:21px}
+}
+@media (min-width:821px){
+  .workrow .copen{display:none}
+}
+
+/* ---------- profile stack + life ---------- */
+.stackcols{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line)}
+.stackcols > div{background:var(--paper);padding:4px 0}
+.stackcols li{
+  display:flex;align-items:center;gap:10px;
+  padding:9px 16px;font-size:14.5px;color:var(--ink-2);
+}
+.stackcols ul{list-style:none;margin:0;padding:0}
+.stackcols li::before{content:"";width:6px;height:6px;background:var(--sage);flex:none}
+.lifelist{list-style:none;margin:0;padding:0;display:grid;gap:11px}
+.lifelist li{display:grid;grid-template-columns:26px 1fr;gap:8px;align-items:baseline;font-size:15.5px;color:var(--ink-2);line-height:1.5}
+.lifelist .e{font-size:15px;line-height:1}
+.prosec{border-top:1px solid var(--line);margin-top:56px;padding-top:40px}
+
+
+/* ---------- profile ---------- */
+.twocol{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start}
+.tl{border-top:1px solid var(--line)}
+.tlitem{display:grid;grid-template-columns:150px 1fr;gap:20px;padding:24px 0;border-bottom:1px solid var(--line)}
+.tlitem .when{font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;color:var(--muted);padding-top:4px}
+.tlitem h3{font-size:16.5px;margin-bottom:6px}
+.tlitem p{font-size:14.5px;margin:0}
+
+/* ---------- contact ---------- */
+.cgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:1px;background:var(--line);margin-top:36px;border:1px solid var(--line)}
+.cgrid > div{background:var(--paper);padding:22px}
+.cgrid .k{font-family:var(--mono);font-size:10px;letter-spacing:.13em;color:var(--muted);margin-bottom:8px}
+.cgrid a,.cgrid span{font-size:16px;color:var(--ink);letter-spacing:-.01em}
+.cgrid a:hover{color:var(--moss)}
+
+footer{border-top:1px solid var(--line);margin-top:70px}
+footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;padding-top:24px;padding-bottom:40px}
+footer .mono{font-size:10.5px}
+
+@media (max-width:1000px){
+  .benchbody{grid-template-columns:1fr}
+  .tracks{border-right:0;border-bottom:1px solid var(--line)}
+  .tracks .hd{padding:14px 18px 8px}
+  #trackList{display:grid;grid-template-columns:1fr 1fr}
+  .track{border-top:1px solid var(--line);border-right:1px solid var(--line);padding:13px 16px;min-width:0}
+  .track:nth-child(2n){border-right:0}
+  .track[aria-selected="true"]::before{left:0;right:0;top:auto;bottom:0;width:auto;height:3px}
+  .track .tt{font-size:15px}
+  .track .ts{padding-left:16px;font-size:9.5px}
+  .tracks .foot{margin-top:0}
+  .builder{grid-template-columns:1fr}
+  .blocklist{display:grid;grid-template-columns:repeat(auto-fit,minmax(142px,1fr))}
+  .blocklist .hd{grid-column:1/-1}
+  .flow{margin:0}
+}
+
+@media (max-width:820px){
+  body{font-size:15.5px}
+  .wrap{padding:0 20px}
+  .nav .wrap{height:62px;gap:14px}
+  main{padding-top:62px}
+  html{scroll-padding-top:80px}
+  .logo{font-size:19px}
+  .navlinks{display:none}
+  .burger{display:block}
+  .hero{padding-top:52px;padding-bottom:34px}
+  h1{font-size:clamp(31px,8.4vw,44px)}
+  .lede{font-size:17px}
+  .herogrid,.twocol{grid-template-columns:1fr;gap:34px}
+  .herofacts{gap:16px}
+  .herobtns{margin-top:26px}
+  .herobtns .btn{flex:1;text-align:center}
+  .railhead{flex-wrap:wrap;justify-content:flex-start;margin-bottom:10px}
+  .railhead .name,.railhead .kind{font-size:16px}
+  .railscroll svg{width:1900px;height:190px}
+  .railspark{top:141.7px}
+  .railnote{display:block}
+  .bench{margin-top:20px}
+  .benchbar{height:auto;padding:9px 12px;font-size:10px;letter-spacing:.07em;align-items:flex-start}
+  .benchbar .lights{padding-top:4px}
+  .stagehd{padding:11px 16px;font-size:10px;letter-spacing:.08em}
+  .board{padding:14px;min-height:300px}
+  .stagefoot{padding:10px 16px;font-size:10px;gap:7px}
+  .pill{padding:4px 9px}
+  .termlog{height:136px;padding:14px 16px}
+  .term{font-size:11.5px;line-height:1.85}
+  .termbar{flex-wrap:wrap;padding:9px 12px 9px 16px;gap:8px}
+  .termbar .prompt{flex:1 0 100%;order:-1}
+  .termbar button{flex:1;padding:8px 10px}
+  .dsgrid,.steps,.platgrid,.cgrid{grid-template-columns:1fr}
+  .workrow{grid-template-columns:1fr;gap:10px;padding:24px 0}
+  .workrow .no{padding-top:0}
+  .tlitem{grid-template-columns:1fr;gap:6px;padding:20px 0}
+  .stackcols{grid-template-columns:1fr 1fr}
+  .stackcols li{font-size:14px;padding:8px 13px}
+  .prosec{margin-top:40px;padding-top:30px}
+  .cgrid > div{padding:18px}
+  footer .wrap{padding-bottom:34px}
+}
+
+@media (max-width:480px){
+  #trackList{grid-template-columns:1fr}
+  .track{border-right:0}
+  .blocklist{grid-template-columns:1fr 1fr}
+  .presetrow button{flex:1 0 calc(50% - 3px)}
+  .screen{max-width:100%}
+  .vbody{padding:12px}
+  h1{font-size:clamp(29px,8.6vw,38px)}
+  .logo{font-size:18px}
+  .menuitem .t{font-size:30px}
+  .menuitem{padding:17px 2px}
+}
+
+@media (hover:none){
+  .item .tools{opacity:1}
+}
+
+
+/* ---------- work: desktop showcase ---------- */
+.workhero{display:grid;grid-template-columns:1.15fr .85fr;gap:56px;align-items:start;padding-top:72px;padding-bottom:64px}
+.workh{font-size:clamp(40px,5.4vw,66px);letter-spacing:-.045em;line-height:1.02}
+.workh span{display:block;color:var(--muted)}
+.workhero .lede{margin-bottom:22px}
+.showcase{display:grid;grid-template-columns:320px minmax(0,1fr);border-top:1px solid var(--line);position:relative}
+.showcase::before,.showcase::after{content:"";position:absolute;top:-1px;width:14px;height:14px;border-top:1.5px solid var(--sage-2)}
+.showcase::before{left:-14px;border-left:1.5px solid var(--sage-2)}
+.showcase::after{right:-14px;border-right:1.5px solid var(--sage-2)}
+.sc-sticky{position:sticky;top:100px;padding:56px 30px 40px 0}
+.sc-item{border-top:1px solid var(--line)}
+.sc-item:first-child{border-top:0}
+.sc-head{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.sc-name{background:none;border:0;padding:12px 0;font-family:var(--sans);font-size:28px;font-weight:400;letter-spacing:-.03em;line-height:1.15;color:var(--muted);cursor:pointer;text-align:left;transition:color var(--t)}
+.sc-name:hover{color:var(--ink-2)}
+.sc-item.on .sc-name{color:var(--ink)}
+.sc-badge{display:none;background:var(--accent);color:var(--accent-ink);font-family:var(--mono);font-size:9.5px;letter-spacing:.13em;padding:4px 8px}
+.sc-item.on .sc-badge{display:inline-block}
+.sc-detail{display:none;padding:0 0 22px}
+.sc-item.on .sc-detail{display:block;animation:rise 420ms cubic-bezier(.22,.61,.36,1) both}
+.sc-meta{font-size:13px;color:var(--muted);margin-bottom:12px}
+.sc-detail p{font-size:14.5px;line-height:1.6;margin:0 0 16px;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.sc-read{background:none;border:0;border-bottom:1px solid var(--ink);padding:0 0 4px;font-family:var(--sans);font-size:14.5px;color:var(--ink);cursor:pointer}
+.sc-read:hover{color:var(--moss);border-color:var(--moss)}
+.sc-main{position:relative;border-left:1px solid var(--line);padding:56px 0 24px 36px;min-width:0}
+.sc-ind{position:absolute;left:-1px;top:0;height:0;width:2px;background:var(--ink);transition:top 420ms cubic-bezier(.22,.61,.36,1),height 420ms cubic-bezier(.22,.61,.36,1)}
+.sc-proj{padding-bottom:64px}
+.sc-proj + .sc-proj{border-top:1px solid var(--line);padding-top:56px}
+.sc-title{font-size:clamp(30px,3.2vw,42px);letter-spacing:-.035em;margin-bottom:24px}
+.sc-proj .frame{margin-bottom:14px}
+.sc-morebtn{display:block;width:100%;margin-top:4px;background:var(--cream);border:1px solid var(--line-2);padding:18px;font-family:var(--sans);font-size:16px;color:var(--ink);cursor:pointer;transition:background var(--t)}
+.sc-morebtn:hover{background:var(--pale)}
+.ndatag{display:inline-block;margin-top:18px;background:var(--accent);color:var(--accent-ink);font-family:var(--mono);font-size:10px;letter-spacing:.14em;padding:5px 10px}
+.listwrap{display:none}
+body.worklist .showcase{display:none}
+body.worklist .listwrap{display:block}
+.casehero .frame,.casefig .frame,.hovercard .frame{border:0}
+.hovercard .frame{border-bottom:1px solid var(--line)}
+.workthumb .frame{border:0}
+@media (max-width:820px){
+  .workhero{grid-template-columns:1fr;gap:18px;padding-top:44px;padding-bottom:6px}
+  .worktoggle{display:none}
+  .showcase{display:none}
+  .listwrap{display:block}
+}
+/* ---------- recreated product screens ---------- */
+.frame{position:relative;overflow:hidden;background:#fff;border:1px solid var(--line)}
+.frame > .mock{position:absolute;left:0;top:0;transform-origin:0 0;overflow:hidden;line-height:1.45;letter-spacing:0}
+.mock *{box-sizing:border-box}
+.mock p{margin:0;max-width:none;color:inherit}
+.mock h1,.mock h2,.mock h3{margin:0;letter-spacing:-.02em}
+
+.ph{width:300px;height:640px;border-radius:44px;background:#1C150D;padding:10px;box-shadow:0 30px 60px rgba(40,30,20,.22);flex:none}
+.ph > div{width:100%;height:100%;border-radius:35px;overflow:hidden;position:relative;display:flex;flex-direction:column}
+.ph .notch{position:absolute;top:10px;left:50%;transform:translateX(-50%);width:92px;height:24px;border-radius:14px;background:#1C150D;z-index:2}
+
+.jar{position:relative;flex:none}
+.jar .tub{position:absolute;left:0;right:0;top:13%;bottom:0;border-radius:18px 18px 22px 22px;
+  background:linear-gradient(90deg,rgba(0,0,0,.2),rgba(255,255,255,.14) 28%,rgba(0,0,0,0) 55%,rgba(0,0,0,.22)),var(--jc)}
+.jar .lab{position:absolute;left:0;right:0;top:32%;height:46%;background:var(--lc);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;color:#fff}
+.jar .lab b{font-family:Lora,Georgia,serif;font-size:var(--fs);letter-spacing:.06em;line-height:1}
+.jar .lab small{font-size:calc(var(--fs)*.4);opacity:.92;margin-top:6px;letter-spacing:.1em;text-transform:uppercase}
+.jar .lid{position:absolute;left:6%;right:6%;top:0;height:17%;border-radius:14px 14px 5px 5px;background:linear-gradient(180deg,#FFFFFF,#E2E2DE);box-shadow:inset 0 -3px 0 rgba(0,0,0,.07)}
+
+/* Dr. Paws */
+.dp{font-family:"Plus Jakarta Sans",sans-serif;background:#F5F0E8;color:#3B2A1A;font-size:14px}
+.dp .lora{font-family:Lora,Georgia,serif}
+.dp-bar{height:34px;background:#2A6152;color:#EAF5F0;font-size:12.5px;display:flex;align-items:center;justify-content:center;letter-spacing:.02em}
+.dp-nav{height:66px;display:flex;align-items:center;gap:28px;padding:0 56px;background:#FBF8F2;border-bottom:1px solid #E6DCCB;font-size:14px}
+.dp-logo{font-family:Lora,Georgia,serif;font-weight:700;font-size:22px;color:#1C150D;display:flex;align-items:center;gap:8px;margin-right:16px}
+.dp-logo i{width:22px;height:22px;border-radius:50%;background:#3A826B;display:block;box-shadow:inset -5px -5px 0 rgba(0,0,0,.12)}
+.dp-nav .r{margin-left:auto;display:flex;gap:20px;align-items:center}
+.dp-btn{display:inline-flex;align-items:center;justify-content:center;height:52px;padding:0 28px;border-radius:999px;background:#3A826B;color:#fff;font-weight:600;font-size:15px;white-space:nowrap}
+.dp-btn.o{background:transparent;border:1.5px solid #3A826B;color:#2A6152}
+.dp-btn.g{background:transparent;border:1.5px solid #F5F0E8;color:#F5F0E8}
+.dp-chip{display:inline-block;padding:5px 12px;border-radius:999px;background:#F3DDD2;color:#B8481F;font-size:11.5px;font-weight:700;letter-spacing:.06em}
+.dp-opt{border:1.5px solid #E2D6C3;border-radius:16px;padding:14px 16px;background:#FBF8F2;font-size:12.5px;color:#6B5A48}
+.dp-opt b{display:block;font-size:15px;color:#1C150D;margin-bottom:2px}
+.dp-opt.on{border-color:#3A826B;background:#EAF4F0}
+.dp-tr{display:flex;align-items:center;gap:9px}
+.dp-tr i{width:28px;height:28px;border-radius:50%;background:#DCEEE7;border:1.5px solid #3A826B;display:block}
+.dp-q{border:1.5px solid #E2D6C3;border-radius:16px;padding:16px;margin-bottom:10px;font-size:15px;background:#fff;color:#3B2A1A}
+.dp-q.on{border-color:#3A826B;background:#EAF4F0;font-weight:600}
+.dp-k{font-size:11px;letter-spacing:.14em;font-weight:700;color:#8A7A66;margin-bottom:12px}
+.paw{position:relative;width:78px;height:78px;border-radius:50%;background:#EAF4F0}
+.paw b{position:absolute;left:24px;top:34px;width:30px;height:26px;border-radius:50% 50% 45% 45%;background:#3A826B}
+.paw i{position:absolute;width:12px;height:14px;border-radius:50%;background:#3A826B}
+.paw i:nth-child(1){left:17px;top:22px}.paw i:nth-child(2){left:28px;top:14px}.paw i:nth-child(3){left:40px;top:14px}.paw i:nth-child(4){left:51px;top:22px}
+
+/* Shift AI */
+.sh{font-family:"DM Sans",sans-serif;background:#F3F5F8;color:#1E2633;font-size:14px}
+.sh-side{position:absolute;left:0;top:0;bottom:0;width:220px;background:#fff;border-right:1px solid #E3E7EE;padding:20px 14px}
+.sh-logo{font-weight:700;font-size:18px;display:flex;gap:9px;align-items:center;padding:0 8px 22px}
+.sh-logo i{width:26px;height:26px;border-radius:8px;background:#3B5A8A;display:block}
+.sh-nav{display:flex;align-items:center;gap:11px;padding:11px 12px;border-radius:10px;color:#4B5565;font-size:14.5px;margin-bottom:2px}
+.sh-nav i{width:16px;height:16px;border-radius:4px;border:1.6px solid currentColor;display:block;opacity:.75}
+.sh-nav.on{background:#E8EEF7;color:#2C4670;font-weight:600}
+.sh-main{position:absolute;left:220px;right:0;top:0;bottom:0;padding:26px 32px}
+.sh-h{font-size:26px;font-weight:700;letter-spacing:-.02em}
+.sh-btn{display:inline-flex;align-items:center;justify-content:center;height:44px;padding:0 20px;border-radius:10px;background:#3B5A8A;color:#fff;font-weight:600;font-size:14.5px;white-space:nowrap}
+.sh-btn.o{background:#fff;border:1px solid #D5DCE6;color:#1E2633}
+.sh-lang{display:inline-flex;border:1px solid #D5DCE6;border-radius:999px;overflow:hidden;font-size:12px;font-weight:700;background:#fff}
+.sh-lang span{padding:5px 11px;color:#6B7585}.sh-lang span.on{background:#3B5A8A;color:#fff}
+.sh-card{background:#fff;border:1px solid #E3E7EE;border-radius:14px}
+.sh-tag{display:inline-block;font-size:11.5px;padding:3px 9px;border-radius:999px;background:#EEF2F8;color:#3B5A8A;font-weight:600}
+.sh-av{width:28px;height:28px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:#fff;flex:none}
+.sh-dim{position:absolute;inset:0;background:rgba(20,30,48,.42)}
+.sh-modal{position:absolute;background:#fff;border-radius:18px;box-shadow:0 30px 80px rgba(10,20,40,.3);overflow:hidden}
+.sh-lbl{font-size:12px;font-weight:700;color:#6B7585;letter-spacing:.04em;margin-bottom:8px}
+.sh-chk{display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:1px solid #EEF1F5;font-size:14px}
+.sh-chk i{width:18px;height:18px;border-radius:5px;border:1.6px solid #B8C2D0;display:block;flex:none}
+.sh-chk.d{color:#8A94A3;text-decoration:line-through}
+.sh-chk.d i{background:#3B5A8A;border-color:#3B5A8A}
+.sh-row{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid #E8ECF2;font-size:13.5px}
+.sh-row span:first-child{color:#6B7585}
+.sh-v{border-left:4px solid;border-radius:10px;padding:11px 14px;margin-bottom:8px;display:flex;gap:12px;align-items:flex-start;background:#FAFBFC}
+.sh-v b{font-size:13.5px;display:block}
+.sh-v small{font-size:12.5px;color:#5B6576}
+.sh-sev{margin-left:auto;font-size:11px;font-weight:700;padding:3px 9px;border-radius:999px;flex:none}
+
+
+.frame.imgf{background:var(--cream)}
+.frame.imgf img{display:block;width:100%;height:100%;object-fit:cover}
+/* ---------- next project card ---------- */
+.casenext{display:block;border-top:0;padding:64px 0 12px}
+.nextcard{display:grid;grid-template-columns:1fr 1.05fr;width:100%;text-align:left;background:var(--ink);color:var(--paper);
+  border:0;border-radius:6px;overflow:hidden;cursor:pointer;font-family:var(--sans);padding:0;transition:box-shadow var(--t)}
+.nextcard:hover{box-shadow:0 24px 50px rgba(38,48,42,.22)}
+.nc-body{padding:42px 44px;display:flex;flex-direction:column;min-width:0}
+.nc-k{font-family:var(--mono);font-size:10.5px;letter-spacing:.16em;color:#9DBE93;display:flex;justify-content:space-between;gap:12px}
+.nc-t{font-size:clamp(34px,4vw,54px);font-weight:600;letter-spacing:-.04em;line-height:1.02;margin:22px 0 14px;color:var(--paper)}
+.nc-p{color:#C3CDC0;font-size:15.5px;line-height:1.55;max-width:40ch}
+.nc-go{margin-top:auto;padding-top:34px;display:inline-flex;align-items:center;gap:14px;font-size:15px;font-weight:500;color:var(--paper)}
+.nc-go i{width:46px;height:46px;border-radius:50%;background:var(--accent);color:var(--accent-ink);display:flex;align-items:center;justify-content:center;font-style:normal;font-size:18px;transition:transform var(--t)}
+.nextcard:hover .nc-go i,.nextcard:focus-visible .nc-go i{transform:translateX(6px)}
+.nc-shot{position:relative;display:block;min-height:320px;background:#1E2822;padding:34px 0 0 34px;overflow:hidden}
+.nc-shot .frame{aspect-ratio:16/11 !important;border:0;border-radius:6px 0 0 0;transform:translateY(10px);transition:transform 560ms cubic-bezier(.22,.61,.36,1)}
+.nextcard:hover .nc-shot .frame,.nextcard:focus-visible .nc-shot .frame{transform:translateY(0) scale(1.02)}
+.casefoot{display:flex;justify-content:space-between;gap:16px;margin-top:18px;font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;color:var(--muted)}
+.casefoot button{background:none;border:0;padding:0;cursor:pointer;font:inherit;color:inherit;letter-spacing:inherit}
+.casefoot button:hover{color:var(--ink)}
+@media (max-width:820px){
+  .nextcard{grid-template-columns:1fr}
+  .nc-body{padding:28px 24px}
+  .nc-shot{min-height:0;padding:22px 0 0 22px}
+  .casefoot span{display:none}
+}
+
+/* ---------- rail animation ---------- */
+.railsvg g.chip path{transition:stroke 480ms ease}
+.railsvg g.chip.on path{stroke:var(--moss)}
+.railsvg g.chip.on .chiplabel{fill:var(--accent-ink)}
+
+/* ---------- NDA strip ---------- */
+.ndasec{position:relative;border-top:1px solid var(--line);margin-top:28px;padding:96px 0 88px;text-align:center}
+.ndasec::after{content:"";position:absolute;top:-1px;right:-14px;width:14px;height:14px;border-top:1.5px solid var(--sage-2);border-right:1.5px solid var(--sage-2)}
+.ndatab{position:absolute;left:0;top:-1px;background:var(--accent);color:var(--accent-ink);font-family:var(--mono);font-size:10.5px;letter-spacing:.16em;padding:7px 12px}
+.ndanote{margin:0 auto 28px;max-width:40ch;color:var(--ink-2);font-size:16px;line-height:1.65}
+.ndamarq{max-width:900px;margin:0 auto;overflow:hidden;
+  -webkit-mask-image:linear-gradient(90deg,transparent,#000 18%,#000 82%,transparent);mask-image:linear-gradient(90deg,transparent,#000 18%,#000 82%,transparent)}
+.ndatrack{display:flex;width:max-content;animation:ndaroll 34s linear infinite;will-change:transform}
+.ndatrack ul{display:flex;list-style:none;margin:0;padding:0}
+.ndatrack li{display:flex;align-items:center;font-size:25px;letter-spacing:-.025em;color:var(--ink-2);white-space:nowrap}
+.ndatrack li::after{content:"";width:5px;height:5px;background:var(--sage-2);margin:0 36px}
+@keyframes ndaroll{to{transform:translate3d(-50%,0,0)}}
+@media (max-width:820px){
+  .ndasec{padding:64px 0 56px;margin-top:20px}
+  .ndatrack li{font-size:19px}
+  .ndatrack li::after{margin:0 22px}
+}
+@media (prefers-reduced-motion: reduce){
+  .ndatrack{animation:none;width:auto;justify-content:center}
+  .ndatrack ul{flex-wrap:wrap;justify-content:center;row-gap:10px}
+  .ndatrack ul + ul{display:none}
+}
+
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<div id="curtain"><span class="mark">HITOMI CABRERA</span></div>
+
+<div class="menu" id="mobilemenu" hidden>
+  <div class="menuhd">
+    <span class="logo">hitomi<span>.</span></span>
+    <button class="menuclose" id="menuClose" type="button" aria-label="Close menu">
+      <span></span><span></span>
+    </button>
+  </div>
+  <nav class="menulist" id="menuList" aria-label="Mobile"></nav>
+  <div class="menufoot">
+    <a href="mailto:hitomicabrera15@gmail.com">HITOMICABRERA15@GMAIL.COM</a>
+    <span>ILOILO &middot; GMT+8</span>
+  </div>
+</div>
+
+<header class="nav">
+  <div class="wrap">
+    <a class="logo" href="#welcome" data-go="welcome">hitomi<span>.</span></a>
+    <nav class="navlinks" aria-label="Primary">
+      <button class="navlink" data-go="welcome">Welcome</button>
+      <button class="navlink" data-go="bench">Bench</button>
+      <button class="navlink" data-go="work">Work</button>
+      <button class="navlink" data-go="profile">Profile</button>
+      <button class="navcta" data-go="contact">Contact</button>
+    </nav>
+    <button class="burger" id="burger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobilemenu">
+      <span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<main id="main" tabindex="-1">
+
+<!-- ================= WELCOME ================= -->
+<section class="view" id="v-welcome">
+  <div class="wrap hero">
+    <div class="herogrid">
+      <div>
+        <div class="eyebrow">PRODUCT DESIGN · UI/UX · ILOILO, PH</div>
+        <h1>I design products that feel easy to use.</h1>
+        <p class="lede">Ten years in web, six of them in SaaS product design. Healthcare HR software, AI agent builders, recruitment and learning tools, and a pet supplement brand&rsquo;s storefront, packaging and campaigns &mdash; from research to the final screen.</p>
+        <div class="herobtns">
+          <button class="btn btn--fill" data-go="bench">Open the bench</button>
+          <button class="btn" data-go="work">See the work</button>
+        </div>
+      </div>
+      <div class="herofacts">
+        <div class="fact"><div class="k">WORKING IN</div><div class="v">Figma, FigJam, Photoshop, Illustrator, Blender &mdash; and Framer or Webflow when it needs to go live</div></div>
+        <div class="fact"><div class="k">LOOKING FOR</div><div class="v">Product design and UX roles &mdash; ideally on a cozy or casual game</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap rail">
+    <div class="railhead">
+      <span class="num" id="railNum">01</span>
+      <span class="name" id="railName">Figma</span>
+      <span class="kind" id="railKind">Where it starts</span>
+    </div>
+    <div class="railscroll" aria-hidden="true">
+      <div id="railHost"></div>
+    </div>
+    <div class="railnote mono">Scroll the board sideways &rarr;</div>
+  </div>
+</section>
+
+<!-- ================= BENCH ================= -->
+<section class="view" id="v-bench">
+  <div class="wrap" style="padding-top:56px">
+    <div class="eyebrow">FOUR TRACKS, ONE BENCH</div>
+    <h2>What I actually do all day</h2>
+    <p class="lede">Pick a track. Each one opens the working surface I use for that kind of problem — not a description of it.</p>
+
+    <div class="bench">
+      <div class="benchbar">
+        <span class="lights"><i></i><i></i><i></i></span>
+        <span id="crumb">PORTFOLIO / BENCH / WORKSPACE</span>
+        <span class="right">READY</span>
+      </div>
+      <div class="benchbody">
+        <div class="tracks" role="tablist" aria-label="Expertise tracks">
+          <div class="hd">EXPERTISE</div>
+          <div id="trackList"></div>
+          <div class="foot">
+            <span class="mono" id="openedCount">1 / 5 OPENED</span>
+            <div class="bar"><i id="openedBar" style="width:20%"></i></div>
+          </div>
+        </div>
+
+        <div class="stage">
+          <div class="stagehd">
+            <span id="stageName">WORKSPACE</span>
+            <span id="stageMeta">BENCH · LIVE</span>
+          </div>
+          <div class="board" id="board"></div>
+          <div class="stagefoot" id="stageFoot"></div>
+        </div>
+      </div>
+
+      <div class="term">
+        <div class="termlog" id="termLog"></div>
+        <div class="termbar">
+          <span class="prompt"><span>&rsaquo;</span><span id="termHint">try: open ai workflow</span><span class="caret"></span></span>
+          <button type="button" id="btnNext">NEXT</button>
+          <button type="button" id="btnHelp">HELP</button>
+          <button type="button" id="btnClear">CLEAR</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= WORK ================= -->
+<section class="view" id="v-work">
+  <div class="wrap workhero">
+    <div>
+      <div class="eyebrow">SELECTED WORK</div>
+      <h2 class="workh">The work,<span>as it shipped.</span></h2>
+    </div>
+    <div>
+      <p class="lede">Every project opens on its finished screens. Want the thinking behind one? Its full case study is a click away.</p>
+      <button class="btn btn--fill worktoggle" type="button" id="workToggle" aria-pressed="false">List view instead &darr;</button>
+    </div>
+  </div>
+  <div class="wrap">
+    <div class="showcase" id="showcase">
+      <aside class="sc-side" aria-label="Projects"><div class="sc-sticky" id="scList"></div></aside>
+      <div class="sc-main" id="scMain"></div>
+    </div>
+    <div class="listwrap"><div class="works" id="worksGrid"></div></div>
+    <section class="ndasec" aria-labelledby="ndaNote">
+      <span class="ndatab">NON-DISCLOSURE</span>
+      <p class="ndanote" id="ndaNote">Plus other projects I can&rsquo;t publicly share &mdash; some of them are my favourite work. Happy to walk through them on a call.</p>
+      <div class="ndamarq"><div class="ndatrack"><ul><li>Kosmoz AI</li><li>XConnect</li><li>TA Portal</li><li>XO Operating System</li><li>Kosmoz AI</li><li>XConnect</li><li>TA Portal</li><li>XO Operating System</li></ul><ul aria-hidden="true"><li>Kosmoz AI</li><li>XConnect</li><li>TA Portal</li><li>XO Operating System</li><li>Kosmoz AI</li><li>XConnect</li><li>TA Portal</li><li>XO Operating System</li></ul></div></div>
+    </section>
+  </div>
+</section>
+
+<!-- ================= CASE STUDY ================= -->
+<section class="view" id="v-case">
+  <div id="caseHost"></div>
+</section>
+
+<!-- ================= PROFILE ================= -->
+<section class="view" id="v-profile">
+  <div class="wrap" style="padding-top:56px">
+    <div class="eyebrow">PROFILE</div>
+    <div class="twocol">
+      <div>
+        <h2>Hitomi Cabrera</h2>
+        <p class="lede" style="margin-top:18px">I thrive in the dynamic realm of UI/UX design and frontend web development. I bridge design and development, crafting user-friendly web experiences with a modern tech stack.</p>
+        <p>I&rsquo;m driven by a passion to solve design challenges and craft intuitive, user-centered experiences. From wireframes to code, I love transforming ideas into functional and visually engaging digital products.</p>
+        <p>My path here has been a journey of blending technical expertise with a deep appreciation for user-centered design. My Computer Science degree equipped me with the skills to build functional and engaging web experiences, while my passion for design lets me craft interfaces that are both beautiful and intuitive.</p>
+      </div>
+      <div>
+        <div class="mono" style="margin-bottom:14px">MY STACK</div>
+        <div class="stackcols" id="stack"></div>
+
+        <div class="mono" style="margin:30px 0 12px">MY LIFE</div>
+        <ul class="lifelist">
+          <li><span class="e">&#129385;</span>Obsessed with Korean BBQ &mdash; samgyeopsal specifically</li>
+          <li><span class="e">&#9992;&#65039;</span>Will always take the window seat</li>
+          <li><span class="e">&#127946;</span>Swimming and snorkelling in the ocean</li>
+          <li><span class="e">&#128218;</span>Reading, whether that&rsquo;s novels or research papers</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="prosec">
+      <div class="mono" style="margin-bottom:16px">EXPERIENCE</div>
+      <div class="tl" id="timeline"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CONTACT ================= -->
+<section class="view" id="v-contact">
+  <div class="wrap" style="padding-top:56px">
+    <div class="eyebrow">CONTACT</div>
+    <h2>Let's build something</h2>
+    <p class="lede">Open to product design roles, contract work, and studios hiring for game UX. I reply to everything.</p>
+    <div class="cgrid">
+      <div><div class="k">EMAIL</div><a href="mailto:hitomicabrera15@gmail.com">hitomicabrera15@gmail.com</a></div>
+      <div><div class="k">PHONE</div><a href="tel:+639989803706">+63 998 980 3706</a></div>
+      <div><div class="k">LINKEDIN</div><a href="https://linkedin.com/in/hitomicabrera/">/in/hitomicabrera</a></div>
+      <div><div class="k">GITHUB</div><a href="https://github.com/TommyCabrera">TommyCabrera</a></div>
+      <div><div class="k">PORTFOLIO</div><a href="https://hitomicabrera.framer.website">hitomicabrera.framer.website</a></div>
+      <div><div class="k">BASED IN</div><span>Iloilo, Philippines · GMT+8</span></div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <a class="mono" href="mailto:hitomicabrera15@gmail.com" style="color:var(--muted)">HITOMI CABRERA · hitomicabrera15@gmail.com</a>
+    <span class="mono">ILOILO, PHILIPPINES</span>
+  </div>
+</footer>
+
+<script>
+/* =========================================================
+   PAGE TRANSITIONS
+========================================================= */
+var curtain = document.getElementById('curtain');
+var current = 'welcome';
+var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+function paintNav(route){
+  document.querySelectorAll('.navlink').forEach(function(b){
+    if(b.dataset.go === (route === 'case' ? 'work' : route)) b.setAttribute('aria-current','page');
+    else b.removeAttribute('aria-current');
+  });
+}
+function swap(route){
+  document.querySelectorAll('.view').forEach(function(v){ v.classList.remove('active'); });
+  var el = document.getElementById('v-'+route);
+  if(el) el.classList.add('active');
+  window.scrollTo(0,0);
+  paintNav(route);
+  if(typeof paintMenu === 'function') paintMenu(route);
+  current = route;
+  if(route === 'bench' && typeof fitFlow === 'function') requestAnimationFrame(fitFlow);
+  if(route === 'work' && typeof spy === 'function') requestAnimationFrame(spy);
+  try{
+    if(history.replaceState) history.replaceState(null,'','#'+route);
+  }catch(err){ /* sandboxed preview: no history access, routing still works */ }
+}
+function go(route){
+  if(route === current || !document.getElementById('v-'+route)) return;
+  if(reduce){ swap(route); return; }
+  curtain.classList.remove('out');
+  curtain.classList.add('in');
+  setTimeout(function(){
+    swap(route);
+    curtain.classList.remove('in');
+    curtain.classList.add('out');
+    setTimeout(function(){ curtain.classList.remove('out'); }, 340);
+  }, 330);
+}
+document.addEventListener('click', function(e){
+  var t = e.target.closest('[data-go]');
+  if(!t) return;
+  e.preventDefault();
+  var m = document.getElementById('mobilemenu');
+  if(m && !m.hidden){ closeMenu(); }
+  go(t.dataset.go);
+});
+var startRoute = 'welcome';
+try{ if(location.hash && location.hash.length > 1) startRoute = location.hash.slice(1); }catch(err){}
+if(!document.getElementById('v-'+startRoute) || startRoute === 'case') startRoute = 'welcome';
+swap(startRoute);
+
+
+/* =========================================================
+   MOBILE MENU
+========================================================= */
+var MENU = [
+  {r:'welcome', t:'Welcome'},
+  {r:'bench',   t:'Bench'},
+  {r:'work',    t:'Work'},
+  {r:'profile', t:'Profile'},
+  {r:'contact', t:'Contact'}
+];
+var menu = document.getElementById('mobilemenu');
+var menuList = document.getElementById('menuList');
+var burger = document.getElementById('burger');
+
+menuList.innerHTML = MENU.map(function(m,i){
+  return '<button class="menuitem" type="button" data-go="'+m.r+'" style="animation-delay:'+(60+i*45)+'ms">'+
+    '<span class="n">'+String(i+1).padStart(2,'0')+'</span>'+
+    '<span class="t">'+m.t+'</span></button>';
+}).join('');
+
+function paintMenu(route){
+  if(!menuList) return;              // swap() can run before this block initialises
+  var r = (route === 'case') ? 'work' : route;
+  menuList.querySelectorAll('.menuitem').forEach(function(b){
+    if(b.dataset.go === r) b.setAttribute('aria-current','page');
+    else b.removeAttribute('aria-current');
+  });
+}
+function openMenu(){
+  paintMenu(current);
+  menu.hidden = false;
+  document.body.classList.add('menuopen');
+  burger.setAttribute('aria-expanded','true');
+  var first = menuList.querySelector('.menuitem');
+  if(first) first.focus();
+}
+function closeMenu(){
+  menu.hidden = true;
+  document.body.classList.remove('menuopen');
+  burger.setAttribute('aria-expanded','false');
+}
+burger.addEventListener('click', openMenu);
+document.getElementById('menuClose').addEventListener('click', function(){ closeMenu(); burger.focus(); });
+document.addEventListener('keydown', function(e){
+  if(e.key === 'Escape' && !menu.hidden){ closeMenu(); burger.focus(); }
+});
+window.addEventListener('resize', function(){ if(window.innerWidth > 820 && !menu.hidden) closeMenu(); });
+
+/* =========================================================
+   CIRCUIT RAIL
+========================================================= */
+var RAIL = [
+  {n:'Figma',     k:'Where it starts'},
+  {n:'FigJam',    k:'Flows and workshops'},
+  {n:'Photoshop', k:'Image work'},
+  {n:'Illustrator',k:'Icons and print'},
+  {n:'Blender',   k:'3D product renders'},
+  {n:'Canva',     k:'Brand kits'},
+  {n:'Framer',    k:'Fast sites'},
+  {n:'Webflow',   k:'Marketing sites'},
+  {n:'Wix',       k:'Client sites'},
+  {n:'Claude',    k:'Building with AI'}
+];
+var REFS = ['J1','R12','C9','R1','C4','U2','L3','X1','D7','C8','R4','U5'];
+
+
+/* pixel dango: one matcha-dusted mochi on a skewer, 11 x 17 grid */
+function dangoSVG(){
+  var P = 3, cols = { O:'#3B2A2A', K:'#C89B62', C:'#FFF4E2', S:'#EBD8BC', G:'#9CCB86', H:'#C9E8B5', e:'#3B2A2A', m:'#C0566E', b:'#F6A9BC' };
+  var rows = [
+    '...OOOOO...',
+    '.OOGGHGGOO.',
+    '.OGHGGGGGO.',
+    'OCGGCGGCGCO',
+    'OCCCCCCCCCO',
+    'OCCeCCCeCCO',
+    'OCbCCmCCbCO',
+    'OCCCCCCCCSO',
+    '.OCCCCCCSO.',
+    '.OOCCCCSOO.',
+    '...OOOOO...'
+  ];
+  var out = '';
+  rows.forEach(function(r, y){
+    r.split('').forEach(function(c, x){ if(cols[c]) out += '<rect x="'+(x*P)+'" y="'+(y*P)+'" width="'+P+'" height="'+P+'" fill="'+cols[c]+'"/>'; });
+  });
+  return '<svg width="'+(11*P)+'" height="'+(rows.length*P)+'" viewBox="0 0 '+(11*P)+' '+(rows.length*P)+'" shape-rendering="crispEdges" xmlns="http://www.w3.org/2000/svg">'+out+'</svg>';
+}
+var CHIPX = [];
+function buildRail(){
+  var W = 2560, H = 236, base = 176, x = 40, parts = '', chips = '', refs = '', ri = 0, ci = 0;
+  function pad(cx){ return '<circle cx="'+cx+'" cy="'+base+'" r="3.2" fill="none" stroke="#C9C7B4" stroke-width="1"/>'; }
+  function ref(cx){
+    if(ri >= REFS.length) return '';
+    var t = '<text x="'+cx+'" y="'+(base+34)+'" text-anchor="middle" fill="#C9C7B4">'+REFS[ri]+'</text>';
+    ri++; return t;
+  }
+  // baseline trace
+  parts += '<line x1="24" y1="'+base+'" x2="'+(W-24)+'" y2="'+base+'" stroke="#C9C7B4" stroke-width="1.4"/>';
+
+  function resistor(cx){
+    var d = 'M'+(cx-20)+' '+base;
+    for(var i=0;i<6;i++){ d += ' L'+(cx-16+i*6)+' '+(base+(i%2?7:-7)); }
+    d += ' L'+(cx+20)+' '+base;
+    return '<path d="'+d+'" fill="none" stroke="#B9B7A4" stroke-width="1.4" stroke-linejoin="round"/>';
+  }
+  function capsule(cx){
+    return '<rect x="'+(cx-13)+'" y="'+(base-8)+'" width="26" height="16" rx="8" fill="#EDEADB" stroke="#C9C7B4"/>'+
+           '<circle cx="'+(cx-5)+'" cy="'+base+'" r="3" fill="#8B948A" opacity=".5"/>';
+  }
+  function cap(cx){
+    return '<rect x="'+(cx-7)+'" y="'+(base-24)+'" width="14" height="24" rx="6" fill="#E4EEDF" stroke="#C9C7B4"/>'+
+           '<line x1="'+(cx-7)+'" y1="'+(base-14)+'" x2="'+(cx+7)+'" y2="'+(base-14)+'" stroke="#C9C7B4"/>';
+  }
+  function led(cx){
+    return '<circle cx="'+cx+'" cy="'+(base-9)+'" r="6" fill="#C3D9BA" stroke="#9DBE93"/>'+
+           '<line x1="'+cx+'" y1="'+(base-3)+'" x2="'+cx+'" y2="'+base+'" stroke="#C9C7B4"/>';
+  }
+  function coil(cx){
+    var d='M'+(cx-18)+' '+base;
+    for(var i=0;i<4;i++){ d += ' q 4.5 -11 9 0'; }
+    return '<path d="'+d+'" fill="none" stroke="#B9B7A4" stroke-width="1.4"/>'+
+           '<line x1="'+(cx+18)+'" y1="'+base+'" x2="'+(cx+22)+'" y2="'+base+'" stroke="#C9C7B4"/>';
+  }
+  function icPins(x0,w){
+    var s='';
+    for(var px=x0+6; px<x0+w-4; px+=9){
+      s += '<line x1="'+px+'" y1="'+(base-2)+'" x2="'+px+'" y2="'+(base+10)+'" stroke="#C9C7B4"/>';
+    }
+    return s;
+  }
+  function chip(cx, item, idx){
+    var w = Math.max(112, item.n.length*10 + 62), h = 62;
+    var x0 = cx - w/2, y0 = base - h - 6;
+    var leadX = x0 - 26, leadTop = y0 - 18;
+    CHIPX[idx] = cx;
+    var g = '<g class="chip" data-i="'+idx+'">';
+    g += '<path d="M'+leadX+' '+base+' L'+leadX+' '+leadTop+' L'+(x0+26)+' '+leadTop+'" fill="none" stroke="#DCD9C8" stroke-width="1"/>';
+    g += '<circle cx="'+leadX+'" cy="'+base+'" r="3.2" fill="#EDEADB" stroke="#C9C7B4"/>';
+    g += '<rect class="chipbox" x="'+x0+'" y="'+y0+'" width="'+w+'" height="'+h+'" rx="4"/>';
+    g += '<circle cx="'+(x0+11)+'" cy="'+(y0+11)+'" r="2.6" fill="#C9C7B4"/>';
+    g += '<rect class="plate" x="'+(x0+14)+'" y="'+(y0+22)+'" width="'+(w-28)+'" height="26" rx="3"/>';
+    g += '<text class="chiplabel" x="'+cx+'" y="'+(y0+39)+'" text-anchor="middle">'+item.n+'</text>';
+    g += icPins(x0,w);
+    g += '</g>';
+    return g;
+  }
+
+  var seq = ['pad','coil','chip','led','cap','chip','capsule','chip','resistor','chip','pad','led','chip','coil','chip','capsule','chip','cap','pad','chip','resistor','chip','led','chip'];
+  for(var s=0; s<seq.length && x < W-150; s++){
+    var kind = seq[s];
+    if(kind === 'chip'){
+      if(ci >= RAIL.length){ continue; }
+      var wEst = Math.max(112, RAIL[ci].n.length*10 + 62);
+      x += wEst/2 + 14;
+      chips += chip(x, RAIL[ci], ci);
+      refs += ref(x);
+      x += wEst/2 + 22;
+      ci++;
+    } else {
+      x += 26;
+      if(kind === 'pad'){ parts += pad(x); }
+      else if(kind === 'resistor'){ parts += resistor(x); x += 14; }
+      else if(kind === 'capsule'){ parts += capsule(x); }
+      else if(kind === 'cap'){ parts += cap(x); }
+      else if(kind === 'led'){ parts += led(x); }
+      else if(kind === 'coil'){ parts += coil(x); x += 12; }
+      x += 26;
+    }
+  }
+  // small pads between everything
+  for(var px=60; px<W-40; px+=76){ parts += pad(px); }
+
+  return '<svg class="railsvg" viewBox="0 0 '+W+' '+H+'" xmlns="http://www.w3.org/2000/svg">'+parts+refs+chips+'</svg>';
+}
+(function(){
+  var one = buildRail();
+  var two = one.replace('<svg class="railsvg"', '<svg class="railsvg" aria-hidden="true"').replace(/tabindex="0" role="button"/g, 'tabindex="-1"');
+  document.getElementById('railHost').innerHTML = '<div class="railtrack">' + one + two + '</div>' +
+    '<span class="railspark" aria-hidden="true"><span class="dshadow"></span><span class="dango">' + dangoSVG() + '</span></span>';
+})();
+
+var railNum = document.getElementById('railNum'), railName = document.getElementById('railName'), railKind = document.getElementById('railKind');
+var railIdx = 0;
+function setRail(i){
+  railIdx = i;
+  document.querySelectorAll('.railsvg g.chip').forEach(function(g){ g.classList.toggle('on', +g.dataset.i === i); });
+  railNum.textContent = String(i+1).padStart(2,'0');
+  railName.textContent = RAIL[i].n;
+  railKind.textContent = RAIL[i].k;
+}
+setRail(0);
+
+/* --- rail: the board glides past a fixed signal; each tool lights as it crosses --- */
+(function(){
+  var sc = document.querySelector('.railscroll'), track = document.querySelector('.railtrack');
+  if(!sc || !track || reduce) return;
+  var off = 0, v = 0, BASE = 0.045, last = 0, paused = false, w = 0, resumeT;
+  function measure(){ w = track.firstElementChild.getBoundingClientRect().width; }
+  measure(); window.addEventListener('resize', measure);
+  function tick(t){
+    requestAnimationFrame(tick);
+    if(current !== 'welcome' || document.hidden){ last = 0; return; }
+    if(!w) measure();
+    if(!w) return;
+    var dt = last ? Math.min(t - last, 50) : 16; last = t;
+    v += ((paused ? 0 : BASE) - v) * Math.min(1, dt / 420);      // ease in and out of pauses
+    off = (off + v * dt) % w;
+    track.style.transform = 'translate3d(' + (-off) + 'px,0,0)';
+    if(paused) return;
+    var scale = w / 2560, center = off + sc.clientWidth / 2, near = -1, best = 1e9;
+    CHIPX.forEach(function(cx, k){
+      var x = cx * scale, d = Math.min(Math.abs(x - center), Math.abs(x + w - center));
+      if(d < best){ best = d; near = k; }
+    });
+    if(near >= 0 && near !== railIdx && best < 70 * scale + 20) setRail(near);
+  }
+  requestAnimationFrame(tick);
+})();
+
+/* =========================================================
+   BENCH — tracks
+========================================================= */
+var TRACKS = [
+  {id:'workspace', t:'Workspace',      s:'BENCH · LIVE',              foot:['FIGMA','CURSOR','CLAUDE'], right:'LIVE · NEVER FINISHED'},
+  {id:'ai',        t:'AI Workflow',    s:'BUILDER · DAILY',           foot:['DRAG','ARRANGE','READ THE CODE'], right:'DESIGN ↔ CODE'},
+  {id:'ds',        t:'Design System',  s:'LIBRARY · 12 PARTS',        foot:['TOKENS','TYPE','COMPONENTS'], right:'DR. PAWS v1.1'},
+  {id:'product',   t:'Product Design', s:'END TO END · 10 YRS',       foot:['RESEARCH','FLOWS','SHIP'], right:'SAAS · COMMERCE'},
+  {id:'build',     t:'Build & Ship',   s:'SHOPIFY · WEBFLOW · MORE',  foot:['LIQUID','HTML/CSS','JS'], right:'IT GOES LIVE'}
+];
+var opened = {workspace:true};
+
+var trackList = document.getElementById('trackList');
+trackList.innerHTML = TRACKS.map(function(tr,i){
+  return '<button class="track" role="tab" data-track="'+tr.id+'" aria-selected="'+(i===0)+'">'+
+    '<span class="tt">'+tr.t+'</span><span class="ts">'+tr.s+'</span></button>';
+}).join('');
+
+var board = document.getElementById('board');
+var stageName = document.getElementById('stageName');
+var stageMeta = document.getElementById('stageMeta');
+var stageFoot = document.getElementById('stageFoot');
+var crumb = document.getElementById('crumb');
+
+/* ---- board renderers ---- */
+function isNarrow(){ return window.innerWidth <= 720; }
+
+function boardWorkspaceMobile(){
+  board.classList.remove('plain');
+  function n(label, cls, d){
+    return '<div class="vnode'+(cls?' '+cls:'')+'" style="animation-delay:'+d+'ms">'+label+'</div>';
+  }
+  board.innerHTML =
+    '<div class="vflow">'+
+      n('BRIEF','',0)+'<div class="vlink"></div>'+
+      n('EXPLORE','',60)+'<div class="vlink"></div>'+
+      n('IN THE SYSTEM?','dia',120)+
+      '<div class="vbranch">'+
+        '<div class="vb"><span class="lbl">YES</span>'+ n('REUSE','',180) +'</div>'+
+        '<div class="vb"><span class="lbl">NO</span>'+ n('NEW PATTERN','',180) +
+          '<div class="vlink sm"></div>'+ n('ADD TO LIB','',240) +'</div>'+
+      '</div>'+
+      '<div class="vjoin"></div>'+
+      n('SHIP','ship',300)+
+    '</div>'+
+    '<div class="vnotes">'+
+      '<div class="sticky a">Reuse before you add. Every new pattern is a thing somebody has to maintain.</div>'+
+      '<div class="sticky b">Empty state? Ask design.</div>'+
+      '<div class="chatcard"><div class="k">PAIRING</div>'+
+        '<div class="q">make the referral card crop the second line</div>'+
+        '<div class="a">On it — a 24px reveal on the second line.</div>'+
+        '<div class="f">Editing ReferralCard.tsx</div></div>'+
+    '</div>';
+}
+
+function boardWorkspace(){
+  if(isNarrow()) return boardWorkspaceMobile();
+  board.classList.remove('plain');
+  var nodes = [
+    {x:0,   y:60,  l:'BRIEF'},
+    {x:150, y:60,  l:'EXPLORE'},
+    {x:298, y:44,  l:'IN THE<br>SYSTEM?', dia:true},
+    {x:470, y:60,  l:'REUSE'},
+    {x:300, y:196, l:'NEW PATTERN'},
+    {x:470, y:196, l:'ADD TO LIB'},
+    {x:620, y:128, l:'SHIP', ship:true}
+  ];
+  var html = '<div class="flowfit"><div class="flow"><svg class="wires" viewBox="0 0 740 440" preserveAspectRatio="none">' +
+    '<polygon points="366,40 434,84 366,128 298,84" fill="#FCFBF5" stroke="#C9C7B4" stroke-width="1"/>' +
+    '<path d="M118 84 L148 84"/>' +
+    '<path d="M268 84 L296 84"/>' +
+    '<path d="M436 84 L468 84"/>' +
+    '<path d="M366 130 L366 194"/>' +
+    '<path d="M418 220 L468 220"/>' +
+    '<path d="M590 84 L604 84 L604 151 L618 151"/>' +
+    '<path d="M590 220 L604 220 L604 151"/>' +
+    '<text x="444" y="76">YES</text><text x="374" y="166">NO</text>' +
+    '</svg>';
+  nodes.forEach(function(n,i){
+    html += '<div class="node'+(n.dia?' dia':'')+(n.ship?' ship':'')+'" style="left:'+n.x+'px;top:'+n.y+'px;animation-delay:'+(i*55)+'ms">'+n.l+'</div>';
+  });
+  html += '<div class="sticky a" style="left:0;top:262px">Reuse before you add. Every new pattern is a thing somebody has to maintain.</div>';
+  html += '<div class="sticky b" style="left:236px;top:288px">Empty state? Ask design.</div>';
+  html += '<div class="chatcard" style="left:470px;top:286px">'+
+          '<div class="k">PAIRING</div>'+
+          '<div class="q">make the referral card crop the second line</div>'+
+          '<div class="a">On it — a 24px reveal on the second line.</div>'+
+          '<div class="f">Editing ReferralCard.tsx</div></div>';
+  html += '</div></div>';
+  board.innerHTML = html;
+  requestAnimationFrame(fitFlow);
+}
+function fitFlow(){
+  var f = document.querySelector('.flow');
+  if(!f) return;
+  var host = f.parentElement;
+  var avail = host.clientWidth;
+  if(!avail) return;               // view is hidden — retry when it is shown
+  var sc = Math.min(1, avail / 740);
+  f.style.transform = sc < 1 ? 'scale(' + sc + ')' : '';
+  host.style.height = Math.round(446 * sc) + 'px';
+}
+var lastNarrow = isNarrow(), resizeTimer;
+window.addEventListener('resize', function(){
+  clearTimeout(resizeTimer);
+  resizeTimer = setTimeout(function(){
+    var sel = document.querySelector('.track[aria-selected="true"]');
+    if(sel && sel.dataset.track === 'workspace' && isNarrow() !== lastNarrow){
+      lastNarrow = isNarrow();
+      boardWorkspace();
+    } else {
+      fitFlow();
+    }
+  }, 140);
+});
+
+function boardDS(){
+  board.classList.add('plain');
+  board.innerHTML =
+  '<div class="dsgrid">'+
+    '<div class="dscell"><div class="k">COLOUR · 6 TOKENS</div>'+
+      '<div class="swatches">'+
+        '<i style="background:#26302A"></i><i style="background:#40593D"></i><i style="background:#6E8F68"></i>'+
+        '<i style="background:#9DBE93"></i><i style="background:#C3D9BA"></i><i style="background:#F5F3E7"></i>'+
+      '</div>'+
+      '<p style="font-size:13px;margin:12px 0 0">One accent, one ink, four steps between. On Dr. Paws this replaced three competing greens after a contrast audit.</p>'+
+    '</div>'+
+    '<div class="dscell"><div class="k">TYPE · 5 STEPS</div>'+
+      '<div class="scale">'+
+        '<div><span>34</span><b style="font-size:22px;font-weight:600;letter-spacing:-.03em">Display</b></div>'+
+        '<div><span>19</span><b style="font-size:17px;font-weight:500">Section lead</b></div>'+
+        '<div><span>16</span><span style="font-size:15px;color:var(--ink);font-family:var(--sans);width:auto">Body copy</span></div>'+
+        '<div><span>13</span><span style="font-size:13px;color:var(--ink-2);font-family:var(--sans);width:auto">Supporting</span></div>'+
+        '<div><span>11</span><span class="mono" style="width:auto">SYSTEM LABEL</span></div>'+
+      '</div>'+
+    '</div>'+
+    '<div class="dscell"><div class="k">COMPONENTS · 12 PARTS</div>'+
+      '<div class="parts">'+
+        '<div class="done">Buttons — primary, outline, ghost</div>'+
+        '<div class="done">Form fields + validation states</div>'+
+        '<div class="done">Product card / PDP block</div>'+
+        '<div class="done">Quiz step + progress</div>'+
+        '<div class="done">Data table + empty state</div>'+
+        '<div>Modal + drawer</div>'+
+        '<div>Toast + alert tiers</div>'+
+      '</div>'+
+      '<p style="font-size:13px;margin:14px 0 0">Two button tiers, not four. Every removal is an argument I had to win.</p>'+
+    '</div>'+
+  '</div>';
+}
+
+function boardProduct(){
+  board.classList.add('plain');
+  board.innerHTML =
+  '<div class="steps">'+
+    '<div class="step"><div class="n">01</div><h4>Needfinding</h4><p>Interviews across departments, globally. On XtendOps that meant rebuilding the information architecture from scratch.</p></div>'+
+    '<div class="step"><div class="n">02</div><h4>Flows &amp; wireframes</h4><p>Sketches, flow diagrams, then wireframes. Cheap to argue with, cheap to throw away.</p></div>'+
+    '<div class="step"><div class="n">03</div><h4>High fidelity</h4><p>Figma, on the design system. If a component does not exist yet, it gets designed as a component.</p></div>'+
+    '<div class="step"><div class="n">04</div><h4>Implementation</h4><p>I stay with it. Sometimes reviewing, often writing the frontend myself.</p></div>'+
+  '</div>'+
+  '<div class="platgrid">'+
+    '<div class="plat"><div class="k">CASE</div><h4>Healthcare HR, in German</h4><p>Users are nurses mid-shift. Large type, plain language, 44px targets, and a violation-alert hierarchy that surfaces severity instead of hiding it.</p></div>'+
+    '<div class="plat"><div class="k">CASE</div><h4>AI agent builder, internal</h4><p>Raw JSON and five overlapping save buttons replaced by a visual flow, a contextual step editor and simulate-before-publish. Six weeks, no backend changes.</p></div>'+
+    '<div class="plat"><div class="k">CASE</div><h4>Supplement commerce, AU, MY + global</h4><p>Design system, 20+ pages, quiz funnel, referral programme, packaging and 3D renders. Localised down to currency, phone format and consumer law.</p></div>'+
+  '</div>';
+}
+
+function boardBuild(){
+  board.classList.add('plain');
+  board.innerHTML =
+  '<div class="platgrid">'+
+    '<div class="plat"><div class="k">COMMERCE</div><h4>Shopify</h4><p>Liquid templates, PDPs, quiz funnels and referral app integration for a supplement brand selling into Australia and Malaysia.</p></div>'+
+    '<div class="plat"><div class="k">MARKETING SITES</div><h4>Webflow</h4><p>Design-system-backed marketing builds — CMS collections, responsive breakpoints, handover a client can actually edit.</p></div>'+
+    '<div class="plat"><div class="k">FAST SITES</div><h4>Framer</h4><p>Where a site needs to be live this week and still feel designed. My own portfolio ran on it.</p></div>'+
+    '<div class="plat"><div class="k">LONG TAIL</div><h4>WordPress</h4><p>Six years of it. Theme work, custom layouts, PHP where needed, and large e-commerce builds with multi-currency pricing.</p></div>'+
+    '<div class="plat"><div class="k">HAND-WRITTEN</div><h4>HTML, CSS, JavaScript</h4><p>React and Svelte for product UI, Tailwind day to day, Material UI where a team already lives there. Prototypes ship as real code.</p></div>'+
+    '<div class="plat"><div class="k">GRAPHICS</div><h4>Illustrator, Photoshop &amp; Blender</h4><p>SVG icon sets, packaging labels to print spec, campaign posters, trade catalogues, and 3D product renders in Blender for product pages and marketplaces. The brand does not stop at the browser.</p></div>'+
+  '</div>';
+}
+
+/* ---- AI workflow board: drag & drop builder ---- */
+var BLOCKS = {
+  nav:  {label:'Nav bar',  render:'<div class="c-nav">MENU<span class="burger"><i></i><i></i><i></i></span></div>',
+         code:['<header class="nav">','  <span class="nav__brand">Menu</span>','  <button class="nav__toggle" aria-label="Open menu"></button>','</header>']},
+  hero: {label:'Hero',     render:'<div class="c-hero"><b>Gut Glow</b><small>Daily gut support, clinically dosed and vet reviewed.</small></div>',
+         code:['<section class="hero">','  <h1>Gut Glow</h1>','  <p>Daily gut support, clinically dosed and vet reviewed.</p>','</section>']},
+  cards:{label:'Card grid',render:'<div class="c-cards"><div><i></i>SKIN</div><div><i></i>JOINTS</div></div>',
+         code:['<ul class="grid">','  <li class="card"><img src="/skin.webp" alt=""><h3>Skin</h3></li>','  <li class="card"><img src="/joints.webp" alt=""><h3>Joints</h3></li>','</ul>']},
+  quiz: {label:'Quiz step',render:'<div class="c-quiz"><b>How old is your dog?</b><span>Under 2 years</span><span>2 to 7 years</span><span>7+ years</span></div>',
+         code:['<fieldset class="quiz">','  <legend>How old is your dog?</legend>','  <label><input type="radio" name="age" value="puppy"> Under 2 years</label>','  <label><input type="radio" name="age" value="adult"> 2 to 7 years</label>','  <label><input type="radio" name="age" value="senior"> 7+ years</label>','</fieldset>']},
+  chart:{label:'Chart',    render:'<div class="c-chart"><i style="height:34%"></i><i style="height:58%"></i><i style="height:41%"></i><i style="height:82%"></i><i style="height:66%"></i></div>',
+         code:['<figure class="chart" role="img" aria-label="Shifts covered this week">','  <div class="bar" style="--v:34%"></div>','  <div class="bar" style="--v:58%"></div>','  <div class="bar" style="--v:41%"></div>','  <div class="bar" style="--v:82%"></div>','  <div class="bar" style="--v:66%"></div>','</figure>']},
+  table:{label:'Data rows',render:'<div class="c-table"><div><span>Mara S.</span><span>07:00</span></div><div><span>Ines K.</span><span>13:30</span></div><div><span>Ruth O.</span><span>21:00</span></div></div>',
+         code:['<table class="shifts">','  <tbody>','    <tr><td>Mara S.</td><td>07:00</td></tr>','    <tr><td>Ines K.</td><td>13:30</td></tr>','    <tr><td>Ruth O.</td><td>21:00</td></tr>','  </tbody>','</table>']},
+  cta:  {label:'Call to action',render:'<div class="c-cta"><span>Add to cart</span></div>',
+         code:['<button class="btn btn--primary" type="submit">Add to cart</button>']},
+  foot: {label:'Footer',   render:'<div class="c-foot">© 2026 · PRIVACY · CONTACT</div>',
+         code:['<footer class="site-foot">','  <p>&copy; 2026</p>','  <a href="/privacy">Privacy</a>','  <a href="/contact">Contact</a>','</footer>']}
+};
+var PRESETS = {
+  'Dr. Paws PDP':['nav','hero','cards','cta','foot'],
+  'Shift AI':['nav','table','chart','foot'],
+  'Quiz funnel':['nav','quiz','cta','foot']
+};
+var state = ['nav','hero','cards','cta','foot'];
+
+function boardAI(){
+  board.classList.add('plain');
+  var blocks = Object.keys(BLOCKS).map(function(k,i){
+    return '<button class="blockbtn'+(i%3===2?' alt':'')+'" draggable="true" data-key="'+k+'"><i></i>'+BLOCKS[k].label+'</button>';
+  }).join('');
+  var presets = Object.keys(PRESETS).map(function(p){
+    return '<button type="button" data-preset="'+p+'">'+p.toUpperCase()+'</button>';
+  }).join('');
+  board.innerHTML =
+  '<div class="builder">'+
+    '<div class="blocklist">'+
+      '<div class="hd">BLOCKS — DRAG OR TAP</div>'+ blocks +
+      '<div class="hd" style="margin-top:14px">LOAD A REAL SCREEN</div>'+
+      '<div class="presetrow">'+presets+'</div>'+
+    '</div>'+
+    '<div class="viewport">'+
+      '<div class="vtabs" role="tablist">'+
+        '<button class="vtab" role="tab" id="vt-d" aria-selected="true">DESIGN</button>'+
+        '<button class="vtab" role="tab" id="vt-c" aria-selected="false">CODE</button>'+
+        '<button class="vtab right" type="button" id="vt-clear">CLEAR</button>'+
+      '</div>'+
+      '<div class="vbody" id="vp-d"><div class="screen"><div class="canvas" id="canvas"></div></div></div>'+
+      '<div id="vp-c" hidden><pre class="code" id="codeOut"></pre></div>'+
+    '</div>'+
+  '</div>';
+  wireBuilder();
+  paintCanvas();
+}
+
+function wireBuilder(){
+  var canvas = document.getElementById('canvas');
+  board.querySelectorAll('.blockbtn').forEach(function(b){
+    b.addEventListener('click', function(){ state.push(b.dataset.key); paintCanvas(); });
+    b.addEventListener('dragstart', function(e){ e.dataTransfer.setData('text/plain', b.dataset.key); });
+  });
+  board.querySelectorAll('[data-preset]').forEach(function(b){
+    b.addEventListener('click', function(){ state = PRESETS[b.dataset.preset].slice(); paintCanvas(); });
+  });
+  canvas.addEventListener('dragover', function(e){ e.preventDefault(); canvas.classList.add('over'); });
+  canvas.addEventListener('dragleave', function(){ canvas.classList.remove('over'); });
+  canvas.addEventListener('drop', function(e){
+    e.preventDefault(); canvas.classList.remove('over');
+    var k = e.dataTransfer.getData('text/plain');
+    if(BLOCKS[k]){ state.push(k); paintCanvas(); }
+  });
+  var td = document.getElementById('vt-d'), tc = document.getElementById('vt-c');
+  td.addEventListener('click', function(){ setVTab(true); });
+  tc.addEventListener('click', function(){ setVTab(false); });
+  document.getElementById('vt-clear').addEventListener('click', function(){ state = []; paintCanvas(); });
+}
+function setVTab(design){
+  document.getElementById('vt-d').setAttribute('aria-selected', design);
+  document.getElementById('vt-c').setAttribute('aria-selected', !design);
+  document.getElementById('vp-d').hidden = !design;
+  document.getElementById('vp-c').hidden = design;
+}
+function paintCanvas(){
+  var canvas = document.getElementById('canvas');
+  if(!canvas) return;
+  canvas.innerHTML = '';
+  if(!state.length){
+    var e = document.createElement('div');
+    e.className = 'empty';
+    e.textContent = 'EMPTY SCREEN — DRAG A BLOCK IN, OR LOAD A REAL ONE';
+    canvas.appendChild(e);
+  } else {
+    state.forEach(function(k,i){
+      var w = document.createElement('div');
+      w.className = 'item';
+      w.innerHTML = BLOCKS[k].render +
+        '<span class="tools">'+
+        '<button type="button" data-a="up" aria-label="Move '+BLOCKS[k].label+' up">&#9650;</button>'+
+        '<button type="button" data-a="dn" aria-label="Move '+BLOCKS[k].label+' down">&#9660;</button>'+
+        '<button type="button" data-a="rm" aria-label="Remove '+BLOCKS[k].label+'">&#10005;</button></span>';
+      w.querySelectorAll('.tools button').forEach(function(btn){
+        btn.addEventListener('click', function(){
+          var a = btn.dataset.a, j;
+          if(a==='rm'){ state.splice(i,1); }
+          else { j = i + (a==='up' ? -1 : 1); if(j<0||j>=state.length) return; var t=state[i]; state[i]=state[j]; state[j]=t; }
+          paintCanvas();
+        });
+      });
+      canvas.appendChild(w);
+    });
+  }
+  writeCode();
+}
+function esc(s){ return s.replace(/&(?![a-z]+;)/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+function hl(line){
+  var s = esc(line);
+  s = s.replace(/([a-zA-Z-]+)="([^"]*)"/g,'<span class="a">$1</span>=<span class="v">"$2"</span>');
+  s = s.replace(/(&lt;\/?)([a-zA-Z0-9-]+)/g,'$1<span class="t">$2</span>');
+  return s;
+}
+function writeCode(){
+  var out = document.getElementById('codeOut');
+  if(!out) return;
+  var L = ['<span class="cm">&lt;!-- screen.html — written live from the canvas --&gt;</span>','&lt;<span class="t">main</span> <span class="a">class</span>=<span class="v">"screen"</span>&gt;'];
+  if(!state.length) L.push('  <span class="cm">&lt;!-- nothing here yet --&gt;</span>');
+  else state.forEach(function(k){ BLOCKS[k].code.forEach(function(l){ L.push('  '+hl(l)); }); });
+  L.push('&lt;/<span class="t">main</span>&gt;');
+  out.innerHTML = L.join('\n');
+}
+
+var RENDER = {workspace:boardWorkspace, ai:boardAI, ds:boardDS, product:boardProduct, build:boardBuild};
+
+/* ---- terminal ---- */
+var LOG = {
+  workspace:[
+    ['·','restoring the board — notes, shapes, what is open'],
+    ['\u2713','workspace live — it carries on without you']
+  ],
+  ai:[
+    ['·','loading blocks — nav, hero, cards, quiz, chart, table'],
+    ['\u2713','design and code are the same object here']
+  ],
+  ds:[
+    ['·','reading tokens — 6 colours, 5 type steps, 12 parts'],
+    ['\u2713','two button tiers. the other two were removed on purpose']
+  ],
+  product:[
+    ['·','opening ten years of process — research to implementation'],
+    ['\u2713','nothing thrown over a wall']
+  ],
+  build:[
+    ['·','checking platforms — shopify, webflow, framer, wordpress'],
+    ['\u2713','it ships, and then it stays shipped']
+  ]
+};
+var termLog = document.getElementById('termLog');
+function log(rows){
+  rows.forEach(function(r){
+    var d = document.createElement('div');
+    d.innerHTML = '<span class="'+(r[0]==='\u2713'?'g':'m')+'">'+r[0]+'</span><span'+(r[2]?' class="g"':'')+'>'+r[1]+'</span>';
+    termLog.appendChild(d);
+  });
+  termLog.scrollTop = termLog.scrollHeight;
+}
+
+function openTrack(id){
+  var tr = TRACKS.filter(function(t){ return t.id === id; })[0];
+  if(!tr) return;
+  board.querySelectorAll('*').forEach(function(){});
+  document.querySelectorAll('.track').forEach(function(b){ b.setAttribute('aria-selected', b.dataset.track === id); });
+  RENDER[id]();
+  stageName.textContent = tr.t.toUpperCase();
+  stageMeta.textContent = tr.s;
+  crumb.textContent = 'PORTFOLIO / BENCH / ' + tr.t.toUpperCase();
+  stageFoot.innerHTML = tr.foot.map(function(f){ return '<span class="pill">'+f+'</span>'; }).join('') +
+    '<span style="margin-left:auto">'+tr.right+'</span>';
+  opened[id] = true;
+  var n = Object.keys(opened).length;
+  document.getElementById('openedCount').textContent = n + ' / 5 OPENED';
+  document.getElementById('openedBar').style.width = (n/5*100)+'%';
+  log([['\u203a','open ' + tr.t.toLowerCase(), true]].concat(LOG[id]));
+  var next = TRACKS[(TRACKS.map(function(t){return t.id;}).indexOf(id)+1) % TRACKS.length];
+  document.getElementById('termHint').textContent = 'try: open ' + next.t.toLowerCase();
+}
+document.querySelectorAll('.track').forEach(function(b){
+  b.addEventListener('click', function(){ openTrack(b.dataset.track); });
+});
+document.getElementById('btnNext').addEventListener('click', function(){
+  var i = TRACKS.map(function(t){return t.id;}).indexOf(document.querySelector('.track[aria-selected="true"]').dataset.track);
+  openTrack(TRACKS[(i+1)%TRACKS.length].id);
+});
+document.getElementById('btnHelp').addEventListener('click', function(){
+  log([['·','five tracks on the left. NEXT walks through them.'],['·','the AI Workflow track is draggable — try it.'],['·','everything here was built by the person you are hiring.']]);
+});
+document.getElementById('btnClear').addEventListener('click', function(){ termLog.innerHTML = ''; });
+
+log([['·','booting the bench'],['\u2713','ask for it, draw it, ship it']]);
+openTrack('workspace');
+
+/* =========================================================
+   WORK
+========================================================= */
+var STAGES = ['Overview','Discover','Research','Define','Ideate','Structure','System','Design','Build','Outcome'];
+
+var CASES = [
+  {
+    slug:'dr-paws', t:'Dr. Paws Australia', cat:'E-commerce · Design system',
+    tone:['#2A5347','#4E8471','#9DC3B2'],
+    blurb:'A design system, a 20-page storefront, packaging and campaigns for a premium pet supplement brand selling in Australia, Malaysia and beyond.',
+    m:'DESIGN SYSTEM · 20+ PAGES · PACKAGING',
+    d:'Built the design system, then the storefront on top of it — About Science, a clinical health-concerns hub, article templates, a referral programme and a quiz funnel. When three conflicting greens crept into the build, I put together a contrast-and-conversion case for a single system and got it approved. Beyond the site: packaging labels, 3D product renders, marketplace listings and campaign artwork.',
+    g:['Design system','Shopify Liquid','Packaging','Blender'],
+    meta:{Role:'Product designer + frontend, DoqPal', Year:'Nov 2025 — present', Platform:'Shopify, Liquid, HTML/CSS, Blender', Scope:'System, 20+ pages, packaging, campaigns'},
+    lede:'Dr. Paws sells clinically dosed supplements for dogs and cats — direct to consumer in Australia, and through marketplaces in Malaysia. I built the design system, then built most of the storefront on top of it.',
+    steps:[
+      {tag:'OVERVIEW',head:'One product page that became the whole system',p:['A brief that arrived as one mobile product page and grew into the system behind every page on the site. Over a year it covered tokens and components, twenty-plus page builds, a quiz funnel, four growth programme pages, a B2B trade catalogue, packaging labels and campaign artwork.']},
+      {tag:'THE PROBLEM',head:'Three greens, none of them decided',p:['The store already existed, and that was the problem. Products, clinical claims and traffic were all in place, but every page had been designed one at a time, so nothing was reusable and nothing quite matched.','The clearest symptom: three different greens were live simultaneously. One on headlines, a second across section backgrounds, a third on every Add to Cart button. Nobody had decided that; it had simply accumulated.']},
+      {tag:'RESEARCH',head:'Where the money actually comes from',figs:[{k:'board',c:'Channel and competitor audit'}],list:[
+        'Order-source split across channels — roughly 71% Shopee, 24% TikTok Shop, 5% website',
+        'Repeat-purchase data by product, which put Gut Glow clearly ahead',
+        'Six tracked competitors: Doctor Shiba, Mammaly, Petlab, Peppy Paws, Furry Well and Buddy Bites',
+        'Australian requirements — AUD, Australian English, consumer law, +61 formats',
+        'Existing brand PDFs and Figma files, treated as the only source of copy'
+      ]},
+      {tag:'DEFINE',head:'Five people to design for',p:['Five buyer personas built out in a workbook rather than a slide: Michelle (a dog with an itch, buying to solve a problem), Elaine (prevention, already on Gut Glow), Chloe (lifestyle, identifies as a dog mum), Nurul (multi-cat household) and Rajesh (a senior large-breed dog).','Each one carried the same structure — customer job, pain, gain, product, pain reliever, gain creator — plus where they shop and what they spend monthly. That gave every later argument a person to point at instead of a preference to defend.']},
+      {tag:'IDEATE',head:'Three palettes, one survivor',p:['Three homepage colour directions were explored end to end: green, lavender and tangerine. Lavender-dark won on look, but the exercise mattered more for what it revealed about how far the palette could stretch before the clinical claims stopped feeling credible.','The quiz funnel intro went through several passes. A feature-dense version tested badly against a minimal single-question screen, and the minimal one shipped.']},
+      {tag:'STRUCTURE',head:'A map a ten-year-old can follow',figs:[{k:'map',c:'Information architecture — health hub and growth pages'}],list:[
+        'A Dog Health Concerns hub with clinical article templates underneath it',
+        '"Why Dr. Paws" split into Ingredient Transparency, Compare and Guarantee',
+        'Four growth pages divided consumer-facing (Referral, Content Reward) from professional (Sales Agents, Affiliate Partnerships)',
+        'A rule that every page carries an FAQ, and every professional page carries a contact form',
+        'A hard brief constraint: any page must be understandable by a ten-year-old in ten seconds'
+      ]},
+      {tag:'SYSTEM',head:'Six colours, two buttons, one argument',p:['Six colour tokens — Night, Bark, Terra, Sage and Cream against a defined ink — with Lora and Plus Jakarta Sans as the type pairing.','The green question got settled with evidence rather than taste. Two of the three live greens failed WCAG contrast against their own backgrounds. I brought that alongside the conversion argument for one consistent call-to-action colour, and the system moved to a single teal (#3A826B) with terracotta held back purely as an accent.','The button system came down from four tiers to two — filled primary and outline, with ghost as the outline treatment on dark. Removing the filled secondary tier was the hardest sell and the one that most improved consistency.']},
+      {tag:'DESIGN',head:'Twenty pages from the same parts',figs:[{k:'screens',c:'PDP, quiz funnel and referral programme'}],list:[
+        'Mobile product page for Gut Glow, built from the Figma spec',
+        'About Us, About Science, blog index and article templates, account dashboard, 404',
+        'Referral programme page — give $15 / get $15, link in two clicks',
+        'A multi-file funnel for Gut Glow Pro: quiz, offer page, advertorial',
+        'B2B veterinary trade catalogue for Malaysian clinics',
+        'Packaging labels drawn to print spec, including a new gel-tube line',
+        '3D product renders in Blender for product pages and Shopee and TikTok Shop listings',
+        'Campaign posters in feed and story formats, an ads brand kit, and an expo booth and brochure'
+      ]},
+      {tag:'BUILD',head:'Shipped as code, not as a file',p:['Most of this shipped as code I wrote: HTML and CSS pages against the token set, Shopify Liquid for the storefront, and Figma console scripts to generate components programmatically when a whole scheme needed rebuilding.','Localisation was handled properly rather than by find-and-replace — currency, phone formats, marketplace references and an optional ABN field on the agent application form.']},
+      {tag:'OUTCOME',head:'A guide the team builds against',p:['A published brand guide the team now builds against, and a storefront where new pages assemble from existing parts instead of starting over.','The colour and button changes needed defending to the people who had approved the earlier version. Framing each one as a measurable problem — a contrast ratio, a conversion path — is why they held.']}
+    ]
+  },
+
+  {
+    slug:'shift-ai', t:'Shift AI', cat:'Healthcare SaaS · DE/EN', nda:true,
+    tone:['#33473C','#5C8570','#B9D5AE'],
+    blurb:'Shift management software for German healthcare teams, designed for people using it mid-shift on a ward.',
+    m:'HEALTHCARE HR SAAS · FORMERLY HORIZON HR',
+    d:'Task detail modals, a time-tracking timeline with severity-tiered violation alerts, and a dashboard rebuild with real empty states. Plus a documented design system with annotated specs for handoff. Users are nurses on shift, so everything is large type, plain language and 44px touch targets.',
+    g:['Product UI','Accessibility','Bilingual','React'],
+    meta:{Role:'Product designer + frontend, DoqPal', Year:'Nov 2025 — present', Platform:'React, DM Sans', Scope:'Task, time tracking, dashboard, system'},
+    lede:'Shift AI (formerly Horizon HR) is DoqPal\u2019s HR software for healthcare providers, with a German-language interface. Its users are nurses and ward staff — busy, often not especially tech-confident, and rarely sitting at a desk.',
+    steps:[
+      {tag:'OVERVIEW',head:'Software for the people being scheduled',p:['Product design and frontend across three surfaces: the task management feature, the time tracking entry detail, and the main dashboard. Each one had an existing version that worked for the people who built it and not for the people using it.']},
+      {tag:'THE PROBLEM',head:'Designed for a desk, used in a corridor',p:['Most HR tooling is designed for HR teams. This one is used by the people being scheduled — in the middle of a shift, frequently one-handed on a phone, often while something else needs attention.','That single fact drove nearly every decision that followed, and it is the reason several patterns that looked fine in review did not survive contact with the actual context.']},
+      {tag:'RESEARCH',head:'What a shift actually looks like',list:[
+        'Who is actually opening this, and when in their shift',
+        'Confidence with software — lower on average than the product assumed',
+        'German UI strings run substantially longer than their English equivalents',
+        'Which violations carry legal weight and which are administrative noise',
+        'Where errors were currently being missed'
+      ]},
+      {tag:'DEFINE',head:'Legible under pressure',p:['The design target became legibility under pressure rather than density. Large type, plain language over system vocabulary, and a 44px minimum touch target throughout — not as an accessibility checkbox, but because the real input device is a thumb in a corridor.','The German string-length constraint ruled out several tighter layouts I preferred. A component that reflows into something unreadable in the primary language of the product is not a component.']},
+      {tag:'IDEATE',head:'The drawer that became a modal',figs:[{k:'board',c:'Drawer versus modal, side by side'}],p:['The task detail surface started as a right-anchored drawer. I iterated it through several passes and it became a centered modal on my boss\u2019s direction — the drawer kept the list visible but gave the detail too little room once German labels were in place.']},
+      {tag:'STRUCTURE',head:'One record, two tabs, nothing lost',list:[
+        'Tab navigation splitting Task from Changelog',
+        'A compact horizontal pill-strip scrollspy for moving inside a long record',
+        'Azure-style hover-to-edit fields, so reading and editing are the same screen',
+        'A GitHub-style comment thread for the conversation around a task',
+        'A vertical timeline as the spine of the time-tracking entry'
+      ]},
+      {tag:'SYSTEM',head:'Tokens kept, structure changed',p:['DM Sans throughout, with a blue-grey accent (#3B5A8A) carried across the surfaces. A DE/EN language toggle runs through everything rather than being bolted onto one screen.','The dashboard rebuild deliberately preserved the existing design tokens. Changing the visual language and the structure at the same time would have made it impossible to tell which change caused what.']},
+      {tag:'DESIGN',head:'Severity you can actually see',figs:[{k:'screens',c:'Task modal, time tracking timeline, dashboard'}],list:[
+        'Task detail modal — hover-to-edit fields, comment thread, tabbed navigation',
+        'Time tracking entry modal — vertical timeline with severity-tiered violation alerts',
+        'Dashboard — purposeful empty states, count badges, quick-action shortcuts',
+        'A bilingual toggle consistent across all three',
+        'Design-system documentation: live components beside annotated specs (tokens, states, sizing) for developers'
+      ]},
+      {tag:'BUILD',head:'Verified in the running product',p:['Built as React frontend work rather than handed over as a file, which meant the German string lengths, the touch targets and the alert hierarchy could be verified in the running product instead of assumed in Figma.']},
+      {tag:'OUTCOME',head:'Two places I pushed back',p:['Two places I pushed back are the ones I would defend hardest. The violation alerts were originally a single flat style — flattening severity means a minor logging gap and a legally significant breach look identical, and staff learn to ignore both. They became tiers.','The second was a proposed pattern that hid a form error behind a collapsed section. Errors you have to go looking for are errors nobody fixes.']}
+    ]
+  },
+
+  {
+    slug:'xo-ai-builder', t:'XO AI Builder', cat:'AI platform · Internal tool',
+    tone:['#2B3F38','#557A6C','#AFCFC0'],
+    blurb:'A visual drag-and-drop builder that let non-technical teams create AI agents without touching JSON.',
+    m:'AI AGENT BUILDER · 6 WEEKS',
+    d:'Redesigned a dev-centric SmartAgent interface into a visual flow builder for non-technical users. Replaced raw JSON editing and five overlapping save buttons with a contextual step editor, auto-save with publish, and inline simulation — all built on existing infrastructure and the XO Design System.',
+    g:['Interaction design','UX research','Design system','Figma'],
+    meta:{Role:'Product design, UX research, UI, interaction', Year:'6 weeks · XtendOps', Platform:'Figma, FigJam, ChatGPT, Claude', Scope:'Internal tool redesign'},
+    lede:'In six weeks I redesigned our internal SmartAgent interface into a visual drag-and-drop tool built for non-technical users. The goal was to let internal teams — and soon, customers — build AI-powered agents without touching a line of code.',
+    steps:[
+      {tag:'OVERVIEW', head:'Six weeks to make agent-building visual',
+       p:['XO SmartAgents already worked. The problem was that only the people who built them could build them.','My brief was to turn a developer-facing configuration screen into something an operations lead or a support manager could open and use, without changing the infrastructure underneath it.']},
+
+      {tag:'THE PROBLEM', head:'A tool that asked you to edit JSON',
+       p:['The existing interface was built by developers for developers, and every barrier in it was a barrier to the people the product now needed to reach.'],
+       list:[
+         'Agent logic was configured by editing raw JSON',
+         'Five overlapping save and deploy buttons, with no clear difference between them',
+         'No way to test logic or see whether a change worked until after deploying',
+         'Anything I designed had to run on the existing infrastructure and design system'
+       ]},
+
+      {tag:'RESEARCH', head:'What the five buttons actually did',
+       list:[
+         'What each save and deploy action really did to the underlying system — several did overlapping things nobody had reconciled',
+         'Which parts of the JSON structure map to concepts a non-technical user already has',
+         'What developers relied on and would not give up',
+         'Where people got stuck, and what they did instead of asking for help',
+         'The limits of the existing infrastructure, so the design stayed buildable in six weeks'
+       ]},
+
+      {tag:'DEFINE', head:'Design for the person who cannot read the JSON',
+       p:['The target user became someone who understands the process they want to automate but has never opened a code editor. That single decision resolved most later arguments.','It also set a hard constraint: the redesign had to sit entirely on top of existing infrastructure and the existing design system. No backend changes, no new component library, six weeks.']},
+
+      {tag:'IDEATE', head:'Logic as something you can see',
+       figs:[{k:'img',i:3}],
+       p:['Structure and interaction patterns were worked out in FigJam before any interface existed. The core question: what is the smallest visual unit that can represent a step of agent logic without lying about what the system does underneath?']},
+
+      {tag:'STRUCTURE', head:'A canvas of steps, not a file',
+       figs:[{k:'img',i:1}],
+       p:['Agent logic became a drag-and-drop flow of nodes on a canvas. Each node is a step; the connections between them are the logic that used to live in nested JSON.','The contextual step editor is the key move. Selecting a node shows only the fields that node needs, so the interface never presents the full configuration surface at once — which is exactly what made the original unusable.']},
+
+      {tag:'SYSTEM', head:'Modular components, built for scale',
+       p:['Everything was built from the XO Design System as modular components, because this was never going to be the last surface. Working within the existing system rather than around it is what made six weeks possible, and what let the patterns carry into later products.']},
+
+      {tag:'DESIGN', head:'Four changes that made it usable',
+       figs:[{k:'img',i:2}],
+       list:[
+         'Contextual step editor — you only see what the selected node needs',
+         'Auto-save with an explicit publish — your work always saves, and you choose when it goes live',
+         'Simulate and test — run a single step or the whole flow instantly, before publishing',
+         'Built on the XO Design System, as modular components'
+       ],
+       pAfter:['Auto-save with a separate publish is what replaced the five buttons. Once saving is continuous and automatic, the only decision left is whether this is ready for other people — which is one button, not five.']},
+
+      {tag:'BUILD', head:'Working out what the logic really means',
+       p:['This ran as close collaboration with developers throughout. Turning complex technical logic into simple UI patterns is not a translation exercise you can do from a spec — it requires asking, repeatedly, what a given field actually does and whether the user needs to know.','Every simplification had to be checked against the system it was hiding. A pattern that makes something easy while quietly making it wrong is worse than the JSON.']},
+
+      {tag:'OUTCOME', head:'A technical product anyone can use',
+       p:['A visual flow builder that made SmartAgent creation intuitive, fast and testable — shipped on existing infrastructure in six weeks, and designed to extend from internal teams to customers.','This project taught me how to dive into a deeply technical product, extract what matters, and make it usable by anyone. It is the clearest example of the part of the job I find most interesting: the difficulty was never visual, it was understanding the system well enough to know what could safely be taken away.']}
+    ]
+  },
+
+  {
+    slug:'apply-portal', t:'Job Application Portal', cat:'Recruitment · Mobile-first',
+    tone:['#2E4B57','#4F7C8C','#A9CBD6'],
+    blurb:'Careers at XtendOps: a mobile-first site that takes candidates from browsing jobs to finishing the assessment.',
+    m:'CAREERS PORTAL · MOBILE-FIRST',
+    d:'A responsive job portal and applicant assessment site for XtendOps, designed mobile-first so candidates can apply in a few taps. Assessments are built into the same flow, with fallback paths for tests that only run on desktop.',
+    g:['Mobile-first','UX research','Accessibility','Figma'],
+    meta:{Role:'UI/UX, UX research, prototyping, interaction', Year:'3 months · XtendOps', Platform:'Figma, Photoshop, Freepik', Scope:'Job browsing to assessment'},
+    lede:'Careers at XtendOps — a job application and applicant assessment website, designed mainly for people applying from their phones.',
+    steps:[
+      {tag:'OVERVIEW',head:'Apply in a few taps',p:['XtendOps needed a faster, easier way to attract and evaluate applicants, especially on mobile. I designed a responsive job portal that streamlines everything from browsing jobs to completing the assessment.']},
+      {tag:'THE PROBLEM',head:'Candidates arrive on a phone',p:['Most candidates find a job on their phone, but hiring flows are usually built for a desk. Every extra step on a small screen is a chance for someone to give up, and some assessments simply cannot run on mobile.']},
+      {tag:'DEFINE',head:'Built around real behaviour',list:[
+        'Mobile-first from the first wireframe, then scaled up to desktop',
+        'Assessments inside the same flow rather than on a separate site',
+        'A clear fallback route when a test can only be taken on desktop',
+        'Accessibility best practice across every device'
+      ]},
+      {tag:'STRUCTURE',head:'The whole journey, wireframed first',figs:[{k:'img',i:3}],p:['The full path — from the welcome screen through job browsing, application and assessment — was mapped as wireframes before any visual design, so the number of taps could be counted and cut.']},
+      {tag:'DESIGN',head:'Friendly, fast and accessible',figs:[{k:'img',i:1}],list:[
+        'Mobile-first design that lets applicants apply in just a few taps',
+        'Integrated assessments with smart fallback flows for desktop-only tests',
+        'An accessibility-friendly interface across devices'
+      ]},
+      {tag:'OUTCOME',head:'A clearer funnel, a better first impression',p:['The portal boosted visibility across the hiring funnel and improved the candidate experience — for many applicants, the first piece of XtendOps they ever touch.']}
+    ]
+  },
+
+  {
+    slug:'xlearner', t:'XLearner', cat:'Learning platform · Internal',
+    tone:['#2B4F4E','#4E8784','#A8D2CC'],
+    blurb:'Courses for XO employees: a learning platform built into XConnect, where employees learn and managers build courses.',
+    m:'LMS · PART OF XCONNECT',
+    d:'A learning management system designed into XConnect, the operational hub XtendOps already runs on. Employees take on-demand courses and earn certifications; managers create and distribute their own courses through a streamlined creation flow.',
+    g:['LMS','Interaction design','UX research','Figma'],
+    meta:{Role:'UI/UX, UX research, prototyping, interaction', Year:'4 weeks · XtendOps', Platform:'Figma, Photoshop, Freepik', Scope:'Learner and manager flows'},
+    lede:'XLearner is a learning management system for a BPO company, built into XConnect — the hub XtendOps already uses for timesheets, reports, job applications, QA, calendars and user management.',
+    steps:[
+      {tag:'OVERVIEW',head:'Training inside the tool people already open',p:['As part of the XConnect ecosystem, I designed XLearner for XtendOps employees and managers. The goal was to fit a training platform into the company’s operational hub: on-demand learning for employees, and an easy way for managers to create and distribute custom courses.']},
+      {tag:'THE PROBLEM',head:'One more tool would be one too many',p:['XConnect already handles timesheets, reports, job applications, QA, calendars and user management. Training had to feel like part of that hub rather than a separate product people would need to remember.']},
+      {tag:'DEFINE',head:'Two users, two jobs',list:[
+        'Employees: find a course, work through it, earn the certification',
+        'Managers: create a course and send it to their team without friction',
+        'Both: the same visual language as the rest of XConnect'
+      ]},
+      {tag:'STRUCTURE',head:'A catalogue built around certifications',list:[
+        'Cybersecurity',
+        'Data Privacy &amp; Compliance',
+        'AI &amp; Automation',
+        'Effective Communication for Remote Teams',
+        'Leadership &amp; Management Training'
+      ]},
+      {tag:'DESIGN',head:'Engaging, accessible, still XConnect',figs:[{k:'img',i:1}],p:['The design prioritises accessibility and engagement while staying visually consistent with XConnect. Interactive elements, clear navigation and a streamlined course-creation flow for managers keep both sides of the platform easy to use.']},
+      {tag:'OUTCOME',head:'A scalable LMS in four weeks',figs:[{k:'img',i:2}],p:['A scalable, efficient learning platform that supports employee growth while fitting XtendOps’ operational needs — designed in four weeks.']}
+    ]
+  },
+
+  {
+    slug:'insultify', t:'Insultify', cat:'AI app · Hackathon',
+    tone:['#26483C','#4F8A6B','#A6D3B4'],
+    blurb:'Craft the perfect burn — an AI insult generator where the tone you pick is the whole joke.',
+    m:'HACKATHON · AI PRODUCT · 2022',
+    d:'A playful AI insult generator built for a hackathon. Users pick a register — Shakespearean, medieval, Bridgerton, corporate, modern social slang — and get a comeback written in it. I did the product design, the UX research and the prompt design and engineering.',
+    g:['Prompt design','UX research','Figma','Prototyping'],
+    meta:{Role:'Product design, UX research, prompt design + engineering, prototyping', Year:'2022 · 3 months', Platform:'Figma, FigJam, XO AI-Builder, ChatGPT, Logo.com', Scope:'Concept to working prototype'},
+    lede:'A playful AI-powered insult generator, designed and built for a hackathon. It brings humour and wit into everyday interactions by letting people choose exactly how their comeback should sound.',
+    steps:[
+      {tag:'OVERVIEW', head:'Craft the perfect burn',
+       p:['Insultify generates custom insults across a range of linguistic styles, from Shakespearean elegance to modern-day social media slang. Built over three months for a hackathon, with me covering product design, UX research, prompt design, prompt engineering and prototyping.']},
+
+      {tag:'THE PROBLEM', head:'Random is not the same as funny',
+       p:['Insult generators already existed, and they all did the same thing: produce a random line and hand it over. Random output is a novelty you use twice.','A comeback lands because of register. The same jab is funny as a medieval curse and flat as a corporate email, and the person using it already knows which one they want. Existing tools never asked.']},
+
+      {tag:'RESEARCH', head:'What makes a comeback land',
+       list:[
+         'The registers people actually reach for — Shakespearean, medieval, Bridgerton-era, professional, modern social slang',
+         'Why tone carries the joke more than the content of the insult does',
+         'How people use this socially: it gets screenshotted and shared, not kept',
+         'How much control a user wants before the novelty of choosing wears off'
+       ]},
+
+      {tag:'DEFINE', head:'Style is the product',
+       p:['The core decision: style selection is not a setting, it is the mechanic. Everything else in the app exists to get someone to a register and back out again quickly.','That reframed what I was designing. Not a generator with options attached, but a menu of voices with a generator behind it.']},
+
+      {tag:'IDEATE', head:'Finding the range of voices',
+       figs:[{k:'img',i:3}],
+       p:['Style options were mapped and grouped in FigJam before any interface existed. The question was how far apart the registers needed to be for the choice to feel meaningful — too similar and picking one stops mattering, too broad and half of them go unused.']},
+
+      {tag:'STRUCTURE', head:'Pick a voice, get a burn, share it',
+       figs:[{k:'img',i:2}],
+       p:['The whole flow reduces to three moves: choose a style, generate, share. Anything that sat between those was cut, because the value of the app is measured in how fast you get from an idea to something worth sending someone.']},
+
+      {tag:'SYSTEM', head:'Playful, without being juvenile',
+       p:['The visual identity had to signal wit rather than crudeness — the promise is a clever comeback, not a rude one. Logo and brand groundwork through Logo.com. The interface went dark with golden yellow and a flame mark, so every screen reads as playful heat rather than anything mean, and the style choice is the hero of the main screen.']},
+
+      {tag:'DESIGN', head:'A menu of voices',
+       figs:[{k:'img',i:1}],
+       p:['Designed and prototyped in Figma. The style selection screen carries the most design weight in the product, because it is where the user decides what kind of joke they are about to make.']},
+
+      {tag:'BUILD', head:'The prompt is the feature',
+       p:['This is the part that made it work. Each style needed its own prompt design so that a Shakespearean insult actually reads as Shakespearean rather than as modern English with "thou" inserted.','Getting a distinct, consistent voice per register — and keeping the output usable rather than rambling — was the engineering problem, and it was done through prompt design rather than model choice. Assembled in XO AI-Builder, with ChatGPT used during prompt development.']},
+
+      {tag:'OUTCOME', head:'A working product in three months',
+       p:['A shipped hackathon build that took an existing novelty and made it repeatable, by handing the user the one control that actually changes whether the joke works.','It is also the earliest project where I was doing prompt design as design work rather than as a technical afterthought — four years before that became a standard part of the job.']}
+    ]
+  }
+];
+
+/* --- generated preview art (placeholder until real screenshots go in) --- */
+function shot(tone, w, h){
+  w = w || 520; h = h || 300;
+  var g = 'g'+Math.random().toString(36).slice(2,8);
+  var tabX = w*.30, tabY = h*.20, tabW = w*.52, tabH = h*.56;
+  var phX = w*.13, phY = h*.36, phW = w*.15, phH = h*.44;
+  var rows = '';
+  for(var i=0;i<5;i++){
+    rows += '<rect x="'+(tabX+18)+'" y="'+(tabY+34+i*17)+'" width="'+(tabW*(0.62-i*0.07))+'" height="6" rx="3" fill="'+tone[2]+'" opacity="'+(0.85-i*0.1)+'"/>';
+  }
+  var tiles = '';
+  for(var c=0;c<3;c++){
+    tiles += '<rect x="'+(tabX+tabW-24-(c+1)*38)+'" y="'+(tabY+30)+'" width="30" height="30" rx="4" fill="'+tone[2]+'" opacity=".55"/>';
+  }
+  return '<svg class="shot" viewBox="0 0 '+w+' '+h+'" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Project preview">'+
+    '<defs><linearGradient id="'+g+'" x1="0" y1="0" x2="1" y2="1">'+
+      '<stop offset="0" stop-color="'+tone[1]+'"/><stop offset="1" stop-color="'+tone[0]+'"/>'+
+    '</linearGradient></defs>'+
+    '<rect width="'+w+'" height="'+h+'" fill="url(#'+g+')"/>'+
+    '<ellipse cx="'+(w*.55)+'" cy="'+(h*.95)+'" rx="'+(w*.42)+'" ry="'+(h*.16)+'" fill="#000" opacity=".16"/>'+
+    '<rect x="'+tabX+'" y="'+tabY+'" width="'+tabW+'" height="'+tabH+'" rx="7" fill="#12211C"/>'+
+    '<rect x="'+(tabX+6)+'" y="'+(tabY+6)+'" width="'+(tabW-12)+'" height="'+(tabH-12)+'" rx="4" fill="#FCFBF5"/>'+
+    '<rect x="'+(tabX+6)+'" y="'+(tabY+6)+'" width="'+(tabW-12)+'" height="16" fill="'+tone[0]+'"/>'+
+    tiles + rows +
+    '<rect x="'+phX+'" y="'+phY+'" width="'+phW+'" height="'+phH+'" rx="9" fill="#12211C"/>'+
+    '<rect x="'+(phX+4)+'" y="'+(phY+4)+'" width="'+(phW-8)+'" height="'+(phH-8)+'" rx="6" fill="#FCFBF5"/>'+
+    '<rect x="'+(phX+11)+'" y="'+(phY+16)+'" width="'+(phW-26)+'" height="5" rx="2.5" fill="'+tone[1]+'"/>'+
+    '<rect x="'+(phX+11)+'" y="'+(phY+28)+'" width="'+(phW-34)+'" height="4" rx="2" fill="'+tone[2]+'"/>'+
+    '<rect x="'+(phX+11)+'" y="'+(phY+phH-34)+'" width="'+(phW-22)+'" height="16" rx="4" fill="'+tone[1]+'"/>'+
+  '</svg>';
+}
+
+/* --- figure renderers (placeholders until real screens go in) --- */
+function boardFig(tone){
+  var notes='';
+  var cols=[0,1,2,3], tops=[18,52,96,140,184];
+  for(var c=0;c<5;c++){
+    for(var r=0;r<3;r++){
+      if((c+r)%4===3) continue;
+      var w=86+((c*7+r*11)%26), h=34+((c*5+r*9)%18);
+      notes+='<rect x="'+(40+c*112)+'" y="'+(34+r*74)+'" width="'+w+'" height="'+h+'" rx="2" fill="'+(r%2?tone[2]:'#EDEADB')+'" opacity=".9"/>';
+      notes+='<rect x="'+(46+c*112)+'" y="'+(42+r*74)+'" width="'+(w-24)+'" height="4" rx="2" fill="#26302A" opacity=".22"/>';
+      notes+='<rect x="'+(46+c*112)+'" y="'+(52+r*74)+'" width="'+(w-38)+'" height="4" rx="2" fill="#26302A" opacity=".14"/>';
+    }
+  }
+  return '<svg viewBox="0 0 620 280" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Workshop board">'+
+    '<rect width="620" height="280" fill="#F5F3E7"/>'+notes+'</svg>';
+}
+function mapFig(tone){
+  var g='', y;
+  for(var c=0;c<3;c++){
+    var x=44+c*180;
+    g+='<rect x="'+x+'" y="26" width="150" height="20" rx="2" fill="'+tone[1]+'"/>';
+    for(var r=0;r<5;r++){
+      y=60+r*40;
+      g+='<rect x="'+x+'" y="'+y+'" width="150" height="26" rx="2" fill="#FCFBF5" stroke="#DCD9C8"/>';
+      g+='<rect x="'+(x+10)+'" y="'+(y+10)+'" width="'+(110-r*12)+'" height="5" rx="2.5" fill="'+tone[2]+'"/>';
+      if(r<4) g+='<line x1="'+(x+75)+'" y1="'+(y+26)+'" x2="'+(x+75)+'" y2="'+(y+40)+'" stroke="#C9C7B4"/>';
+    }
+  }
+  return '<svg viewBox="0 0 620 280" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Information architecture">'+
+    '<rect width="620" height="280" fill="#F5F3E7"/>'+g+'</svg>';
+}
+function screensFig(tone){
+  var g='';
+  for(var i=0;i<3;i++){
+    var x=30+i*196, w=166, h=228;
+    g+='<rect x="'+x+'" y="26" width="'+w+'" height="'+h+'" rx="3" fill="#FCFBF5" stroke="#DCD9C8"/>';
+    g+='<rect x="'+x+'" y="26" width="'+w+'" height="26" rx="3" fill="'+tone[0]+'"/>';
+    g+='<rect x="'+(x+12)+'" y="66" width="'+(w-60)+'" height="9" rx="4" fill="'+tone[1]+'"/>';
+    g+='<rect x="'+(x+12)+'" y="84" width="'+(w-34)+'" height="5" rx="2.5" fill="'+tone[2]+'"/>';
+    g+='<rect x="'+(x+12)+'" y="96" width="'+(w-58)+'" height="5" rx="2.5" fill="'+tone[2]+'"/>';
+    g+='<rect x="'+(x+12)+'" y="118" width="'+(w-24)+'" height="58" rx="3" fill="'+tone[2]+'" opacity=".5"/>';
+    for(var r=0;r<3;r++){
+      g+='<rect x="'+(x+12)+'" y="'+(188+r*12)+'" width="'+(w-30-r*22)+'" height="5" rx="2.5" fill="'+tone[2]+'" opacity=".8"/>';
+    }
+  }
+  return '<svg viewBox="0 0 620 280" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Screen set">'+
+    '<rect width="620" height="280" fill="#F5F3E7"/>'+g+'</svg>';
+}
+var FIGS = {board:boardFig, map:mapFig, screens:screensFig};
+
+/* =========================================================
+   RECREATED PRODUCT SCREENS
+   Rebuilt in code from the shipped work. Sample data only.
+========================================================= */
+function jar(w,h,jc,lc,name,sub,fs){
+  return '<div class="jar" style="width:'+w+'px;height:'+h+'px;--jc:'+jc+';--lc:'+lc+';--fs:'+fs+'px"><div class="tub"></div><div class="lab"><b>'+name+'</b><small>'+sub+'</small></div><div class="lid"></div></div>';
+}
+function phone(inner,bg){ return '<div class="ph"><div style="background:'+(bg||'#fff')+'"><span class="notch"></span>'+inner+'</div></div>'; }
+
+/* ---------------- Dr. Paws ---------------- */
+var DP_NAV = '<div class="dp-bar">Free shipping over A$60 · 60-day money-back guarantee</div>'+
+  '<div class="dp-nav"><span class="dp-logo"><i></i>Dr. Paws</span><span>Shop dogs</span><span>Shop cats</span><span>Health concerns</span><span>Why Dr. Paws</span><span>Science</span>'+
+  '<span class="r"><span>Take the quiz</span><span>Account</span><span style="font-weight:600">Cart (1)</span></span></div>';
+
+function dpPDP(){
+  return DP_NAV +
+  '<div style="display:grid;grid-template-columns:1fr 1fr;gap:56px;padding:36px 56px">'+
+    '<div>'+
+      '<div style="height:480px;border-radius:26px;background:radial-gradient(circle at 50% 62%,#F8F1E5,#E6D9C3);display:flex;align-items:center;justify-content:center;position:relative">'+
+        jar(240,292,'#24544A','#387060','GUT GLOW','Probiotic chews',31)+
+        '<span style="position:absolute;left:22px;top:22px" class="dp-chip">90 CHEWS · BEEF</span>'+
+      '</div>'+
+      '<div style="display:flex;gap:12px;margin-top:14px">'+
+        ['#E6D9C3','#EDE3D3','#E9DFCF','#EFE6D7'].map(function(c,i){
+          return '<div style="width:92px;height:92px;border-radius:16px;background:'+c+';display:flex;align-items:center;justify-content:center;'+(i===0?'outline:2px solid #3A826B;outline-offset:2px':'')+'">'+
+            (i<2?jar(46,56,'#24544A','#387060','GG','',8):'<div style="width:46px;height:46px;border-radius:50%;background:#D5C4A8"></div>')+'</div>';
+        }).join('')+
+      '</div>'+
+    '</div>'+
+    '<div style="padding-top:6px">'+
+      '<div style="font-size:12.5px;color:#8A7A66;margin-bottom:14px">Dogs / Gut health</div>'+
+      '<span class="dp-chip">BEST SELLER</span>'+
+      '<h1 class="lora" style="font-size:42px;line-height:1.1;margin:14px 0 10px;font-weight:600;color:#1C150D">Gut Glow Probiotic Soft Chews</h1>'+
+      '<div style="color:#C8572A;font-size:15px;letter-spacing:2px">★★★★★ <span style="color:#6B5A48;letter-spacing:0;font-size:14px">4.9 · 1,284 reviews</span></div>'+
+      '<p style="margin:16px 0 22px;color:#5A4A3A;font-size:15.5px;max-width:470px;line-height:1.6">Daily gut support for dogs with sensitive tummies. Clinically dosed, vet reviewed and third-party lab tested.</p>'+
+      '<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px">'+
+        '<div class="dp-opt"><b>1 jar</b>30 days · A$49.95</div>'+
+        '<div class="dp-opt"><b>2 jars</b>60 days · save 10%</div>'+
+        '<div class="dp-opt on"><b>Subscribe</b>Save 20% · skip anytime</div>'+
+      '</div>'+
+      '<div style="display:flex;gap:12px;margin-top:22px"><span class="dp-btn" style="flex:1">Add to cart · A$39.96</span><span class="dp-btn o">Take the quiz</span></div>'+
+      '<div style="display:flex;gap:26px;margin-top:26px;padding-top:22px;border-top:1px solid #E6DCCB;font-size:13px;color:#5A4A3A">'+
+        '<span class="dp-tr"><i></i>Vet reviewed</span><span class="dp-tr"><i></i>Lab tested</span><span class="dp-tr"><i></i>60-day guarantee</span>'+
+      '</div>'+
+    '</div>'+
+  '</div>';
+}
+
+function dpQuiz(){
+  var p1 = '<div style="padding:76px 26px 28px;display:flex;flex-direction:column;align-items:center;text-align:center;height:100%">'+
+    '<div class="paw"><i></i><i></i><i></i><i></i><b></b></div>'+
+    '<h3 class="lora" style="font-size:27px;line-height:1.22;margin:26px 0 12px;color:#1C150D;font-weight:600">Does your dog feel their best every day?</h3>'+
+    '<p style="font-size:14px;color:#6B5A48;line-height:1.55">Seven quick questions, one plan matched to your dog.</p>'+
+    '<div style="margin-top:auto;width:100%"><span class="dp-btn" style="width:100%">Start the quiz</span>'+
+    '<div style="font-size:12px;color:#8A7A66;margin-top:12px">60 seconds · No email needed</div></div></div>';
+  var p2 = '<div style="padding:60px 22px 24px">'+
+    '<div style="display:flex;justify-content:space-between;font-size:12px;color:#8A7A66"><span>&larr; Back</span><span>3 of 7</span></div>'+
+    '<div style="height:6px;border-radius:3px;background:#E6DCCB;margin:12px 0 30px"><i style="display:block;width:43%;height:100%;border-radius:3px;background:#3A826B"></i></div>'+
+    '<h3 class="lora" style="font-size:25px;line-height:1.25;color:#1C150D;margin-bottom:22px;font-weight:600">How old is your dog?</h3>'+
+    '<div class="dp-q">Puppy · under 1 year</div><div class="dp-q on">Adult · 1 to 7 years</div><div class="dp-q">Senior · 7+ years</div>'+
+    '<span class="dp-btn" style="width:100%;margin-top:24px">Continue</span></div>';
+  var p3 = '<div style="padding:58px 22px 24px;text-align:center">'+
+    '<div style="font-size:11px;letter-spacing:.14em;color:#3A826B;font-weight:700">YOUR PLAN</div>'+
+    '<h3 class="lora" style="font-size:24px;margin:8px 0 16px;color:#1C150D;font-weight:600">Gut support, every morning</h3>'+
+    '<div style="background:radial-gradient(circle,#F8F1E5,#E6D9C3);border-radius:22px;height:210px;display:flex;align-items:center;justify-content:center">'+jar(128,156,'#24544A','#387060','GUT GLOW','Probiotic',16)+'</div>'+
+    '<div style="text-align:left;margin:16px 0;font-size:13px;color:#5A4A3A">'+
+      '<div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid #EDE3D3"><span>Dose</span><b style="color:#1C150D">1 chew a day</b></div>'+
+      '<div style="display:flex;justify-content:space-between;padding:8px 0"><span>Matched to</span><b style="color:#1C150D">Soft stools, fussy eater</b></div></div>'+
+    '<span class="dp-btn" style="width:100%">Start my plan</span></div>';
+  return '<div style="height:100%;display:flex;align-items:center;justify-content:center;gap:52px;background:linear-gradient(160deg,#EFE6D7,#E0D0B7)">'+
+    phone(p1,'#FBF8F2')+phone(p2,'#FBF8F2')+phone(p3,'#FBF8F2')+'</div>';
+}
+
+function dpGuide(){
+  function sw(n,h,role,dark){
+    return '<div><div style="height:104px;border-radius:14px;background:'+h+';'+(dark?'':'border:1px solid #E2D6C3')+'"></div>'+
+      '<div style="margin-top:9px;font-weight:600;font-size:13.5px;color:#1C150D">'+n+'</div>'+
+      '<div style="font-size:12px;color:#8A7A66">'+h+' · '+role+'</div></div>';
+  }
+  return '<div style="padding:42px 56px;height:100%;background:#FBF8F2">'+
+    '<div style="display:flex;justify-content:space-between;align-items:flex-end;border-bottom:1px solid #E6DCCB;padding-bottom:20px">'+
+      '<div><div class="lora" style="font-size:36px;font-weight:600;color:#1C150D;line-height:1.1">Brand guide</div><div style="color:#8A7A66;font-size:13px;margin-top:4px">v1.1 · Colour, type and buttons</div></div>'+
+      '<span class="dp-logo" style="margin:0"><i></i>Dr. Paws</span></div>'+
+    '<div style="display:grid;grid-template-columns:1.2fr 1fr;gap:44px;margin-top:28px">'+
+      '<div><div class="dp-k">COLOUR</div>'+
+        '<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:18px 16px">'+
+          sw('Teal','#3A826B','Primary',1)+sw('Teal dark','#2A6152','Hover',1)+sw('Teal light','#B8DFD2','Tint',1)+
+          sw('Terracotta','#C8572A','Accent',1)+sw('Bark','#3B2A1A','Headlines',1)+sw('Cream','#F5F0E8','Surface')+
+        '</div>'+
+        '<div style="display:flex;gap:8px;margin-top:20px;flex-wrap:wrap">'+
+          '<span style="font-size:11.5px;padding:5px 11px;border-radius:999px;background:#E3F1EB;color:#2A6152;font-weight:600">White on teal · 4.6:1 · AA</span>'+
+          '<span style="font-size:11.5px;padding:5px 11px;border-radius:999px;background:#E3F1EB;color:#2A6152;font-weight:600">Bark on cream · 12.1:1 · AAA</span></div>'+
+      '</div>'+
+      '<div><div class="dp-k">TYPE</div>'+
+        '<div class="lora" style="font-size:34px;line-height:1.12;color:#1C150D;font-weight:600">Clinically dosed, not marketed.</div>'+
+        '<div style="font-size:11.5px;color:#8A7A66;margin:6px 0 16px">Lora 600 · Headlines</div>'+
+        '<p style="font-size:15px;line-height:1.6;color:#5A4A3A">Proof over promises. Every claim traced to a study, every batch lab tested.</p>'+
+        '<div style="font-size:11.5px;color:#8A7A66;margin:6px 0 26px">Plus Jakarta Sans · Body</div>'+
+        '<div class="dp-k">BUTTONS · TWO TIERS</div>'+
+        '<div style="display:flex;gap:12px;align-items:center"><span class="dp-btn">Primary</span><span class="dp-btn o">Outline</span></div>'+
+        '<div style="margin-top:14px;background:#3B2A1A;border-radius:16px;padding:18px;display:flex;align-items:center;gap:14px">'+
+          '<span class="dp-btn g">Ghost on dark</span><span style="color:#D8CBB8;font-size:12.5px">Outline treatment on bark</span></div>'+
+      '</div>'+
+    '</div></div>';
+}
+
+function dpReferral(){
+  return DP_NAV +
+  '<div style="display:grid;grid-template-columns:1.1fr .9fr;gap:40px;padding:56px 56px 30px;align-items:center">'+
+    '<div><span class="dp-chip" style="background:#DCEEE7;color:#2A6152">REFER A FRIEND</span>'+
+      '<h1 class="lora" style="font-size:56px;line-height:1.05;margin:18px 0 16px;color:#1C150D;font-weight:600">Give $15.<br>Get $15.</h1>'+
+      '<p style="font-size:16px;color:#5A4A3A;max-width:440px;line-height:1.6">Share your link. Your friend gets $15 off their first order, and you get $15 when they buy.</p>'+
+      '<div style="display:flex;gap:10px;margin-top:26px;max-width:520px">'+
+        '<div style="flex:1;height:52px;border-radius:999px;border:1.5px solid #E2D6C3;background:#fff;display:flex;align-items:center;padding:0 22px;color:#6B5A48;font-size:14.5px">doctor-paws.com/r/your-name</div>'+
+        '<span class="dp-btn">Copy link</span></div>'+
+      '<div style="font-size:12.5px;color:#8A7A66;margin-top:12px">Or share via WhatsApp · Email · Messenger</div></div>'+
+    '<div style="position:relative;height:330px">'+
+      '<div style="position:absolute;left:30px;top:20px;width:300px;height:190px;border-radius:22px;background:#3A826B;color:#fff;padding:24px;transform:rotate(-5deg);box-shadow:0 20px 40px rgba(42,97,82,.25)">'+
+        '<div style="font-size:12px;letter-spacing:.12em;opacity:.8">YOU GET</div><div class="lora" style="font-size:58px;font-weight:600">$15</div><div style="font-size:13px;opacity:.85">credit when they order</div></div>'+
+      '<div style="position:absolute;left:150px;top:130px;width:300px;height:190px;border-radius:22px;background:#C8572A;color:#fff;padding:24px;transform:rotate(4deg);box-shadow:0 20px 40px rgba(184,72,31,.25)">'+
+        '<div style="font-size:12px;letter-spacing:.12em;opacity:.8">YOUR FRIEND GETS</div><div class="lora" style="font-size:58px;font-weight:600">$15</div><div style="font-size:13px;opacity:.85">off their first order</div></div>'+
+    '</div></div>'+
+  '<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;padding:10px 56px">'+
+    ['Share your link','Your friend orders','You both save'].map(function(t,i){
+      return '<div style="background:#FBF8F2;border:1px solid #E6DCCB;border-radius:18px;padding:20px"><div style="width:30px;height:30px;border-radius:50%;background:#3A826B;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px">'+(i+1)+'</div><div style="font-weight:700;margin-top:12px;color:#1C150D">'+t+'</div></div>';
+    }).join('')+'</div>';
+}
+
+function dpLabels(){
+  function wrap(bg,ink,name,claim){
+    return '<div style="width:1000px;height:180px;border-radius:6px;background:'+bg+';display:grid;grid-template-columns:230px 1fr 230px;box-shadow:0 10px 30px rgba(60,40,20,.12);overflow:hidden">'+
+      '<div style="padding:22px;border-right:1px dashed rgba(0,0,0,.18);font-size:10.5px;color:'+ink+';line-height:1.55"><b style="font-size:11px;letter-spacing:.1em">DIRECTIONS</b><br>Give one chew daily with food. Fresh water should be available at all times.<br><br><b style="font-size:11px;letter-spacing:.1em">STORAGE</b><br>Keep sealed in a cool, dry place.</div>'+
+      '<div style="padding:22px 26px;display:flex;flex-direction:column;justify-content:center;color:'+ink+'">'+
+        '<div style="font-family:Lora,serif;font-weight:700;font-size:15px;display:flex;align-items:center;gap:7px"><i style="width:14px;height:14px;border-radius:50%;background:'+ink+';display:block"></i>Dr. Paws · FOR CATS</div>'+
+        '<div style="font-family:Lora,serif;font-weight:700;font-size:40px;line-height:1.05;margin:8px 0 6px">'+name+'</div>'+
+        '<div style="font-size:14px;font-weight:600">'+claim+'</div>'+
+        '<div style="font-size:12px;margin-top:10px;opacity:.85">60 soft chews · Salmon flavour · 90g</div></div>'+
+      '<div style="padding:22px;border-left:1px dashed rgba(0,0,0,.18);font-size:10.5px;color:'+ink+'"><b style="font-size:11px;letter-spacing:.1em">INGREDIENTS</b><div style="margin-top:8px">'+
+        [90,76,84,62,70].map(function(w){return '<div style="height:5px;width:'+w+'%;background:'+ink+';opacity:.25;border-radius:3px;margin-bottom:6px"></div>';}).join('')+
+        '</div><div style="display:flex;gap:2px;height:34px;margin-top:12px">'+
+        [2,1,3,1,2,2,1,3,1,1,2,1,3,2,1,2].map(function(w){return '<i style="display:block;width:'+w+'px;background:'+ink+'"></i><i style="display:block;width:2px"></i>';}).join('')+'</div></div>'+
+    '</div>';
+  }
+  function top(bg,ink,name){
+    return '<div style="width:170px;height:170px;border-radius:8px;background:'+bg+';display:flex;flex-direction:column;align-items:center;justify-content:center;color:'+ink+';text-align:center;box-shadow:0 10px 30px rgba(60,40,20,.12)">'+
+      '<i style="width:26px;height:26px;border-radius:50%;background:'+ink+';display:block"></i><div style="font-family:Lora,serif;font-weight:700;font-size:20px;margin-top:10px;line-height:1.1">'+name+'</div><div style="font-size:11px;margin-top:6px">Dr. Paws</div></div>';
+  }
+  return '<div style="height:100%;background:#EFE7DA;padding:46px 60px;display:flex;flex-direction:column;gap:26px">'+
+    '<div style="display:flex;justify-content:space-between;align-items:baseline"><div class="lora" style="font-size:28px;font-weight:600;color:#1C150D">Cat chew labels · 90g</div><div style="font-size:12.5px;color:#8A7A66">Wrap 25 × 4.5 cm · Top 6.3 × 6.3 cm</div></div>'+
+    wrap('#F0BA68','#3B2A1A','8-in-1 Multivitamin','Immunity &amp; Vitality Boost')+
+    wrap('#93D3EC','#1E3A4A','Hair Ball Relief','Reduced Vomiting &amp; Digestive Support')+
+    '<div style="display:flex;gap:20px">'+top('#F0BA68','#3B2A1A','8-in-1')+top('#93D3EC','#1E3A4A','Hair Ball')+'</div>'+
+  '</div>';
+}
+
+/* ---------------- Shift AI ---------------- */
+function shSide(on){
+  var items=['Übersicht','Aufgaben','Zeiterfassung','Dienstplan','Mitarbeitende','Einstellungen'];
+  return '<div class="sh-side"><div class="sh-logo"><i></i>Shift AI</div>'+items.map(function(t){return '<div class="sh-nav'+(t===on?' on':'')+'"><i></i>'+t+'</div>';}).join('')+'</div>';
+}
+var SH_AV = {SM:'#3B5A8A',KR:'#7A5AA6',TM:'#2F8A6E',AB:'#C0664A',LN:'#B58E2E'};
+function av(k,s){ return '<span class="sh-av" style="background:'+SH_AV[k]+(s?';width:'+s+'px;height:'+s+'px':'')+'">'+k+'</span>'; }
+function shTask(){
+  function tc(t,tag,a,d){ return '<div class="sh-card" style="padding:14px;margin-bottom:10px"><b style="font-size:14px;display:block;margin-bottom:8px">'+t+'</b><div style="display:flex;align-items:center;gap:8px"><span class="sh-tag">'+tag+'</span><span style="margin-left:auto;font-size:12px;color:#6B7585">'+d+'</span>'+av(a,24)+'</div></div>'; }
+  function col(t,n,c){ return '<div style="background:#EBEEF3;border-radius:14px;padding:12px"><div style="display:flex;gap:8px;align-items:center;margin-bottom:12px;font-weight:700">'+t+'<span class="sh-tag" style="background:#fff">'+n+'</span></div>'+c+'</div>'; }
+  return shSide('Aufgaben')+
+  '<div class="sh-main"><div style="display:flex;align-items:center;gap:12px;margin-bottom:22px"><div class="sh-h">Aufgaben</div><span class="sh-tag">Lab Südblick</span><span style="margin-left:auto" class="sh-lang"><span class="on">DE</span><span>EN</span></span><span class="sh-btn">Neue Aufgabe</span></div>'+
+    '<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px">'+
+      col('Offen','5',tc('Notfallkoffer prüfen','Wartung','TM','02.12.')+tc('Hygieneplan aktualisieren','Qualität','AB','05.12.')+tc('Schulung Brandschutz','Team','LN','09.12.'))+
+      col('In Bearbeitung','3',tc('Monatliche Systemüberprüfungen','Labor','SM','30.11.')+tc('Dienstplan Januar','Planung','KR','28.11.'))+
+      col('Erledigt','8',tc('Kühlkette dokumentiert','Labor','TM','21.11.')+tc('Urlaubsliste Q1','Planung','KR','18.11.'))+
+    '</div></div>'+
+  '<div class="sh-dim"></div>'+
+  '<div class="sh-modal" style="left:200px;top:46px;width:860px;height:668px">'+
+    '<div style="padding:22px 28px 0"><div style="display:flex;align-items:center;font-size:12.5px;color:#6B7585">Lab Südblick / Aufgabe<span style="margin-left:auto;font-size:20px;color:#8A94A3">&times;</span></div>'+
+      '<div style="font-size:25px;font-weight:700;letter-spacing:-.02em;margin:8px 0 10px">Monatliche Systemüberprüfungen</div>'+
+      '<span style="display:inline-flex;align-items:center;gap:7px;padding:6px 12px;border-radius:999px;background:#FDF0DC;color:#9A5B0E;font-size:12.5px;font-weight:700"><i style="width:8px;height:8px;border-radius:50%;background:#E59A2E;display:block"></i>In Bearbeitung ▾</span>'+
+      '<div style="display:flex;gap:24px;margin-top:18px;border-bottom:1px solid #E8ECF2;font-size:14px"><span style="padding-bottom:10px;border-bottom:2px solid #3B5A8A;font-weight:700;color:#2C4670">Aufgabe</span><span style="padding-bottom:10px;color:#6B7585">Änderungsprotokoll</span></div></div>'+
+    '<div style="display:grid;grid-template-columns:1fr 260px;gap:26px;padding:20px 28px">'+
+      '<div><div class="sh-lbl">BESCHREIBUNG</div><p style="font-size:14px;color:#3A4456;line-height:1.6;margin-bottom:20px">Monatliche Prüfung aller Laborgeräte und Systemprotokolle. Ergebnisse im Prüfbericht festhalten.</p>'+
+        '<div class="sh-lbl">CHECKLISTE · 2/4</div>'+
+        '<div class="sh-chk d"><i></i>Kühlschranktemperaturen prüfen</div><div class="sh-chk d"><i></i>Zentrifuge kalibrieren</div><div class="sh-chk"><i></i>Backup-Protokoll kontrollieren</div><div class="sh-chk" style="border:0"><i></i>Prüfbericht hochladen</div>'+
+        '<div class="sh-lbl" style="margin-top:20px">KOMMENTARE</div>'+
+        '<div style="display:flex;gap:10px">'+av('SM')+'<div style="background:#F5F7FA;border:1px solid #E8ECF2;border-radius:12px;padding:10px 12px;flex:1"><div style="font-size:12.5px"><b>Sandra Mayer</b> <span style="color:#8A94A3">· vor 2 Std.</span></div><div style="font-size:13.5px;margin-top:3px">Zentrifuge ist kalibriert, Protokoll liegt im Ordner.</div></div></div>'+
+        '<div style="margin:10px 0 0 38px;border:1px solid #D5DCE6;border-radius:12px;padding:11px 12px;color:#8A94A3;font-size:13.5px">Kommentar schreiben…</div></div>'+
+      '<div style="background:#F7F9FC;border:1px solid #E8ECF2;border-radius:14px;padding:6px 16px;height:fit-content">'+
+        '<div class="sh-row"><span>Board</span><b>Lab Südblick</b></div>'+
+        '<div class="sh-row"><span>Zugewiesen</span><span style="display:flex;gap:4px">'+av('SM',24)+av('KR',24)+'</span></div>'+
+        '<div class="sh-row"><span>Fällig</span><b>30.11.2026</b></div>'+
+        '<div class="sh-row"><span>Wiederholung</span><b>Monatlich</b></div>'+
+        '<div class="sh-row"><span>Tags</span><span><span class="sh-tag">Labor</span> <span class="sh-tag">Wartung</span></span></div>'+
+        '<div class="sh-row" style="border:0"><span>Dateien</span><b>2</b></div></div>'+
+    '</div></div>';
+}
+function shTime(){
+  function node(c,t,v){ return '<div style="display:flex;gap:14px;align-items:center;position:relative;padding:9px 0"><i style="width:16px;height:16px;border-radius:50%;background:'+c+';border:3px solid #fff;box-shadow:0 0 0 1.5px '+c+';display:block;z-index:1;flex:none"></i><span style="font-size:15px">'+t+'</span><b style="margin-left:auto;font-size:16px">'+v+'</b></div>'; }
+  function vio(c,bg,t,d,s){ return '<div class="sh-v" style="border-color:'+c+'"><div><b>'+t+'</b><small>'+d+'</small></div><span class="sh-sev" style="background:'+bg+';color:'+c+'">'+s+'</span></div>'; }
+  return shSide('Zeiterfassung')+
+  '<div class="sh-main"><div class="sh-h" style="margin-bottom:20px">Zeiterfassung</div>'+
+    [0,1,2,3,4].map(function(i){ return '<div class="sh-card" style="height:70px;margin-bottom:10px"></div>'; }).join('')+'</div>'+
+  '<div class="sh-dim"></div>'+
+  '<div class="sh-modal" style="left:330px;top:34px;width:620px;height:692px;padding:24px 28px">'+
+    '<div style="display:flex;align-items:center"><span style="font-size:13px;color:#6B7585">Dienstag</span><span style="margin-left:auto" class="sh-lang"><span class="on">DE</span><span>EN</span></span><span style="font-size:20px;color:#8A94A3;margin-left:14px">&times;</span></div>'+
+    '<div style="font-size:30px;font-weight:700;letter-spacing:-.02em;margin:2px 0 16px">14. Oktober 2026</div>'+
+    '<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:18px">'+
+      [['Gesamtzeit','8:32 Std.'],['Arbeitszeit','8:02 Std.'],['Pause','0:30 Std.']].map(function(k){return '<div style="background:#F5F7FA;border:1px solid #E8ECF2;border-radius:12px;padding:12px 14px"><div style="font-size:12px;color:#6B7585">'+k[0]+'</div><div style="font-size:21px;font-weight:700;margin-top:2px">'+k[1]+'</div></div>';}).join('')+'</div>'+
+    '<div style="position:relative;padding-left:2px"><i style="position:absolute;left:9px;top:20px;bottom:20px;width:2px;background:#E3E7EE;display:block"></i>'+
+      node('#2F9E5B','Eingestempelt','06:58')+node('#E5B52E','Pause','11:30')+node('#3B7BD8','Fortgesetzt','12:00')+node('#D6453D','Ausgestempelt','15:30')+'</div>'+
+    '<div style="display:flex;align-items:center;gap:8px;margin:16px 0 10px"><b style="font-size:15px">Regelverstöße</b><span style="background:#FCE4E2;color:#B3261E;font-size:12px;font-weight:700;padding:2px 9px;border-radius:999px">3</span></div>'+
+    vio('#B3261E','#FCE4E2','Ruhezeit unter 11 Stunden','9 Std. 40 Min. seit der letzten Schicht','Kritisch')+
+    vio('#C2620E','#FDEBD8','Schicht länger als geplant','32 Min. über dem Dienstplan','Warnung')+
+    vio('#2E64B5','#E3EDFB','Ausstempeln ohne Standort','Bitte Standort bestätigen','Hinweis')+
+    '<div style="display:flex;justify-content:flex-end;gap:10px;margin-top:14px"><span class="sh-btn o">Eintrag bearbeiten</span><span class="sh-btn">Bestätigen</span></div>'+
+  '</div>';
+}
+function shDash(){
+  function kpi(t,v,b,bc){ return '<div class="sh-card" style="padding:18px"><div style="display:flex;align-items:center;font-size:13px;color:#6B7585">'+t+'<span style="margin-left:auto;font-size:11.5px;font-weight:700;padding:2px 9px;border-radius:999px;background:'+bc[0]+';color:'+bc[1]+'">'+b+'</span></div><div style="font-size:34px;font-weight:700;margin-top:6px">'+v+'</div></div>'; }
+  function row(k,n,t,r){ return '<div style="display:flex;align-items:center;gap:10px;padding:11px 0;border-bottom:1px solid #EEF1F5">'+av(k)+'<span style="font-size:14px;font-weight:600">'+n+'</span><span style="font-size:13px;color:#6B7585">'+r+'</span><b style="margin-left:auto;font-size:14px">'+t+'</b></div>'; }
+  return shSide('Übersicht')+
+  '<div class="sh-main"><div style="display:flex;align-items:center;margin-bottom:4px"><div class="sh-h">Guten Morgen</div><span style="margin-left:auto" class="sh-lang"><span class="on">DE</span><span>EN</span></span></div>'+
+    '<div style="color:#6B7585;font-size:14px;margin-bottom:20px">Dienstag, 14. Oktober · Lab Südblick</div>'+
+    '<div style="display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:16px">'+
+      kpi('Offene Aufgaben','12','+3 heute',['#EEF2F8','#3B5A8A'])+kpi('Heute im Dienst','18','von 22',['#E4F4EA','#24784A'])+kpi('Offene Anträge','3','neu',['#FDF0DC','#9A5B0E'])+kpi('Regelverstöße','2','kritisch',['#FCE4E2','#B3261E'])+'</div>'+
+    '<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:16px">'+
+      ['Einstempeln','Urlaub beantragen','Schicht tauschen'].map(function(t,i){return '<span class="sh-btn'+(i?' o':'')+'" style="height:58px;font-size:16px">'+t+'</span>';}).join('')+'</div>'+
+    '<div style="display:grid;grid-template-columns:1.4fr 1fr;gap:14px">'+
+      '<div class="sh-card" style="padding:18px 20px"><b style="font-size:15px">Heute im Dienst</b>'+row('SM','Sandra Mayer','07:00–15:30','Labor')+row('KR','Klaus Richter','07:00–15:30','Empfang')+row('TM','Thomas Müller','13:30–22:00','Pflege')+row('AB','Anna Berger','21:00–07:00','Nachtdienst')+'</div>'+
+      '<div class="sh-card" style="padding:18px 20px;display:flex;flex-direction:column"><b style="font-size:15px">Urlaubsanträge</b>'+
+        '<div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:20px 0">'+
+        '<div style="width:64px;height:64px;border-radius:50%;background:#EEF2F8;display:flex;align-items:center;justify-content:center"><i style="width:26px;height:22px;border:2.5px solid #3B5A8A;border-radius:5px;display:block"></i></div>'+
+        '<b style="margin-top:14px;font-size:15px">Keine offenen Anträge</b><span style="font-size:13px;color:#6B7585;margin:4px 0 14px">Neue Anträge erscheinen hier.</span><span class="sh-btn o" style="height:40px">Alle Anträge</span></div></div>'+
+    '</div></div>';
+}
+function shSpec(){
+  function spec(t,rows,hl){ return '<div style="border:1px solid '+(hl?'#9DB4D8':'#E3E7EE')+';background:'+(hl?'#EEF3FB':'#fff')+';border-radius:12px;padding:12px 14px;margin-bottom:10px"><b style="font-size:13px">'+t+'</b>'+rows.map(function(r){return '<div style="display:flex;justify-content:space-between;font-size:12px;margin-top:6px"><span style="color:#6B7585">'+r[0]+'</span><code style="font-family:\'JetBrains Mono\',monospace;font-size:11.5px;color:#2C4670">'+r[1]+'</code></div>';}).join('')+'</div>'; }
+  return '<div style="padding:34px 44px;height:100%;background:#F7F9FC">'+
+    '<div style="display:flex;align-items:baseline;gap:14px;border-bottom:1px solid #E3E7EE;padding-bottom:16px;margin-bottom:24px"><div class="sh-h">Design System</div><span style="color:#6B7585">Modals · annotated for handoff</span></div>'+
+    '<div style="display:grid;grid-template-columns:1fr 380px;gap:30px">'+
+      '<div style="background:#E9EDF3;border-radius:16px;padding:40px;display:flex;align-items:center;justify-content:center;height:560px">'+
+        '<div style="width:440px;background:#fff;border-radius:18px;box-shadow:0 20px 50px rgba(10,20,40,.15);overflow:hidden">'+
+          '<div style="padding:22px 24px;display:flex;gap:14px;align-items:flex-start"><span style="width:40px;height:40px;border-radius:12px;background:#FCE4E2;display:block;flex:none"></span><div><b style="font-size:17px">Schicht löschen?</b><div style="font-size:13.5px;color:#5B6576;margin-top:4px">Die Schicht wird aus dem Dienstplan entfernt. Das kann nicht rückgängig gemacht werden.</div></div></div>'+
+          '<div style="padding:16px 24px;background:#F7F9FC;border-top:1px solid #E8ECF2;display:flex;justify-content:flex-end;gap:10px"><span class="sh-btn o" style="height:40px">Abbrechen</span><span class="sh-btn" style="height:40px;background:#B3261E">Löschen</span></div></div></div>'+
+      '<div>'+spec('Backdrop',[['background','rgba(20,30,48,.42)'],['z-index','--z-modal']])+spec('Container',[['radius','--radius-xl · 18px'],['shadow','--shadow-modal'],['width','440 / 620 / 860']])+
+        spec('Header',[['title','17 / 700 / --ink'],['icon','40 · --radius-lg']])+spec('Footer buttons',[['height','40px · min target 44 on touch'],['order','Cancel left, primary last'],['danger','--red-700 #B3261E']],1)+'</div>'+
+    '</div></div>';
+}
+
+var MOCKS = {
+  'dr-paws':[
+    {c:'Gut Glow product page', cls:'dp', f:dpPDP},
+    {c:'Quiz funnel — intro, question, plan', cls:'dp', f:dpQuiz},
+    {c:'Brand guide v1.1 — teal system, two button tiers', cls:'dp', f:dpGuide},
+    {c:'Referral programme — give $15, get $15', cls:'dp', f:dpReferral},
+    {c:'Cat chew packaging labels to print spec', cls:'dp', f:dpLabels}
+  ],
+  'shift-ai':[
+    {c:'Task detail modal on the Kanban board', cls:'sh', f:shTask},
+    {c:'Time tracking entry with severity-tiered violations', cls:'sh', f:shTime},
+    {c:'Dashboard — count badges, quick actions, empty state', cls:'sh', f:shDash},
+    {c:'Design system — annotated modal spec', cls:'sh', f:shSpec}
+  ],
+  'xo-ai-builder':[
+    IMG('DQT2gvvOsEAQyq3UtNq9sAzVOg.png',1905,1589,'XO AI Builder on desktop'),
+    IMG('lDNtCl9prfP6tm9dSROre2vUhcg.png',1588,1589,'Flow canvas with the contextual step editor'),
+    IMG('0IHatdpon0SCpVzVZZAQwxFfcC0.png',1589,1589,'Building a SmartAgent flow node by node'),
+    IMG('rkw6XGSZ0voMdlCGo9MeOAwc4c.png',2132,1589,'Wireframes and flow mapping in FigJam')
+  ],
+  'apply-portal':[
+    IMG('UQpy4X4hnr8r0l4ijQxqEaxhI.png',1589,1589,'XO Apply Portal on mobile'),
+    IMG('CJMWsWL1xwHdSS1fAvyQUuOhw.png',1589,1589,'Mobile screens across the application flow'),
+    IMG('pzvzhZ4XcZGcPRro9pxHy0xo4SI.png',1589,1694,'Welcome page'),
+    IMG('V2jnK5HhpjbToWNVQFf2HkQkgzw.png',2174,1589,'Wireframes for the full flow')
+  ],
+  'xlearner':[
+    IMG('NQYhW6W21rAqL0OnolN75lyeCM.png',2250,1500,'XLearner on desktop'),
+    IMG('QtrfTPADNXCS2o5jWDn3S4sDw.png',1600,1200,'Course library and course pages'),
+    IMG('MV4nNxveuKYtigaNrIDOn3iLGg.png',1600,1200,'Learner and manager views')
+  ],
+  'insultify':[
+    IMG('zejAoH0f1aDPXaFLHv5VunJAJE.png',1589,1589,'Choose an insult style'),
+    IMG('8MJbi2XfqsMAAVD7z5jc1fGffF8.png',1744,1876,'Splash, style picker and result screens'),
+    IMG('EzYoOCKwOtr80DsbEagLB8p2v8.gif',1152,866,'Loading screen animation'),
+    IMG('PdKaQaE9OggGuTOK1T0nodcH6k.png',1148,779,'Wireframes and design process in FigJam')
+  ]
+};
+var MOCK_W = 1200, MOCK_H = 760;
+function IMG(file,w,h,c){ return {img:'https://framerusercontent.com/images/'+file+(/\.gif$/.test(file)?'':'?scale-down-to=2048'), w:w, h:h, c:c}; }
+function frame(m){
+  if(m.img) return '<div class="frame imgf" style="aspect-ratio:'+m.w+'/'+m.h+'"><img src="'+m.img+'" alt="'+m.c.replace(/"/g,'&quot;')+'" loading="lazy" decoding="async" width="'+m.w+'" height="'+m.h+'"></div>';
+  return '<div class="frame" role="img" aria-label="'+m.c.replace(/"/g,'&quot;')+'" style="aspect-ratio:'+MOCK_W+'/'+MOCK_H+'">'+
+    '<div class="mock '+m.cls+'" aria-hidden="true" style="width:'+MOCK_W+'px;height:'+MOCK_H+'px">'+m.f()+'</div></div>';
+}
+var fitRO = ('ResizeObserver' in window) ? new ResizeObserver(function(es){
+  es.forEach(function(e){ scaleFrame(e.target); });
+}) : null;
+function scaleFrame(f){
+  var m = f.firstElementChild, w = f.clientWidth;
+  if(m && w && m.classList.contains('mock')) m.style.transform = 'scale(' + (w / MOCK_W) + ')';
+}
+function fitFrames(root){
+  (root || document).querySelectorAll('.frame').forEach(function(f){
+    scaleFrame(f);
+    if(fitRO) fitRO.observe(f);
+  });
+}
+window.addEventListener('resize', function(){ fitFrames(); });
+
+
+/* --- rows --- */
+var grid = document.getElementById('worksGrid');
+grid.innerHTML = CASES.map(function(c,i){
+  return '<button class="workrow" type="button" data-slug="'+c.slug+'" data-i="'+i+'">'+
+    '<span class="no">'+String(i+1).padStart(2,'0')+'</span>'+
+    '<span><span class="workthumb">'+(MOCKS[c.slug]?frame(MOCKS[c.slug][0]):shot(c.tone,520,300))+'</span>'+
+      '<h3>'+c.t+'</h3><span class="m">'+c.m+'</span>'+
+      (c.nda ? '<span class="nda">NON-DISCLOSURE</span>' : '')+'</span>'+
+    '<span><p>'+c.d+'</p>'+
+      '<span class="tags">'+c.g.map(function(g){return '<span class="tag">'+g+'</span>';}).join('')+'</span>'+
+      '<span class="copen">Open project &rarr;</span></span>'+
+    '<span class="plus" aria-hidden="true"></span>'+
+  '</button>';
+}).join('') + '<div class="hovercard" id="hoverCard" aria-hidden="true"></div>';
+
+var hoverCard = document.getElementById('hoverCard');
+var cardShown = -1, hoverTimer;
+
+function placeCard(x, y){
+  var gr = grid.getBoundingClientRect();
+  var cw = 320, ch = hoverCard.offsetHeight || 300;
+  var left = x - gr.left + 26;
+  var top  = y - gr.top - ch/2;
+  left = Math.max(8, Math.min(left, gr.width - cw - 8));
+  top  = Math.max(8, Math.min(top, gr.height - ch - 8));
+  hoverCard.style.transform = 'translate(' + Math.round(left) + 'px,' + Math.round(top) + 'px)';
+}
+function showCard(row, x, y){
+  if(window.innerWidth <= 820) return;
+  var i = +row.dataset.i;
+  if(i !== cardShown){
+    var c = CASES[i];
+    hoverCard.innerHTML = (MOCKS[c.slug]?frame(MOCKS[c.slug][0]):shot(c.tone,520,280)) +
+      '<div class="body"><h3>'+c.t+'</h3><p>'+c.blurb+'</p>'+
+      '<span class="open">Open project &rarr;</span></div>';
+    fitFrames(hoverCard);
+    cardShown = i;
+  }
+  placeCard(x, y);
+  hoverCard.classList.add('on');
+}
+function hideCard(){ hoverCard.classList.remove('on'); cardShown = -1; }
+
+grid.querySelectorAll('.workrow').forEach(function(row){
+  row.addEventListener('mouseenter', function(e){ clearTimeout(hoverTimer); showCard(row, e.clientX, e.clientY); });
+  row.addEventListener('mousemove', function(e){ if(cardShown === +row.dataset.i) placeCard(e.clientX, e.clientY); });
+  row.addEventListener('mouseleave', function(){ hoverTimer = setTimeout(hideCard, 80); });
+  row.addEventListener('focus', function(){
+    if(window.innerWidth <= 820) return;
+    var r = row.getBoundingClientRect();
+    showCard(row, r.left + r.width*0.62, r.top + r.height/2);
+  });
+  row.addEventListener('blur', hideCard);
+  row.addEventListener('click', function(){ openCase(row.dataset.slug); });
+});
+grid.addEventListener('mouseleave', hideCard);
+
+/* --- desktop showcase --- */
+var BADGE = {'apply-portal':'XTENDOPS','xlearner':'XTENDOPS','dr-paws':'DOQPAL','shift-ai':'DOQPAL','xo-ai-builder':'XTENDOPS','insultify':'HACKATHON'};
+var scList = document.getElementById('scList'), scMain = document.getElementById('scMain');
+scList.innerHTML = CASES.map(function(c,i){
+  return '<div class="sc-item'+(i===0?' on':'')+'" data-slug="'+c.slug+'">'+
+    '<div class="sc-head"><button class="sc-name" type="button" data-jump="'+c.slug+'">'+c.t+'</button><span class="sc-badge">'+(BADGE[c.slug]||'')+'</span></div>'+
+    '<div class="sc-detail"><div class="sc-meta">'+c.cat+' &bull; '+c.meta.Year+'</div><p>'+c.blurb+'</p>'+
+    '<button class="sc-read" type="button" data-case="'+c.slug+'">Read the full case study &nearr;</button></div></div>';
+}).join('');
+scMain.innerHTML = '<span class="sc-ind" id="scInd" aria-hidden="true"></span>' + CASES.map(function(c){
+  var ms = MOCKS[c.slug] || [], first = ms.slice(0,3), rest = ms.slice(3);
+  return '<section class="sc-proj" id="sc-'+c.slug+'" data-slug="'+c.slug+'" aria-labelledby="sct-'+c.slug+'">'+
+    '<h2 class="sc-title" id="sct-'+c.slug+'">'+c.t+'</h2>'+ first.map(frame).join('')+
+    (rest.length ? '<div class="sc-more" id="more-'+c.slug+'" hidden>'+rest.map(frame).join('')+'</div>'+
+      '<button class="sc-morebtn" type="button" aria-expanded="false" aria-controls="more-'+c.slug+'" data-more="'+c.slug+'" data-n="'+rest.length+'">Show the other '+rest.length+' screen'+(rest.length>1?'s':'')+' &nbsp;+</button>' : '')+
+    (c.nda ? '<span class="ndatag">NON-DISCLOSURE</span>' : '')+
+  '</section>';
+}).join('');
+fitFrames(scMain);
+fitFrames(grid);
+
+scMain.addEventListener('click', function(e){
+  var b = e.target.closest('[data-more]');
+  if(!b) return;
+  var box = document.getElementById('more-'+b.dataset.more), open = box.hidden;
+  box.hidden = !open;
+  b.setAttribute('aria-expanded', open);
+  var n = +b.dataset.n;
+  b.innerHTML = open ? 'Hide '+n+' screen'+(n>1?'s':'')+' &nbsp;&minus;' : 'Show the other '+n+' screen'+(n>1?'s':'')+' &nbsp;+';
+  if(open) fitFrames(box);
+  requestAnimationFrame(spy);
+});
+scList.addEventListener('click', function(e){
+  var b = e.target.closest('[data-jump]');
+  if(!b) return;
+  var sec = document.getElementById('sc-'+b.dataset.jump);
+  var y = sec.getBoundingClientRect().top + window.pageYOffset - 96;
+  window.scrollTo({top:y, behavior: reduce ? 'auto' : 'smooth'});
+  var h = sec.querySelector('.sc-title'); h.setAttribute('tabindex','-1'); h.focus({preventScroll:true});
+});
+var activeSlug = CASES[0].slug, spyTick = false;
+function spy(){
+  spyTick = false;
+  if(current !== 'work' || document.body.classList.contains('worklist')) return;
+  var secs = scMain.querySelectorAll('.sc-proj'), line = window.innerHeight * 0.4, act = secs[0];
+  secs.forEach(function(sct){ if(sct.getBoundingClientRect().top <= line) act = sct; });
+  if(!act) return;
+  var ind = document.getElementById('scInd');
+  ind.style.top = act.offsetTop + 'px';
+  ind.style.height = act.offsetHeight + 'px';
+  if(act.dataset.slug !== activeSlug){
+    activeSlug = act.dataset.slug;
+    scList.querySelectorAll('.sc-item').forEach(function(it){ it.classList.toggle('on', it.dataset.slug === activeSlug); });
+  }
+}
+window.addEventListener('scroll', function(){
+  document.body.classList.toggle('scrolled', window.pageYOffset > 8);
+  if(!spyTick){ spyTick = true; requestAnimationFrame(spy); }
+}, {passive:true});
+window.addEventListener('resize', function(){ requestAnimationFrame(spy); });
+
+var workToggle = document.getElementById('workToggle');
+workToggle.addEventListener('click', function(){
+  var list = document.body.classList.toggle('worklist');
+  workToggle.setAttribute('aria-pressed', list);
+  workToggle.innerHTML = list ? 'Screenshots instead &darr;' : 'List view instead &darr;';
+  fitFrames();
+  requestAnimationFrame(spy);
+});
+
+
+/* --- case study page --- */
+function renderCase(slug){
+  var i = CASES.map(function(c){return c.slug;}).indexOf(slug);
+  if(i < 0) i = 0;
+  var c = CASES[i], next = CASES[(i+1) % CASES.length];
+  var mk = MOCKS[c.slug] || [], mi = 1;
+
+  var meta = Object.keys(c.meta).map(function(k){
+    return '<div><div class="k">'+k.toUpperCase()+'</div><div class="v">'+c.meta[k]+'</div></div>';
+  }).join('');
+
+  var steps = c.steps.map(function(sec,n){
+    function paras(arr){ return (arr||[]).map(function(p){return '<p>'+p+'</p>';}).join(''); }
+    var body = paras(sec.p) +
+      (sec.list ? '<ul class="caselist">'+sec.list.map(function(li){return '<li><span>'+li+'</span></li>';}).join('')+'</ul>' : '') +
+      paras(sec.pAfter);
+    var figs = (sec.figs || []).map(function(f){
+      if(f.k === 'img' && mk[f.i]){
+        return '<figure class="casefig">'+frame(mk[f.i])+'<figcaption>'+mk[f.i].c+'</figcaption></figure>';
+      }
+      if(f.k === 'screens' && mi < mk.length && !mk[mi].img){
+        var m = mk[mi++];
+        return '<figure class="casefig">'+frame(m)+'<figcaption>'+m.c+'</figcaption></figure>';
+      }
+      return '<figure class="casefig">'+FIGS[f.k](c.tone)+'<figcaption>'+f.c+'</figcaption></figure>';
+    }).join('');
+    return '<section class="casestep" id="step-'+n+'">'+
+      '<div class="stepgrid">'+
+        '<div class="stepleft">'+
+          '<div class="steptag"><span class="dot"></span>'+String(n+1).padStart(2,'0')+' &middot; '+sec.tag+'</div>'+
+          '<h2>'+sec.head+'</h2>'+
+        '</div>'+
+        '<div class="stepbody">'+body+'</div>'+
+      '</div>'+ figs +
+    '</section>';
+  }).join('');
+
+  document.getElementById('caseHost').innerHTML =
+    '<div class="wrap" style="padding-top:44px">'+
+      '<button class="caseback" type="button" data-go="work">&larr; ALL WORK</button>'+
+      '<h1 class="casetitle">'+c.t+'</h1>'+
+      '<p class="casesub">'+c.lede+'</p>'+
+      '<div class="casemeta">'+meta+'</div>'+
+      '<figure class="casehero">'+(mk[0]?frame(mk[0]):shot(c.tone,1100,470))+'</figure>'+
+      '<div class="casesteps">'+steps+'</div>'+
+      '<div class="casenext">'+
+        '<button class="nextcard" type="button" data-case="'+next.slug+'" aria-label="Next project: '+next.t+'">'+
+          '<span class="nc-body">'+
+            '<span class="nc-k"><span>UP NEXT</span><span>'+String((i+1)%CASES.length+1).padStart(2,'0')+' / '+String(CASES.length).padStart(2,'0')+'</span></span>'+
+            '<span class="nc-t">'+next.t+'</span>'+
+            '<span class="nc-p">'+next.blurb+'</span>'+
+            '<span class="nc-go"><i aria-hidden="true">&rarr;</i>Open project</span>'+
+          '</span>'+
+          '<span class="nc-shot" aria-hidden="true">'+(MOCKS[next.slug]?frame(MOCKS[next.slug][0]):shot(next.tone,520,300))+'</span>'+
+        '</button>'+
+        '<div class="casefoot"><button type="button" data-go="work">&larr; ALL WORK</button><span>'+c.t.toUpperCase()+' &middot; CASE STUDY</span></div>'+
+      '</div>'+
+    '</div>';
+}
+
+function openCase(slug){
+  renderCase(slug);
+  fitFrames(document.getElementById('caseHost'));
+  if(current === 'case'){ window.scrollTo(0,0); }
+  hideCard();
+  go('case');
+}
+document.addEventListener('click', function(e){
+  var t = e.target.closest('[data-case]');
+  if(t) openCase(t.dataset.case);
+});
+
+
+/* =========================================================
+   STACK
+========================================================= */
+var STACK = [
+  ['Figma','FigJam','Photoshop','Illustrator','Blender','Canva','Design systems','Claude','Cursor AI','Relume AI'],
+  ['HTML','CSS','JavaScript','React','Svelte','Tailwind CSS','ShadCN UI','Material UI','Shopify','WordPress','Framer','Webflow']
+];
+document.getElementById('stack').innerHTML = STACK.map(function(col){
+  return '<div><ul>'+col.map(function(x){return '<li>'+x+'</li>';}).join('')+'</ul></div>';
+}).join('');
+
+/* =========================================================
+   TIMELINE
+========================================================= */
+var TL = [
+  {w:'NOV 2025 — PRESENT', t:'Product Designer & Frontend Developer · DoqPal',
+   d:'Product design and frontend across several products, including unreleased work under NDA. Shift AI (formerly Horizon HR): task management, time tracking and dashboard for German healthcare teams. Dr. Paws: design system, 20+ page storefront, packaging, 3D renders and campaigns.'},
+  {w:'SEPT 2020 — NOV 2025', t:'UI/UX Designer · XtendOps',
+   d:'Led the six-week redesign of XO AI Builder, turning a JSON-based SmartAgent console into a drag-and-drop builder non-technical users can use. Also XConnect, the Job Application Portal, XLearner, the TA Portal and the XO Operating System: needfinding across global departments, new information architecture, and implementation alongside frontend and full-stack developers.'},
+  {w:'MAR 2016 — OCT 2019', t:'Web Designer & Developer · Law firm sites',
+   d:'Full ownership of layout, visual design, content and build. Designed in Photoshop, coded and shipped on WordPress, and produced the logos, banners and vectors alongside.'},
+  {w:'JAN 2014 — JUL 2015', t:'Team Leader · VirtuosoMaster (WP TaskForce)',
+   d:'Led a web team through design, build and QA, and wrote the technical manuals and user instructions that shipped with the work.'},
+  {w:'MAY 2013 — JUL 2015', t:'Web Designer & Developer',
+   d:'PSD to HTML, large-scale e-commerce builds with payment processing, customs clearance and multi-currency pricing, plus cross-browser and mobile responsiveness.'},
+  {w:'2008 — 2012', t:'BS Computer Science · St. Paul University Iloilo',
+   d:'Google Foundations of User Experience Design certificate followed in 2022.'}
+];
+document.getElementById('timeline').innerHTML = TL.map(function(x){
+  return '<div class="tlitem"><div class="when">'+x.w+'</div><div><h3>'+x.t+'</h3><p>'+x.d+'</p></div></div>';
+}).join('');
+</script>
+</body>
+</html>
